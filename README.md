@@ -12,6 +12,9 @@
 | --- | --- |
 | `index.html` | サイト本体（HTML・CSS・JavaScript をすべて含む単一ファイル） |
 | `.nojekyll` | GitHub Pages で Jekyll の処理を無効にするための空ファイル |
+| `llms.txt` | AI エージェント向けの案内（[llmstxt.org](https://llmstxt.org/) の形式）。人物の要約、主な活動、連絡方法、リンクを Markdown で書いています。公開URLは https://enochan.github.io/portfolio/llms.txt |
+
+`index.html` のプロフィールやリンクを変えたときは、`llms.txt` も同じ内容に合わせて更新してください。
 
 フォントは Google Fonts の「Zen Maru Gothic」を読み込んでいます。
 
