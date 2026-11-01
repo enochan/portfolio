@@ -96,6 +96,8 @@ li[data-type="career"]{--c:var(--career);--cb:var(--career-bg);--cf:var(--career
 .badge{font-size:13px;font-weight:700;color:var(--cf);background:var(--cb);border-radius:999px;padding:0 .8em}
 .ev .t{display:block;font-weight:700;font-size:17px;line-height:1.6;margin:2px 0}
 .ev .w{display:block;font-size:14px;color:var(--sub);line-height:1.7}
+.badge.plan{color:var(--fg);background:#fff;box-shadow:inset 0 0 0 2px var(--c)}
+ol.tl li.plan::before{background:var(--bg);box-shadow:inset 0 0 0 4px var(--c),0 0 0 5px var(--bg)}
 .more{font-size:15px;color:var(--sub)}
 [hidden]{display:none!important}
 .js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
@@ -187,6 +189,16 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
      </fieldset>
      <p id="count" class="vh" aria-live="polite"></p>
 
+     <!-- 予定や新しい項目はこの配列に追加します。書き方は README.md の「タイムラインに項目を追加する」を参照 -->
+     <script type="application/json" id="timeline-data">
+[]
+     </script>
+
+     <div class="year" id="upcoming" hidden>
+      <h3>これから</h3>
+      <ol class="tl"></ol>
+     </div>
+
      <div class="year">
       <h3>2026</h3>
       <ol class="tl">
@@ -244,13 +256,69 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
  var els=document.querySelectorAll('.reveal');
  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('on')})}
  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});els.forEach(function(e){io.observe(e)})}
- var btns=document.querySelectorAll('.filters button'),items=document.querySelectorAll('ol.tl li'),years=document.querySelectorAll('.year'),count=document.getElementById('count');
+ function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+ function pad(n){return(n<10?'0':'')+n}
+ var now=new Date(),today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+ var upcoming=document.getElementById('upcoming'),upList=upcoming.querySelector('ol'),more=document.querySelector('.more');
+
+ function buildItem(d){
+  var li=el('li'),ev=el('div','ev'),meta=el('div','meta'),time=el('time'),t=el('span','t');
+  li.dataset.type=d.type;
+  time.setAttribute('datetime',d.date);
+  time.textContent=d.date.slice(5).replace('-','.');
+  meta.appendChild(el('span','badge',d.label));meta.appendChild(time);
+  if(d.media)meta.appendChild(el('span','',d.media));
+  if(d.url){var a=el('a','',d.title);a.href=d.url;t.appendChild(a)}else t.textContent=d.title;
+  ev.appendChild(meta);ev.appendChild(t);
+  if(d.detail)ev.appendChild(el('span','w',d.detail));
+  li.appendChild(ev);
+  return li;
+ }
+ function yearList(y){
+  var blocks=document.querySelectorAll('.year:not(#upcoming)');
+  for(var i=0;i<blocks.length;i++){
+   var h=blocks[i].querySelector('h3').textContent.trim();
+   if(h===y)return blocks[i].querySelector('ol');
+   if(h<y)break;
+  }
+  var block=el('div','year'),ol=el('ol','tl');
+  block.appendChild(el('h3','',y));block.appendChild(ol);
+  (blocks[i]||more).parentNode.insertBefore(block,blocks[i]||more);
+  return ol;
+ }
+ function dateOf(li){var t=li.querySelector('time');return t?t.getAttribute('datetime'):''}
+ function insertSorted(ol,li,asc){
+  var d=dateOf(li),sib=[].find.call(ol.children,function(x){return asc?dateOf(x)>d:dateOf(x)<d});
+  ol.insertBefore(li,sib||null);
+ }
+ function toPlan(li){
+  var time=li.querySelector('time'),d=dateOf(li),badge=el('span','badge plan','予定');
+  li.classList.add('plan');
+  time.textContent=d.replace(/-/g,'.');
+  time.parentNode.insertBefore(badge,time.parentNode.firstChild);
+  insertSorted(upList,li,true);
+ }
+
+ var data=[];
+ try{data=JSON.parse(document.getElementById('timeline-data').textContent)}catch(e){console.error('timeline-data の JSON を読み込めませんでした',e)}
+ data.forEach(function(d){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(d.date||'')||!d.title){console.error('timeline-data の項目に date（YYYY-MM-DD）か title がありません',d);return}
+  var li=buildItem(d);
+  if(d.date>today)toPlan(li);else insertSorted(yearList(d.date.slice(0,4)),li,false);
+ });
+ document.querySelectorAll('.year:not(#upcoming) ol.tl li').forEach(function(li){
+  var d=dateOf(li);
+  if(/^\d{4}-\d{2}-\d{2}$/.test(d)&&d>today){var ol=li.parentNode;toPlan(li);if(!ol.children.length)ol.parentNode.remove()}
+ });
+ upcoming.hidden=!upList.children.length;
+
+ var btns=document.querySelectorAll('.filters button'),count=document.getElementById('count');
  btns.forEach(function(b){b.addEventListener('click',function(){
-  var f=b.dataset.f,n=0;
+  var f=b.dataset.f,n=0,plans=0;
   btns.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-  items.forEach(function(li){var show=f==='all'||li.dataset.type===f;li.hidden=!show;if(show)n++});
-  years.forEach(function(y){y.hidden=!y.querySelector('li:not([hidden])')});
-  count.textContent=b.textContent.trim()+'：'+n+'件を表示しています';
+  document.querySelectorAll('ol.tl li').forEach(function(li){var show=f==='all'||li.dataset.type===f;li.hidden=!show;if(show){n++;if(li.classList.contains('plan'))plans++}});
+  document.querySelectorAll('.year').forEach(function(y){y.hidden=!y.querySelector('li:not([hidden])')});
+  count.textContent=b.textContent.trim()+'：'+n+'件を表示しています'+(plans?'（うち予定'+plans+'件）':'');
  })});
 })();
 </script>
