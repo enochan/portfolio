@@ -6,6 +6,7 @@
 <title>榎本大貴 | ポートフォリオ</title>
 <meta name="description" content="株式会社LITALICO 執行役員／LITALICO研究所 所長／AI統括部長、任意団体「みんなのアクセス」代表 榎本大貴のポートフォリオ。誰もがアクセシビリティを身近に感じ、実践したくなる社会を目指す。">
 <link rel="canonical" href="https://enochan.github.io/portfolio/">
+<link rel="alternate" type="text/markdown" href="llms.txt" title="llms.txt">
 <meta property="og:title" content="榎本大貴 | ポートフォリオ">
 <meta property="og:description" content="株式会社LITALICO 執行役員／LITALICO研究所 所長／AI統括部長、任意団体「みんなのアクセス」代表 榎本大貴のポートフォリオ。誰もがアクセシビリティを身近に感じ、実践したくなる社会を目指す。">
 <meta property="og:type" content="website">
@@ -96,7 +97,36 @@ li[data-type="career"]{--c:var(--career);--cb:var(--career-bg);--cf:var(--career
 .badge{font-size:13px;font-weight:700;color:var(--cf);background:var(--cb);border-radius:999px;padding:0 .8em}
 .ev .t{display:block;font-weight:700;font-size:17px;line-height:1.6;margin:2px 0}
 .ev .w{display:block;font-size:14px;color:var(--sub);line-height:1.7}
+.badge.plan{color:var(--fg);background:#fff;box-shadow:inset 0 0 0 2px var(--c)}
+ol.tl li.plan::before{background:var(--bg);box-shadow:inset 0 0 0 4px var(--c),0 0 0 5px var(--bg)}
 .more{font-size:15px;color:var(--sub)}
+.to-contact{margin:0}
+.to-contact a{display:inline-block;padding:.4em 1.2em;border-radius:999px;background:var(--fg);color:#fff;text-decoration:none;font-size:15px;font-weight:700}
+.to-contact a:hover{background:var(--teal)}
+/* contact */
+.contact{max-width:720px}
+.contact .note{margin:0 0 20px;font-size:15px;color:var(--sub)}
+.contact form,.status.done{background:var(--card);border-radius:24px;padding:28px;box-shadow:0 6px 24px rgba(60,40,20,.06)}
+.field{margin:0 0 22px}
+.field label{display:flex;align-items:center;gap:.6em;font-weight:700;margin-bottom:6px}
+.tag{font-size:12px;font-weight:700;border-radius:999px;padding:0 .7em;line-height:1.8}
+.tag.req{color:var(--talk-fg);background:var(--talk-bg)}
+.tag.opt{color:var(--sub);background:var(--bg);box-shadow:inset 0 0 0 1px var(--line)}
+.field input,.field textarea{display:block;width:100%;font:inherit;font-size:16px;color:var(--fg);background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 14px;min-height:48px;line-height:1.7}
+.field textarea{min-height:180px;resize:vertical}
+.field input:hover,.field textarea:hover{border-color:var(--teal)}
+.field [aria-invalid="true"]{border-color:var(--accent);background:#fff7f3}
+.err{margin:6px 0 0;color:var(--accent);font-size:15px;font-weight:700}
+.err:empty{display:none}
+.honey{display:none!important}
+.submit{font:inherit;font-size:16px;font-weight:700;min-height:48px;padding:0 32px;border-radius:999px;border:0;background:var(--fg);color:#fff;cursor:pointer}
+.submit:hover{background:var(--teal)}
+.submit[aria-disabled="true"]{cursor:progress;background:var(--sub)}
+.status{margin:0 0 20px}
+.status:empty{display:none}
+.status.sending{color:var(--sub);font-weight:700}
+.status.error{background:var(--talk-bg);color:var(--talk-fg);border-radius:16px;padding:14px 18px;font-weight:700}
+.status.done{background:var(--write-bg);color:var(--write-fg);font-weight:700}
 [hidden]{display:none!important}
 .js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
 .reveal.on{opacity:1;transform:none}
@@ -115,6 +145,7 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
  ol.tl{padding-left:22px;margin-left:8px}
  ol.tl li::before{left:-32px;width:16px;height:16px}
  .ev{padding:12px 16px}
+ .contact form,.status.done{padding:20px}
 }
 </style>
 </head>
@@ -127,7 +158,7 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
 <header class="top">
  <div class="wrap">
   <a class="logo" href="#main">榎本大貴</a>
-  <nav aria-label="メイン"><ul><li><a href="#layers">AI活用</a></li><li><a href="#timeline">タイムライン</a></li><li><a href="#links">リンク</a></li></ul></nav>
+  <nav aria-label="メイン"><ul><li><a href="#layers">AI活用</a></li><li><a href="#timeline">タイムライン</a></li><li><a href="#links">リンク</a></li><li><a href="#contact">お問い合わせ</a></li></ul></nav>
  </div>
 </header>
 <main id="main" tabindex="-1">
@@ -175,6 +206,7 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
       <li><a href="https://litalico.co.jp/about/lab/">LITALICO研究所</a></li>
       <li><a href="https://youtube.com/@everyonesaccesscollective">みんなのアクセス（YouTube）</a></li>
      </ul>
+     <p class="to-contact"><a href="#contact">お問い合わせ</a></p>
     </aside>
 
     <div>
@@ -186,6 +218,16 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
       <button type="button" data-f="career" aria-pressed="false"><span class="sw" style="background:var(--career)" aria-hidden="true"></span>経歴</button>
      </fieldset>
      <p id="count" class="vh" aria-live="polite"></p>
+
+     <!-- 予定や新しい項目はこの配列に追加します。書き方は README.md の「タイムラインに項目を追加する」を参照 -->
+     <script type="application/json" id="timeline-data">
+[]
+     </script>
+
+     <div class="year" id="upcoming" hidden>
+      <h3>これから</h3>
+      <ol class="tl"></ol>
+     </div>
 
      <div class="year">
       <h3>2026</h3>
@@ -236,6 +278,40 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
     </div>
    </div>
   </section>
+
+  <section id="contact" aria-labelledby="h-contact" tabindex="-1">
+   <h2 id="h-contact"><span class="dot" aria-hidden="true"></span>お問い合わせ</h2>
+   <div class="contact">
+    <p class="note">送信内容は、外部サービスの <a href="https://formsubmit.co/">FormSubmit</a> を経由して届きます。</p>
+    <div id="form-status" class="status" role="status" aria-live="polite" tabindex="-1"></div>
+    <form id="contact-form" action="https://formsubmit.co/dffb1aba5090e823fb3f12306cceace2" method="POST">
+     <input type="hidden" name="_subject" value="ポートフォリオサイトからのお問い合わせ">
+     <input type="hidden" name="_template" value="table">
+     <input type="hidden" name="_captcha" value="false">
+     <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+     <div class="field">
+      <label for="f-name">お名前<span class="tag req">必須</span></label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+      <p class="err" id="f-name-err"></p>
+     </div>
+     <div class="field">
+      <label for="f-email">メールアドレス<span class="tag req">必須</span></label>
+      <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err">
+      <p class="err" id="f-email-err"></p>
+     </div>
+     <div class="field">
+      <label for="f-org">ご所属<span class="tag opt">任意</span></label>
+      <input id="f-org" name="organization" type="text" autocomplete="organization">
+     </div>
+     <div class="field">
+      <label for="f-message">お問い合わせ内容<span class="tag req">必須</span></label>
+      <textarea id="f-message" name="message" required aria-describedby="f-message-err"></textarea>
+      <p class="err" id="f-message-err"></p>
+     </div>
+     <button type="submit" class="submit">送信する</button>
+    </form>
+   </div>
+  </section>
  </div>
 </main>
 <footer>© 榎本大貴</footer>
@@ -244,14 +320,112 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
  var els=document.querySelectorAll('.reveal');
  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('on')})}
  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});els.forEach(function(e){io.observe(e)})}
- var btns=document.querySelectorAll('.filters button'),items=document.querySelectorAll('ol.tl li'),years=document.querySelectorAll('.year'),count=document.getElementById('count');
+ function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+ function pad(n){return(n<10?'0':'')+n}
+ var now=new Date(),today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+ var upcoming=document.getElementById('upcoming'),upList=upcoming.querySelector('ol'),more=document.querySelector('.more');
+
+ function buildItem(d){
+  var li=el('li'),ev=el('div','ev'),meta=el('div','meta'),time=el('time'),t=el('span','t');
+  li.dataset.type=d.type;
+  time.setAttribute('datetime',d.date);
+  time.textContent=d.date.slice(5).replace('-','.');
+  meta.appendChild(el('span','badge',d.label));meta.appendChild(time);
+  if(d.media)meta.appendChild(el('span','',d.media));
+  if(d.url){var a=el('a','',d.title);a.href=d.url;t.appendChild(a)}else t.textContent=d.title;
+  ev.appendChild(meta);ev.appendChild(t);
+  if(d.detail)ev.appendChild(el('span','w',d.detail));
+  li.appendChild(ev);
+  return li;
+ }
+ function yearList(y){
+  var blocks=document.querySelectorAll('.year:not(#upcoming)');
+  for(var i=0;i<blocks.length;i++){
+   var h=blocks[i].querySelector('h3').textContent.trim();
+   if(h===y)return blocks[i].querySelector('ol');
+   if(h<y)break;
+  }
+  var block=el('div','year'),ol=el('ol','tl');
+  block.appendChild(el('h3','',y));block.appendChild(ol);
+  (blocks[i]||more).parentNode.insertBefore(block,blocks[i]||more);
+  return ol;
+ }
+ function dateOf(li){var t=li.querySelector('time');return t?t.getAttribute('datetime'):''}
+ function insertSorted(ol,li,asc){
+  var d=dateOf(li),sib=[].find.call(ol.children,function(x){return asc?dateOf(x)>d:dateOf(x)<d});
+  ol.insertBefore(li,sib||null);
+ }
+ function toPlan(li){
+  var time=li.querySelector('time'),d=dateOf(li),badge=el('span','badge plan','予定');
+  li.classList.add('plan');
+  time.textContent=d.replace(/-/g,'.');
+  time.parentNode.insertBefore(badge,time.parentNode.firstChild);
+  insertSorted(upList,li,true);
+ }
+
+ var data=[];
+ try{data=JSON.parse(document.getElementById('timeline-data').textContent)}catch(e){console.error('timeline-data の JSON を読み込めませんでした',e)}
+ data.forEach(function(d){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(d.date||'')||!d.title){console.error('timeline-data の項目に date（YYYY-MM-DD）か title がありません',d);return}
+  var li=buildItem(d);
+  if(d.date>today)toPlan(li);else insertSorted(yearList(d.date.slice(0,4)),li,false);
+ });
+ document.querySelectorAll('.year:not(#upcoming) ol.tl li').forEach(function(li){
+  var d=dateOf(li);
+  if(/^\d{4}-\d{2}-\d{2}$/.test(d)&&d>today){var ol=li.parentNode;toPlan(li);if(!ol.children.length)ol.parentNode.remove()}
+ });
+ upcoming.hidden=!upList.children.length;
+
+ var btns=document.querySelectorAll('.filters button'),count=document.getElementById('count');
  btns.forEach(function(b){b.addEventListener('click',function(){
-  var f=b.dataset.f,n=0;
+  var f=b.dataset.f,n=0,plans=0;
   btns.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-  items.forEach(function(li){var show=f==='all'||li.dataset.type===f;li.hidden=!show;if(show)n++});
-  years.forEach(function(y){y.hidden=!y.querySelector('li:not([hidden])')});
-  count.textContent=b.textContent.trim()+'：'+n+'件を表示しています';
+  document.querySelectorAll('ol.tl li').forEach(function(li){var show=f==='all'||li.dataset.type===f;li.hidden=!show;if(show){n++;if(li.classList.contains('plan'))plans++}});
+  document.querySelectorAll('.year').forEach(function(y){y.hidden=!y.querySelector('li:not([hidden])')});
+  count.textContent=b.textContent.trim()+'：'+n+'件を表示しています'+(plans?'（うち予定'+plans+'件）':'');
  })});
+
+ var form=document.getElementById('contact-form'),status=document.getElementById('form-status'),submit=form.querySelector('.submit'),sending=false,tried=false;
+ form.noValidate=true;
+ var checks=[
+  {el:form.elements.namedItem('name'),msg:function(v){return v?'':'お名前を入力してください。'}},
+  {el:form.elements.namedItem('email'),msg:function(v,e){return !v?'メールアドレスを入力してください。':e.validity.typeMismatch?'メールアドレスの形式で入力してください（例：name@example.com）。':''}},
+  {el:form.elements.namedItem('message'),msg:function(v){return v?'':'お問い合わせ内容を入力してください。'}}
+ ];
+ function validate(){
+  var bad=[];
+  checks.forEach(function(c){
+   var m=c.msg(c.el.value.trim(),c.el);
+   document.getElementById(c.el.id+'-err').textContent=m;
+   if(m){c.el.setAttribute('aria-invalid','true');bad.push(c.el)}else c.el.removeAttribute('aria-invalid');
+  });
+  return bad;
+ }
+ function setStatus(cls,text){status.className='status'+(cls?' '+cls:'');status.textContent=text}
+ checks.forEach(function(c){c.el.addEventListener('input',function(){if(tried)validate()})});
+ form.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(sending)return;
+  tried=true;
+  var bad=validate();
+  if(bad.length){setStatus('error','入力内容に'+bad.length+'件の問題があります。各項目のメッセージを確認してください。');bad[0].focus();return}
+  sending=true;
+  submit.setAttribute('aria-disabled','true');
+  setStatus('sending','送信しています…');
+  var body={};new FormData(form).forEach(function(v,k){body[k]=v});
+  fetch('https://formsubmit.co/ajax/dffb1aba5090e823fb3f12306cceace2',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
+   .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok||String(j.success)!=='true')throw new Error(j.message||r.status)})})
+   .then(function(){
+    form.reset();tried=false;
+    setStatus('done','お問い合わせを送信しました。ありがとうございました。');
+    status.focus();
+   })
+   .catch(function(err){
+    console.error(err);
+    setStatus('error','送信できませんでした。通信状況を確認して、もう一度お試しください。');
+   })
+   .then(function(){sending=false;submit.removeAttribute('aria-disabled')});
+ });
 })();
 </script>
 </body>
