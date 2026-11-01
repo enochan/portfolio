@@ -219,11 +219,6 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
      </fieldset>
      <p id="count" class="vh" aria-live="polite"></p>
 
-     <!-- 予定や新しい項目はこの配列に追加します。書き方は README.md の「タイムラインに項目を追加する」を参照 -->
-     <script type="application/json" id="timeline-data">
-[]
-     </script>
-
      <div class="year" id="upcoming" hidden>
       <h3>これから</h3>
       <ol class="tl"></ol>
@@ -363,27 +358,37 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
   insertSorted(upList,li,true);
  }
 
- var data=[];
- try{data=JSON.parse(document.getElementById('timeline-data').textContent)}catch(e){console.error('timeline-data の JSON を読み込めませんでした',e)}
- data.forEach(function(d){
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(d.date||'')||!d.title){console.error('timeline-data の項目に date（YYYY-MM-DD）か title がありません',d);return}
-  var li=buildItem(d);
-  if(d.date>today)toPlan(li);else insertSorted(yearList(d.date.slice(0,4)),li,false);
- });
  document.querySelectorAll('.year:not(#upcoming) ol.tl li').forEach(function(li){
   var d=dateOf(li);
   if(/^\d{4}-\d{2}-\d{2}$/.test(d)&&d>today){var ol=li.parentNode;toPlan(li);if(!ol.children.length)ol.parentNode.remove()}
  });
  upcoming.hidden=!upList.children.length;
 
- var btns=document.querySelectorAll('.filters button'),count=document.getElementById('count');
- btns.forEach(function(b){b.addEventListener('click',function(){
-  var f=b.dataset.f,n=0,plans=0;
-  btns.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-  document.querySelectorAll('ol.tl li').forEach(function(li){var show=f==='all'||li.dataset.type===f;li.hidden=!show;if(show){n++;if(li.classList.contains('plan'))plans++}});
+ var btns=document.querySelectorAll('.filters button'),count=document.getElementById('count'),current='all';
+ function applyFilter(){
+  var n=0,plans=0;
+  document.querySelectorAll('ol.tl li').forEach(function(li){var show=current==='all'||li.dataset.type===current;li.hidden=!show;if(show){n++;if(li.classList.contains('plan'))plans++}});
   document.querySelectorAll('.year').forEach(function(y){y.hidden=!y.querySelector('li:not([hidden])')});
-  count.textContent=b.textContent.trim()+'：'+n+'件を表示しています'+(plans?'（うち予定'+plans+'件）':'');
+  return '：'+n+'件を表示しています'+(plans?'（うち予定'+plans+'件）':'');
+ }
+ btns.forEach(function(b){b.addEventListener('click',function(){
+  current=b.dataset.f;
+  btns.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+  count.textContent=b.textContent.trim()+applyFilter();
  })});
+
+ fetch('events.json',{cache:'no-cache'})
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+  .then(function(data){
+   if(!Array.isArray(data))throw new Error('トップレベルが配列ではありません');
+   data.forEach(function(d){
+    if(!d||!/^\d{4}-\d{2}-\d{2}$/.test(d.date||'')||!d.title){console.error('events.json の項目に date（YYYY-MM-DD）か title がありません',d);return}
+    var li=buildItem(d);
+    if(d.date>today)toPlan(li);else insertSorted(yearList(d.date.slice(0,4)),li,false);
+   });
+   applyFilter();
+  })
+  .catch(function(e){console.error('events.json を読み込めませんでした',e)});
 
  var form=document.getElementById('contact-form'),status=document.getElementById('form-status'),submit=form.querySelector('.submit'),sending=false,tried=false;
  form.noValidate=true;
