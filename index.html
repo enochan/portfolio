@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1b18" media="(prefers-color-scheme: dark)">
 <title>榎本大貴 | ポートフォリオ</title>
 <meta name="description" content="株式会社LITALICO 執行役員／LITALICO研究所 所長／AI統括部長、任意団体「みんなのアクセス」代表 榎本大貴のポートフォリオ。誰もがアクセシビリティを身近に感じ、実践したくなる社会を目指す。">
 <link rel="canonical" href="https://enochan.github.io/portfolio/">
@@ -19,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fffaf3;--fg:#2b2a33;--sub:#575463;--peach:#ffd9c7;--mint:#cdeee3;--lav:#ded8f6;--accent:#b4441f;--teal:#17675a;--card:#fff;--line:#a38a66;
+:root{color-scheme:light dark;--bg:#fffaf3;--fg:#2b2a33;--sub:#575463;--peach:#ffd9c7;--mint:#cdeee3;--lav:#ded8f6;--accent:#b4441f;--teal:#17675a;--card:#fff;--line:#a38a66;
  --talk:#c2410c;--talk-bg:#ffe3d6;--talk-fg:#8a3412;
  --write:#17675a;--write-bg:#d5f1e7;--write-fg:#0f5243;
  --career:#5b4fc4;--career-bg:#e6e1fa;--career-fg:#3d3492;
@@ -147,6 +150,48 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
  ol.tl li::before{left:-32px;width:16px;height:16px}
  .ev{padding:12px 16px}
  .contact form,.status.done{padding:20px}
+}
+/* dark */
+@media (prefers-color-scheme:dark){
+ :root{--bg:#1f1b18;--fg:#f3ece4;--sub:#c8bdb0;--peach:#56352a;--mint:#21423a;--lav:#353050;--accent:#ff9d7a;--teal:#6fd4bd;--card:#2a2521;--line:#9a8468;
+  --talk:#ff8a5c;--talk-bg:#4a2b1f;--talk-fg:#ffc6ad;
+  --write:#4fc7a5;--write-bg:#173f35;--write-fg:#aaeedb;
+  --career:#a69cff;--career-bg:#332e5a;--career-fg:#d4ceff;
+  --on-fg:#1f1b18;--tl-line:#5e5246;--shadow:rgba(0,0,0,.3);--nav-shadow:rgba(0,0,0,.4);--invalid-bg:#3a2620}
+}
+/* high contrast */
+@media (prefers-contrast:more){
+ :root{--fg:#1a1714;--sub:#3b3843;--teal:#0b4a40;--line:#4d3f2c;--accent:#8c2c0c;
+  --talk:#a8360a;--talk-fg:#6b2408;--write:#0b4a40;--write-fg:#083b30;--career:#4338a8;--career-fg:#2b2370;
+  --tl-line:var(--line);--shadow:transparent;--nav-shadow:transparent}
+ a,.logo,header nav a,.links a,.to-contact a{text-decoration:underline}
+ :focus-visible{outline-width:4px}
+ header nav a,.links a,.layers li,.ev,.role-box,.contact form,.status.done,.status.error{border:2px solid var(--line)}
+ .filters button,.field input,.field textarea{border-width:3px}
+ .badge,.tag,.eyebrow{border:1.5px solid currentColor}
+ .badge.plan{box-shadow:none;border:2px solid var(--c)}
+ .layers .n{box-shadow:inset 0 0 0 2px var(--fg)}
+ ol.tl{border-left-style:solid}
+ .hero .aim{border-left-color:var(--line)}
+}
+@media (prefers-color-scheme:dark) and (prefers-contrast:more){
+ :root{--bg:#14110f;--fg:#fffaf3;--sub:#e8dfd4;--peach:#45291f;--mint:#1a3830;--lav:#2a2642;--accent:#ffb69c;--teal:#8ff0da;--card:#1c1815;--line:#d6c6ae;
+  --talk:#ff9a70;--talk-bg:#3e2216;--talk-fg:#ffd9c8;
+  --write:#5fd9b6;--write-bg:#10332a;--write-fg:#bff7e6;
+  --career:#b5adff;--career-bg:#29244c;--career-fg:#e2ddff;
+  --on-fg:#14110f;--invalid-bg:#2e1c16}
+}
+/* Windows forced colors */
+@media (forced-colors:active){
+ :focus-visible{outline:3px solid Highlight}
+ header nav a,.to-contact a,.layers li,.ev,.role-box,.contact form,.status.done,.status.error,.layers .n,.badge,.tag,.eyebrow{border:1px solid CanvasText}
+ .submit{border:2px solid ButtonText}
+ .filters button[aria-pressed="true"]{forced-color-adjust:none;background:SelectedItem;border-color:SelectedItem;color:SelectedItemText}
+ .sw{forced-color-adjust:none;background:ButtonText!important;box-shadow:none}
+ .filters button[aria-pressed="true"] .sw{background:SelectedItemText!important}
+ h2 .dot,ol.tl li::before{forced-color-adjust:none;background:CanvasText;box-shadow:0 0 0 5px Canvas}
+ ol.tl li.plan::before{background:Canvas;box-shadow:inset 0 0 0 4px CanvasText,0 0 0 5px Canvas}
+ .field [aria-invalid="true"]{border-width:4px}
 }
 </style>
 </head>
