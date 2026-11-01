@@ -26,7 +26,7 @@
  --talk:#c2410c;--talk-bg:#ffe3d6;--talk-fg:#8a3412;
  --write:#17675a;--write-bg:#d5f1e7;--write-fg:#0f5243;
  --career:#5b4fc4;--career-bg:#e6e1fa;--career-fg:#3d3492;
- --on-fg:#fff;--tl-line:#d9cbb8;--shadow:rgba(60,40,20,.06);--nav-shadow:rgba(0,0,0,.06);--invalid-bg:#fff7f3}
+ --on-fg:#fff;--tl-line:#d9cbb8;--shadow:rgba(60,40,20,.06);--nav-shadow:rgba(0,0,0,.06)}
 *{box-sizing:border-box}
 html{overflow-x:clip;scroll-padding-top:72px}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;font-size:17px;line-height:1.95;letter-spacing:.03em}
@@ -109,28 +109,10 @@ ol.tl li.plan::before{background:var(--bg);box-shadow:inset 0 0 0 4px var(--c),0
 .to-contact a:hover{background:var(--teal)}
 /* contact */
 .contact{max-width:720px}
-.contact .note{margin:0 0 20px;font-size:15px;color:var(--sub)}
-.contact form,.status.done{background:var(--card);border-radius:24px;padding:28px;box-shadow:0 6px 24px var(--shadow)}
-.field{margin:0 0 22px}
-.field label{display:flex;align-items:center;gap:.6em;font-weight:700;margin-bottom:6px}
-.tag{font-size:12px;font-weight:700;border-radius:999px;padding:0 .7em;line-height:1.8}
-.tag.req{color:var(--talk-fg);background:var(--talk-bg)}
-.tag.opt{color:var(--sub);background:var(--bg);box-shadow:inset 0 0 0 1px var(--line)}
-.field input,.field textarea{display:block;width:100%;font:inherit;font-size:16px;color:var(--fg);background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 14px;min-height:48px;line-height:1.7}
-.field textarea{min-height:180px;resize:vertical}
-.field input:hover,.field textarea:hover{border-color:var(--teal)}
-.field [aria-invalid="true"]{border-color:var(--accent);background:var(--invalid-bg)}
-.err{margin:6px 0 0;color:var(--accent);font-size:15px;font-weight:700}
-.err:empty{display:none}
-.honey{display:none!important}
-.submit{font:inherit;font-size:16px;font-weight:700;min-height:48px;padding:0 32px;border-radius:999px;border:0;background:var(--fg);color:var(--on-fg);cursor:pointer}
-.submit:hover{background:var(--teal)}
-.submit[aria-disabled="true"]{cursor:progress;background:var(--sub)}
-.status{margin:0 0 20px}
-.status:empty{display:none}
-.status.sending{color:var(--sub);font-weight:700}
-.status.error{background:var(--talk-bg);color:var(--talk-fg);border-radius:16px;padding:14px 18px;font-weight:700}
-.status.done{background:var(--write-bg);color:var(--write-fg);font-weight:700}
+.contact .note{font-size:15px;color:var(--sub)}
+.contact p{margin:0 0 16px}
+.form-link a{display:inline-block;padding:.7em 1.6em;line-height:1.6;border-radius:24px;background:var(--fg);color:var(--on-fg);text-decoration:none;font-weight:700}
+.form-link a:hover{background:var(--teal)}
 [hidden]{display:none!important}
 .js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
 .reveal.on{opacity:1;transform:none}
@@ -149,7 +131,6 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
  ol.tl{padding-left:22px;margin-left:8px}
  ol.tl li::before{left:-32px;width:16px;height:16px}
  .ev{padding:12px 16px}
- .contact form,.status.done{padding:20px}
 }
 /* dark */
 @media (prefers-color-scheme:dark){
@@ -157,18 +138,18 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
   --talk:#ff8a5c;--talk-bg:#4a2b1f;--talk-fg:#ffc6ad;
   --write:#4fc7a5;--write-bg:#173f35;--write-fg:#aaeedb;
   --career:#a69cff;--career-bg:#332e5a;--career-fg:#d4ceff;
-  --on-fg:#1f1b18;--tl-line:#5e5246;--shadow:rgba(0,0,0,.3);--nav-shadow:rgba(0,0,0,.4);--invalid-bg:#3a2620}
+  --on-fg:#1f1b18;--tl-line:#5e5246;--shadow:rgba(0,0,0,.3);--nav-shadow:rgba(0,0,0,.4)}
 }
 /* high contrast */
 @media (prefers-contrast:more){
  :root{--fg:#1a1714;--sub:#3b3843;--teal:#0b4a40;--line:#4d3f2c;--accent:#8c2c0c;
   --talk:#a8360a;--talk-fg:#6b2408;--write:#0b4a40;--write-fg:#083b30;--career:#4338a8;--career-fg:#2b2370;
   --tl-line:var(--line);--shadow:transparent;--nav-shadow:transparent}
- a,.logo,header nav a,.links a,.to-contact a{text-decoration:underline}
+ a,.logo,header nav a,.links a,.to-contact a,.form-link a{text-decoration:underline}
  :focus-visible{outline-width:4px}
- header nav a,.links a,.layers li,.ev,.role-box,.contact form,.status.done,.status.error{border:2px solid var(--line)}
- .filters button,.field input,.field textarea{border-width:3px}
- .badge,.tag,.eyebrow{border:1.5px solid currentColor}
+ header nav a,.links a,.layers li,.ev,.role-box{border:2px solid var(--line)}
+ .filters button{border-width:3px}
+ .badge,.eyebrow{border:1.5px solid currentColor}
  .badge.plan{box-shadow:none;border:2px solid var(--c)}
  .layers .n{box-shadow:inset 0 0 0 2px var(--fg)}
  ol.tl{border-left-style:solid}
@@ -179,19 +160,17 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
   --talk:#ff9a70;--talk-bg:#3e2216;--talk-fg:#ffd9c8;
   --write:#5fd9b6;--write-bg:#10332a;--write-fg:#bff7e6;
   --career:#b5adff;--career-bg:#29244c;--career-fg:#e2ddff;
-  --on-fg:#14110f;--invalid-bg:#2e1c16}
+  --on-fg:#14110f}
 }
 /* Windows forced colors */
 @media (forced-colors:active){
  :focus-visible{outline:3px solid Highlight}
- header nav a,.to-contact a,.layers li,.ev,.role-box,.contact form,.status.done,.status.error,.layers .n,.badge,.tag,.eyebrow{border:1px solid CanvasText}
- .submit{border:2px solid ButtonText}
+ header nav a,.to-contact a,.form-link a,.layers li,.ev,.role-box,.layers .n,.badge,.eyebrow{border:1px solid CanvasText}
  .filters button[aria-pressed="true"]{forced-color-adjust:none;background:SelectedItem;border-color:SelectedItem;color:SelectedItemText}
  .sw{forced-color-adjust:none;background:ButtonText!important;box-shadow:none}
  .filters button[aria-pressed="true"] .sw{background:SelectedItemText!important}
  h2 .dot,ol.tl li::before{forced-color-adjust:none;background:CanvasText;box-shadow:0 0 0 5px Canvas}
  ol.tl li.plan::before{background:Canvas;box-shadow:inset 0 0 0 4px CanvasText,0 0 0 5px Canvas}
- .field [aria-invalid="true"]{border-width:4px}
 }
 </style>
 </head>
@@ -323,34 +302,9 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
   <section id="contact" aria-labelledby="h-contact" tabindex="-1">
    <h2 id="h-contact"><span class="dot" aria-hidden="true"></span>お問い合わせ</h2>
    <div class="contact">
-    <p class="note">送信内容は、外部サービスの <a href="https://formsubmit.co/">FormSubmit</a> を経由して届きます。</p>
-    <div id="form-status" class="status" role="status" aria-live="polite" tabindex="-1"></div>
-    <form id="contact-form" action="https://formsubmit.co/dffb1aba5090e823fb3f12306cceace2" method="POST">
-     <input type="hidden" name="_subject" value="ポートフォリオサイトからのお問い合わせ">
-     <input type="hidden" name="_template" value="table">
-     <input type="hidden" name="_captcha" value="false">
-     <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-     <div class="field">
-      <label for="f-name">お名前<span class="tag req">必須</span></label>
-      <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
-      <p class="err" id="f-name-err"></p>
-     </div>
-     <div class="field">
-      <label for="f-email">メールアドレス<span class="tag req">必須</span></label>
-      <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err">
-      <p class="err" id="f-email-err"></p>
-     </div>
-     <div class="field">
-      <label for="f-org">ご所属<span class="tag opt">任意</span></label>
-      <input id="f-org" name="organization" type="text" autocomplete="organization">
-     </div>
-     <div class="field">
-      <label for="f-message">お問い合わせ内容<span class="tag req">必須</span></label>
-      <textarea id="f-message" name="message" required aria-describedby="f-message-err"></textarea>
-      <p class="err" id="f-message-err"></p>
-     </div>
-     <button type="submit" class="submit">送信する</button>
-    </form>
+    <p>お問い合わせは Google フォームで受け付けています。入力する項目は、お名前、メールアドレス、ご所属（任意）、お問い合わせ内容です。</p>
+    <p class="form-link"><a href="GOOGLE_FORM_URL">お問い合わせフォームを開く（Google フォーム）</a></p>
+    <p class="note">送信内容は、Google フォーム（Google のサービス）を経由して届きます。</p>
    </div>
   </section>
  </div>
@@ -436,47 +390,6 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
   })
   .catch(function(e){console.error('events.json を読み込めませんでした',e)});
 
- var form=document.getElementById('contact-form'),status=document.getElementById('form-status'),submit=form.querySelector('.submit'),sending=false,tried=false;
- form.noValidate=true;
- var checks=[
-  {el:form.elements.namedItem('name'),msg:function(v){return v?'':'お名前を入力してください。'}},
-  {el:form.elements.namedItem('email'),msg:function(v,e){return !v?'メールアドレスを入力してください。':e.validity.typeMismatch?'メールアドレスの形式で入力してください（例：name@example.com）。':''}},
-  {el:form.elements.namedItem('message'),msg:function(v){return v?'':'お問い合わせ内容を入力してください。'}}
- ];
- function validate(){
-  var bad=[];
-  checks.forEach(function(c){
-   var m=c.msg(c.el.value.trim(),c.el);
-   document.getElementById(c.el.id+'-err').textContent=m;
-   if(m){c.el.setAttribute('aria-invalid','true');bad.push(c.el)}else c.el.removeAttribute('aria-invalid');
-  });
-  return bad;
- }
- function setStatus(cls,text){status.className='status'+(cls?' '+cls:'');status.textContent=text}
- checks.forEach(function(c){c.el.addEventListener('input',function(){if(tried)validate()})});
- form.addEventListener('submit',function(e){
-  e.preventDefault();
-  if(sending)return;
-  tried=true;
-  var bad=validate();
-  if(bad.length){setStatus('error','入力内容に'+bad.length+'件の問題があります。各項目のメッセージを確認してください。');bad[0].focus();return}
-  sending=true;
-  submit.setAttribute('aria-disabled','true');
-  setStatus('sending','送信しています…');
-  var body={};new FormData(form).forEach(function(v,k){body[k]=v});
-  fetch('https://formsubmit.co/ajax/dffb1aba5090e823fb3f12306cceace2',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
-   .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok||String(j.success)!=='true')throw new Error(j.message||r.status)})})
-   .then(function(){
-    form.reset();tried=false;
-    setStatus('done','お問い合わせを送信しました。ありがとうございました。');
-    status.focus();
-   })
-   .catch(function(err){
-    console.error(err);
-    setStatus('error','送信できませんでした。通信状況を確認して、もう一度お試しください。');
-   })
-   .then(function(){sending=false;submit.removeAttribute('aria-disabled')});
- });
 })();
 </script>
 </body>
