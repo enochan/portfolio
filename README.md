@@ -12,7 +12,7 @@
 | --- | --- |
 | `index.html` | サイト本体（HTML・CSS・JavaScript をすべて含む単一ファイル） |
 | `events.json` | タイムラインに追加する項目（予定を含む）のデータ。ページが読み込み時に取得して表示します |
-| `favicon.ico` / `apple-touch-icon.png` | ファビコン（ブラウザのタブ用、16・32・48px）と、スマホのホーム画面用アイコン（180px）。「みんなのアクセス」のロゴから作成。タブ用は小さいサイズで文字が読めないため Q! のマークのみ、ホーム画面用は文字を含むロゴ全体 |
+| `favicon.ico` / `apple-touch-icon.png` | ファビコン（ブラウザのタブ用、16・32・48px）と、スマホのホーム画面用アイコン（180px）。どちらも「みんなのアクセス」のロゴの Q! のマーク（文字なし）から作成 |
 | `.nojekyll` | GitHub Pages で Jekyll の処理を無効にするための空ファイル |
 | `llms.txt` | AI エージェント向けの案内（[llmstxt.org](https://llmstxt.org/) の形式）。人物の要約、主な活動、連絡方法、リンクを Markdown で書いています。公開URLは https://enochan.github.io/portfolio/llms.txt |
 
