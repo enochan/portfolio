@@ -1,0 +1,32 @@
+# 榎本大貴
+
+> 株式会社LITALICO 執行役員／LITALICO研究所 所長／AI統括部長、任意団体「みんなのアクセス」代表。誰もがアクセシビリティを身近に感じ、実践したくなる社会を目指しています。
+
+アクセシビリティとは「必要とする人にちゃんと届くようにすること」だと考えています。発達支援の現場から入り、研究所の設立、サービス品質のマネジメントを経て、いまは全社の生成AI活用と研究開発に取り組んでいます。修士（学際情報学）東京大学大学院 学際情報学府。
+
+## 主な活動
+
+- AI活用の3つのレイヤー
+  - 非支援業務を減らす：LITALICOワークスでは AI議事録ツール Notta の活用で、記録にかかる時間が60〜70%減りました。
+  - 支援の質を高める：ロジックモデルで、支援の質を定義・測定・改善します。
+  - 社会側の障害を減らす：「みんなのアクセス」で、アクセシビリティを身近にする活動をしています。
+- 登壇・講座：障害福祉や就労支援の現場での生成AI活用などをテーマに、学会のシンポジウム、大学のゲスト講義、ウェビナーなどで話しています。
+- 執筆・インタビュー：note と Zenn で執筆しています。「LITALICO｜Technology」「LITALICOストーリーズ」でインタビューを受けています。
+
+## 連絡
+
+- [お問い合わせフォーム](https://enochan.github.io/portfolio/#contact)：連絡はこのフォームから送ってください。
+- 項目：お名前、メールアドレス、ご所属（任意）、お問い合わせ内容
+- 依頼の場合は、お問い合わせ内容に「用件」「希望日程」「形式（登壇／寄稿／取材など）」「連絡先」を書いてください。
+- 返信は本人が行います。
+- 送信内容は、外部サービスの FormSubmit を経由して届きます。
+
+## リンク
+
+- [ポートフォリオサイト](https://enochan.github.io/portfolio/)：プロフィール、AI活用の3つのレイヤー、活動のタイムライン（登壇・講座、執筆・インタビュー、経歴）
+- [note](https://note.com/enomotod)
+- [Zenn](https://zenn.dev/enochan)
+- [Speaker Deck](https://speakerdeck.com/enochan)
+- [researchmap](https://researchmap.jp/denomoto)：学会発表の一覧は [researchmap の発表ページ](https://researchmap.jp/denomoto/presentations)
+- [LITALICO研究所](https://litalico.co.jp/about/lab/)
+- [みんなのアクセス（YouTube）](https://youtube.com/@everyonesaccesscollective)
