@@ -102,13 +102,15 @@ python3 -m http.server 8000
 
 最初は OS の `prefers-color-scheme` に従います。この時点では `localStorage` に何も書きません。ヘッダーの「暗い表示にする」または「明るい表示にする」を押すと、`html` の `data-theme` と `localStorage` の `theme` に `dark` または `light` を保存し、次回からその表示に固定します。固定しているときは、ブラウザのテーマカラー（`meta name="theme-color"`）もその表示の背景色に合わせます。暗い表示で「コントラストを上げる」設定のときは、より暗い背景色に合わせます。「端末の設定に戻す」を押すと `localStorage` の `theme` を消し、OS の設定に戻します。
 
-## お問い合わせフォーム
+## お問い合わせ
 
-ページ下部の「お問い合わせ」フォームは、外部サービスの [FormSubmit](https://formsubmit.co/) を使って送信します。宛先のメールアドレスは HTML には書かず、FormSubmit が発行した伏せ字のエンドポイント（`https://formsubmit.co/ajax/…`）を使っています。
+連絡先は Google フォームの回答用リンク（`viewform`）だけにする予定です。URL はまだ決まっていません。URL 待ちなので、この変更はマージしないでください。
 
-- 送信は JavaScript でページ遷移なしに行います。JavaScript が無効な環境では、フォームの通常の送信（POST）で FormSubmit に送られます。
-- 件名（`_subject`）、メールの形式（`_template`）、CAPTCHA の無効化（`_captcha`）、スパム対策のハニーポット（`_honey`）は、フォーム内の hidden 項目で指定しています。
-- 動作確認でテスト送信をすると、実際にメールが届きます。表示の確認だけなら、ブラウザの開発者ツールで `fetch` を差し替えるなどして送信を止めてください。
+`index.html` の `a.gform` は2か所あります。`href` を入れる場所には TODO を書いてあります。URL が決まったら、その `href` に回答用 URL だけを書いてください。編集用 URL は書かないでください。新しいタブでは開かないので、`target` は付けません。
+
+リンクの文字列は「お問い合わせフォームを開く（Google フォーム）」です。下線のあるリンクです。
+
+メールアドレスと FormSubmit の送信先は、このブランチには書きません。
 
 ## 公開設定（GitHub Pages）
 
