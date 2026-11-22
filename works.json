@@ -1,0 +1,94 @@
+[
+  {
+    "type": "paper",
+    "year": "2025",
+    "title": "Comprehensive search for assessment indicators that influence the level of handwriting difficulties among children in educational settings.",
+    "venue": "Scientific Reports",
+    "people": "共著",
+    "reviewed": true
+  },
+  {
+    "type": "paper",
+    "year": "2023",
+    "title": "読み書き困難児の包括的・網羅的スクリーニング検査の開発にむけた予備的研究",
+    "venue": "日本発達系作業療法学会誌",
+    "people": "高畑脩平・榎本大貴ほか",
+    "reviewed": true
+  },
+  {
+    "type": "paper",
+    "year": "2022",
+    "title": "Development and Verification of Postural Control Assessment Using Deep-Learning-Based Pose Estimators: Towards Clinical Applications.",
+    "venue": "Occupational Therapy International",
+    "people": "共著"
+  },
+  {
+    "type": "paper",
+    "year": "2020",
+    "title": "Computer Vision-Based Approach for Quantifying Occupational Therapists' Qualitative Evaluations of Postural Control.",
+    "venue": "Occupational Therapy International",
+    "people": "共著",
+    "reviewed": true
+  },
+  {
+    "type": "paper",
+    "year": "2020",
+    "title": "New telecare approach based on 3D convolutional neural network for estimating quality of life.",
+    "venue": "Neurocomputing",
+    "people": "Nakagawa, Enomoto, Yonekura, Kanazawa, Kuniyoshi"
+  },
+  {
+    "type": "paper",
+    "year": "2019",
+    "title": "福祉現場での行動変容のためのデジタルツールの開発と応用可能性について",
+    "venue": "計測と制御",
+    "people": "岸田崇志・榎本大貴",
+    "reviewed": true
+  },
+  {
+    "type": "patent",
+    "number": "特許7706589",
+    "title": "発達特性検査システム、発達特性検査方法、サーバ装置、及びプログラム",
+    "people": "野田遥、榎本大貴、山下修平"
+  },
+  {
+    "type": "patent",
+    "number": "特許7448699",
+    "title": "計画作成支援システム、計画作成支援装置、及び計画作成支援方法",
+    "people": "榎本大貴、野口晃菜、齋藤伸秀、青野友香、寺下胡桃"
+  },
+  {
+    "type": "patent",
+    "number": "特許7315959",
+    "title": "要支援者の支援システムおよび支援方法",
+    "people": "辻井正次、曽我部哲也、明翫光宜、井上雅彦、榎本大貴ほか"
+  },
+  {
+    "type": "patent",
+    "number": "特許6803444",
+    "title": "児童発達支援装置、児童発達支援システム、及びプログラム",
+    "people": "榎本大貴、田村亮太"
+  },
+  {
+    "type": "award",
+    "year": "2022",
+    "title": "令和3年度 第6回日本自閉症スペクトラム学会 実践賞",
+    "work": "行動上の問題を示す自閉スペクトラム症の疑いのある幼児をもつ母親への家庭訪問支援",
+    "people": "松本好、榎本大貴、井上雅彦"
+  },
+  {
+    "type": "award",
+    "year": "2019",
+    "title": "日本職業リハビリテーション学会 学会大会奨励賞（調査・研究部門）",
+    "work": "障害者雇用の職場定着に影響を与える要因の検討について",
+    "people": "榎本大貴、陶貴行"
+  },
+  {
+    "type": "book",
+    "year": "2020",
+    "title": "発達障害のある子どもと周囲との関係性を支援する",
+    "venue": "中央法規出版",
+    "people": "野口晃菜・陶貴行 編",
+    "note": "分担執筆「７章 テクノロジーを活用した支援」"
+  }
+]

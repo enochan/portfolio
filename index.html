@@ -19,7 +19,29 @@
 <meta property="og:site_name" content="榎本大貴">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary">
-<script>document.documentElement.classList.add('js')</script>
+<script>
+(function(){
+ document.documentElement.classList.add('js');
+ function themeColor(t){
+  var contrast=false;
+  try{contrast=matchMedia('(prefers-contrast: more)').matches}catch(e){}
+  return t==='dark'?(contrast?'#14110f':'#1f1b18'):'#fffaf3';
+ }
+ try{
+  var t=localStorage.getItem('theme');
+  if(t==='dark'||t==='light'){
+   document.documentElement.setAttribute('data-theme',t);
+   var m=document.querySelector('meta[name="color-scheme"]');
+   if(m)m.setAttribute('content',t);
+   var metas=document.querySelectorAll('meta[name="theme-color"]');
+   for(var i=0;i<metas.length;i++){
+    metas[i].setAttribute('content',themeColor(t));
+    metas[i].removeAttribute('media');
+   }
+  }
+ }catch(e){}
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -30,154 +52,199 @@
  --career:#5b4fc4;--career-bg:#e6e1fa;--career-fg:#3d3492;
  --on-fg:#fff;--tl-line:#d9cbb8;--shadow:rgba(60,40,20,.06);--nav-shadow:rgba(0,0,0,.06);--invalid-bg:#fff7f3}
 *{box-sizing:border-box}
-html{overflow-x:clip;scroll-padding-top:72px}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;font-size:17px;line-height:1.95;letter-spacing:.03em}
+html{overflow-x:clip;scroll-padding-block-start:5.5rem}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;font-size:1.0625rem;line-height:1.95;letter-spacing:.03em}
 a{color:var(--teal);text-underline-offset:.22em}
-:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
-.skip{position:absolute;left:-999px}
-.skip:focus{left:1rem;top:1rem;background:var(--fg);color:var(--on-fg);padding:.5em 1em;border-radius:999px;z-index:10}
-.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-.bgdeco{position:absolute;top:0;left:0;right:0;height:900px;overflow:hidden;z-index:-1;pointer-events:none}
-.blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.55;animation:float 14s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-18px)}}
-header.top .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:18px;gap:1rem;flex-wrap:wrap}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:0.375rem}
+.skip{position:absolute;inset-block-start:1rem;inset-inline-start:1rem;transform:translateY(calc(-100% - 1rem));z-index:10}
+.skip:focus-visible{transform:translateY(0);background:var(--fg);color:var(--on-fg);padding-block:.5em;padding-inline:1em;border-radius:62.4375rem}
+.wrap{max-inline-size:67.5rem;margin-block:0;margin-inline:auto;padding-block:0;padding-inline:1.5rem}
+.bgdeco{position:absolute;inset-block-start:0;inset-inline-start:0;inset-inline-end:0;block-size:56.25rem;overflow:hidden;z-index:-1;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(2.5rem);opacity:.55;animation:float 14s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-1.125rem)}}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;padding-block-start:1.125rem;padding-block-end:1.125rem;gap:1rem;flex-wrap:wrap}
 .logo{font-weight:700;color:var(--fg);text-decoration:none}
-header nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
-header nav a{display:inline-block;padding:.35em 1em;border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none;font-size:15px;box-shadow:0 1px 0 var(--nav-shadow)}
+header nav ul{display:flex;gap:0.375rem;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+header nav a{display:inline-block;padding-block:.35em;padding-inline:1em;border-radius:62.4375rem;background:var(--card);color:var(--fg);text-decoration:none;font-size:0.9375rem;box-shadow:0 1px 0 var(--nav-shadow)}
 header nav a:hover{background:var(--mint)}
 /* hero (C) */
-.hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:32px;padding:40px 0 64px}
-.eyebrow{display:inline-block;background:var(--lav);padding:.2em .9em;border-radius:999px;font-size:14px;font-weight:500;margin:0}
-.hero h1{font-size:clamp(40px,6vw,64px);line-height:1.3;margin:.3em 0 .2em;font-weight:700;word-break:auto-phrase}
-.hero .role{font-size:16px;color:var(--sub);margin:0 0 1.4em}
-.hero .msg{font-size:clamp(20px,2.4vw,26px);font-weight:700;line-height:1.7;margin:0 0 .8em;word-break:auto-phrase}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:2rem;padding-block:2.5rem 4rem;padding-inline:0}
+.eyebrow{display:inline-block;background:var(--lav);padding-block:.2em;padding-inline:.9em;border-radius:62.4375rem;font-size:0.875rem;font-weight:500;margin:0}
+.hero h1{font-size:clamp(2.5rem,6vw,4rem);line-height:1.3;margin-block:.3em .2em;margin-inline:0;font-weight:700;word-break:auto-phrase}
+.hero .role{font-size:1rem;color:var(--sub);margin-block:0 1.4em;margin-inline:0}
+.hero .msg{font-size:clamp(1.25rem,2.4vw,1.625rem);font-weight:700;line-height:1.7;margin-block:0 .8em;margin-inline:0;word-break:auto-phrase}
 .hero .msg em{font-style:normal;background:linear-gradient(transparent 60%,var(--peach) 60%)}
-.hero{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:end;gap:56px;padding:56px 0 64px}
-.hero .who h1{margin-bottom:.15em}
+.hero{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:end;gap:3.5rem;padding-block:3.5rem 4rem;padding-inline:0}
+.hero .who h1{margin-block-end:.15em}
 .hero .who .role{margin:0;line-height:1.8}
-.hero .aim{border-left:4px solid var(--peach);padding-left:28px}
-.hero .aim .vision{margin:0 0 .7em;font-size:clamp(24px,2.9vw,34px);font-weight:700;line-height:1.6;word-break:auto-phrase}
+.hero .aim{border-inline-start:4px solid var(--peach);padding-inline-start:1.75rem}
+.hero .aim .vision{margin-block:0 .7em;margin-inline:0;font-size:clamp(1.5rem,2.9vw,2.125rem);font-weight:700;line-height:1.6;word-break:auto-phrase}
 .hero .aim .vision em{font-style:normal;background:linear-gradient(transparent 62%,var(--mint) 62%)}
 .hero .aim .def,.hero .aim p.career{word-break:auto-phrase}
-.hero .aim .def{margin:0 0 .6em;font-size:16px}
+.hero .aim .def{margin-block:0 .6em;margin-inline:0;font-size:1rem}
 .hero .aim .def q{quotes:"「" "」";font-weight:700}
-.hero .aim p.career{margin:0;font-size:16px}
-section{padding:48px 0}
-h2{font-size:28px;margin:0 0 .9em;display:flex;align-items:center;gap:.5em;line-height:1.4}
-h2 .dot{flex:none;width:14px;height:14px;border-radius:50%;background:var(--accent)}
+.hero .aim p.career{margin:0;font-size:1rem}
+section{padding-block:3rem;padding-inline:0}
+h2{font-size:1.75rem;margin-block:0 .9em;margin-inline:0;display:flex;align-items:center;gap:.5em;line-height:1.4}
+h2 .dot{flex:none;inline-size:0.875rem;block-size:0.875rem;border-radius:50%;background:var(--accent)}
 /* layers (C) */
-.layers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;list-style:none;padding:0;margin:0}
-.layers li{background:var(--card);border-radius:24px;padding:24px;box-shadow:0 6px 24px var(--shadow)}
-.layers .n{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;font-weight:700;margin-bottom:.4em}
+.layers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.125rem;list-style:none;padding:0;margin:0}
+.layers li{background:var(--card);border-radius:1.5rem;padding:1.5rem;box-shadow:0 0.375rem 1.5rem var(--shadow)}
+.layers .n{display:inline-grid;place-items:center;inline-size:2.5rem;block-size:2.5rem;border-radius:50%;font-weight:700;margin-block-end:.4em}
 .layers li:nth-child(1) .n{background:var(--peach)}.layers li:nth-child(2) .n{background:var(--mint)}.layers li:nth-child(3) .n{background:var(--lav)}
-.layers h3{margin:0 0 .2em;font-size:19px}
-.layers p{margin:0;color:var(--sub);font-size:15px}
+.layers h3{margin-block:0 .2em;margin-inline:0;font-size:1.1875rem}
+.layers p{margin:0;color:var(--sub);font-size:0.9375rem}
 /* timeline (D) */
-.tl-layout{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start}
-.side{position:sticky;top:20px;display:flex;flex-direction:column;gap:16px}
-.role-box{background:linear-gradient(135deg,var(--mint),var(--lav));border-radius:28px;padding:24px}
-.role-box h3{margin:0 0 .4em;font-size:15px;color:var(--sub);font-weight:500}
-.role-box .title{font-size:19px;font-weight:700;margin:0 0 .5em;line-height:1.6}
-.role-box ul{margin:0;padding-left:1.2em;font-size:15px}
-.side h3.lh{font-size:15px;margin:.4em 0 .2em;color:var(--sub);font-weight:500}
-.links{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
-.links a{display:inline-block;padding:.4em 1em;border-radius:999px;background:var(--card);border:2px solid var(--mint);color:var(--fg);text-decoration:none;font-size:15px;font-weight:500}
+.tl-layout{display:grid;grid-template-columns:18.75rem 1fr;gap:2.5rem;align-items:start}
+.side{position:sticky;inset-block-start:1.25rem;display:flex;flex-direction:column;gap:1rem}
+.role-box{background:linear-gradient(135deg,var(--mint),var(--lav));border-radius:1.75rem;padding:1.5rem}
+.role-box h3{margin-block:0 .4em;margin-inline:0;font-size:0.9375rem;color:var(--sub);font-weight:500}
+.role-box .title{font-size:1.1875rem;font-weight:700;margin-block:0 .5em;margin-inline:0;line-height:1.6}
+.role-box ul{margin:0;padding-inline-start:1.2em;font-size:0.9375rem}
+.side h3.lh{font-size:0.9375rem;margin-block:.4em .2em;margin-inline:0;color:var(--sub);font-weight:500}
+.links{display:flex;flex-wrap:wrap;gap:0.5rem;list-style:none;padding:0;margin:0}
+.links a{display:inline-block;padding-block:.4em;padding-inline:1em;border-radius:62.4375rem;background:var(--card);border:2px solid var(--mint);color:var(--fg);text-decoration:none;font-size:0.9375rem;font-weight:500}
 .links a:hover{background:var(--mint)}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px;padding:0;border:0;min-width:0}
-.filters legend{font-size:14px;color:var(--sub);margin-bottom:6px;padding:0}
-.filters button{font:inherit;font-size:15px;font-weight:500;min-height:44px;padding:0 16px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
-.filters button:hover{border-color:var(--teal)}
-.filters button[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:var(--on-fg)}
-.sw{width:12px;height:12px;border-radius:50%;display:inline-block;box-shadow:0 0 0 2px var(--card)}
-.year h3{position:sticky;top:0;z-index:2;background:var(--bg);margin:0 -20px;padding:6px 20px;font-size:30px;font-weight:700;color:var(--fg);letter-spacing:.05em}
-ol.tl{list-style:none;margin:0 0 20px 10px;padding:12px 0 0 28px;border-left:3px dotted var(--tl-line)}
-ol.tl li{position:relative;margin:0 0 14px}
-ol.tl li::before{content:"";position:absolute;left:-39px;top:22px;width:18px;height:18px;border-radius:50%;background:var(--c);box-shadow:0 0 0 5px var(--bg)}
+.filters{display:block;margin-block:0 0.5rem;margin-inline:0;padding:0;border:0;min-inline-size:0}
+.filters legend{font-size:0.875rem;color:var(--sub);margin-block-end:0.375rem;padding:0}
+.choices{display:flex;gap:0.5rem;flex-wrap:wrap}
+.choice{position:relative;font:inherit;font-size:0.9375rem;font-weight:500;min-block-size:2.75rem;padding-block:0;padding-inline:1rem;border-radius:62.4375rem;border:2px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;gap:0.5rem}
+.choice:hover{border-color:var(--teal)}
+.choice:has(:checked){background:var(--fg);border-color:var(--fg);color:var(--on-fg)}
+.choice input{position:absolute;inline-size:1px;block-size:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.choice input:focus-visible{outline:none}
+.choice:has(:focus-visible){outline:3px solid var(--teal);outline-offset:3px}
+.live{margin-block:0 1.25rem;margin-inline:0;font-size:0.9375rem;color:var(--sub)}
+.live p{margin:0}
+.live .empty{margin-block-start:.35em;color:var(--fg);font-weight:700}
+.reset{font:inherit;font-size:0.9375rem;font-weight:700;min-block-size:2.75rem;margin-block-start:0.5rem;padding-block:0;padding-inline:1.125rem;border-radius:62.4375rem;border:2px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.reset:hover{border-color:var(--teal)}
+.notice{margin-block:0 1rem;margin-inline:0;font-weight:700;color:var(--talk-fg);background:var(--talk-bg);border-radius:1rem;padding-block:0.75rem;padding-inline:1rem}
+.notice:empty{display:none}
+.tl-layout > div :is(a,button,input){scroll-margin-block-start:5.5rem}
+.sw{inline-size:0.75rem;block-size:0.75rem;border-radius:50%;display:inline-block;box-shadow:0 0 0 2px var(--card)}
+.year h3{position:sticky;inset-block-start:0;z-index:2;background:var(--bg);margin-block:0;margin-inline:-1.25rem;padding-block:0.375rem;padding-inline:1.25rem;font-size:1.875rem;font-weight:700;color:var(--fg);letter-spacing:.05em}
+ol.tl{list-style:none;margin-block:0 1.25rem;margin-inline:0.625rem 0;padding-block:0.75rem 0;padding-inline:1.75rem 0;border-inline-start:3px dotted var(--tl-line)}
+ol.tl li{position:relative;margin-block:0 0.875rem;margin-inline:0}
+ol.tl li::before{content:"";position:absolute;inset-inline-start:-2.4375rem;inset-block-start:1.375rem;inline-size:1.125rem;block-size:1.125rem;border-radius:50%;background:var(--c);box-shadow:0 0 0 0.3125rem var(--bg)}
 li[data-type="talk"]{--c:var(--talk);--cb:var(--talk-bg);--cf:var(--talk-fg)}
 li[data-type="write"]{--c:var(--write);--cb:var(--write-bg);--cf:var(--write-fg)}
 li[data-type="career"]{--c:var(--career);--cb:var(--career-bg);--cf:var(--career-fg)}
-.ev{background:var(--card);border-radius:20px;padding:14px 20px;box-shadow:0 4px 18px var(--shadow)}
-.meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--sub)}
+.ev{background:var(--card);border-radius:1.25rem;padding-block:0.875rem;padding-inline:1.25rem;box-shadow:0 0.25rem 1.125rem var(--shadow)}
+.meta{display:flex;gap:0.625rem;align-items:center;flex-wrap:wrap;font-size:0.875rem;color:var(--sub)}
 .meta time{font-weight:700;color:var(--fg);font-variant-numeric:tabular-nums}
-.badge{font-size:13px;font-weight:700;color:var(--cf);background:var(--cb);border-radius:999px;padding:0 .8em}
-.ev .t{display:block;font-weight:700;font-size:17px;line-height:1.6;margin:2px 0}
-.ev .w{display:block;font-size:14px;color:var(--sub);line-height:1.7}
+.badge{font-size:0.8125rem;font-weight:700;color:var(--cf);background:var(--cb);border-radius:62.4375rem;padding-block:0;padding-inline:.8em}
+.ev h3,.ev h4{font-size:1.0625rem;font-weight:700;line-height:1.6;margin-block:0.125rem;margin-inline:0}
+.ev .w{display:block;font-size:0.875rem;color:var(--sub);line-height:1.7}
 .badge.plan{color:var(--fg);background:var(--card);box-shadow:inset 0 0 0 2px var(--c)}
-ol.tl li.plan::before{background:var(--bg);box-shadow:inset 0 0 0 4px var(--c),0 0 0 5px var(--bg)}
-.more{font-size:15px;color:var(--sub)}
+ol.tl li.plan::before{background:var(--bg);box-shadow:inset 0 0 0 0.25rem var(--c),0 0 0 0.3125rem var(--bg)}
+.more{font-size:0.9375rem;color:var(--sub)}
 .to-contact{margin:0}
-.to-contact a{display:inline-block;padding:.4em 1.2em;border-radius:999px;background:var(--fg);color:var(--on-fg);text-decoration:none;font-size:15px;font-weight:700}
+.to-contact a{display:inline-block;padding-block:.4em;padding-inline:1.2em;border-radius:62.4375rem;background:var(--fg);color:var(--on-fg);text-decoration:none;font-size:0.9375rem;font-weight:700}
 .to-contact a:hover{background:var(--teal)}
+.head-tools{display:flex;align-items:center;justify-content:flex-end;gap:0.625rem;flex-wrap:wrap;max-inline-size:100%}
+.theme{font:inherit;font-size:0.9375rem;font-weight:700;min-block-size:2.75rem;min-inline-size:2.75rem;padding-block:0;padding-inline:1rem;border-radius:62.4375rem;border:2px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.theme:hover{border-color:var(--teal)}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+.works{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.875rem}
+.meta .when{font-weight:700;color:var(--fg)}
+li[data-type="paper"]{--c:var(--write);--cb:var(--write-bg);--cf:var(--write-fg)}
+li[data-type="patent"]{--c:var(--career);--cb:var(--career-bg);--cf:var(--career-fg)}
+li[data-type="award"]{--c:var(--talk);--cb:var(--talk-bg);--cf:var(--talk-fg)}
+li[data-type="book"]{--c:var(--teal);--cb:var(--mint);--cf:var(--teal)}
+.facts{margin-block-start:1.75rem}
+.facts h3{font-size:1.125rem;margin-block:1em .3em;margin-inline:0}
+.facts h3:first-child{margin-block-start:0}
+.facts ul{margin-block:0 .4em;margin-inline:0;padding-inline-start:1.2em}
+.facts p{margin:0}
+.practice{margin-block:0 1em;margin-inline:0;padding-inline-start:1.2em}
+.js .noscript-works{display:none}
 /* contact */
-.contact{max-width:720px}
-.contact .note{margin:0 0 20px;font-size:15px;color:var(--sub)}
-.contact form,.status.done{background:var(--card);border-radius:24px;padding:28px;box-shadow:0 6px 24px var(--shadow)}
-.field{margin:0 0 22px}
-.field label{display:flex;align-items:center;gap:.6em;font-weight:700;margin-bottom:6px}
-.tag{font-size:12px;font-weight:700;border-radius:999px;padding:0 .7em;line-height:1.8}
+.contact{max-inline-size:45rem}
+.contact p{margin-block:0 1em;margin-inline:0}
+.contact .note{font-size:0.9375rem;color:var(--sub)}
+
+.contact form,.status.done{background:var(--card);border-radius:1.5rem;padding:1.75rem;box-shadow:0 0.375rem 1.5rem var(--shadow)}
+.field{margin-block:0 1.375rem;margin-inline:0}
+.field label{display:flex;align-items:center;gap:.6em;font-weight:700;margin-block-end:0.375rem}
+.tag{font-size:0.75rem;font-weight:700;border-radius:62.4375rem;padding:0 .7em;line-height:1.8}
 .tag.req{color:var(--talk-fg);background:var(--talk-bg)}
 .tag.opt{color:var(--sub);background:var(--bg);box-shadow:inset 0 0 0 1px var(--line)}
-.field input,.field textarea{display:block;width:100%;font:inherit;font-size:16px;color:var(--fg);background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 14px;min-height:48px;line-height:1.7}
-.field textarea{min-height:180px;resize:vertical}
+.field input,.field textarea{display:block;inline-size:100%;font:inherit;font-size:1rem;color:var(--fg);background:var(--card);border:2px solid var(--line);border-radius:0.875rem;padding-block:0.625rem;padding-inline:0.875rem;min-block-size:3rem;line-height:1.7}
+.field textarea{min-block-size:11.25rem;resize:vertical}
 .field input:hover,.field textarea:hover{border-color:var(--teal)}
 .field [aria-invalid="true"]{border-color:var(--accent);background:var(--invalid-bg)}
-.err{margin:6px 0 0;color:var(--accent);font-size:15px;font-weight:700}
+.err{margin-block:0.375rem 0;margin-inline:0;color:var(--accent);font-size:0.9375rem;font-weight:700}
 .err:empty{display:none}
 .honey{display:none!important}
-.submit{font:inherit;font-size:16px;font-weight:700;min-height:48px;padding:0 32px;border-radius:999px;border:0;background:var(--fg);color:var(--on-fg);cursor:pointer}
+.submit{font:inherit;font-size:1rem;font-weight:700;min-block-size:3rem;padding-block:0;padding-inline:2rem;border-radius:62.4375rem;border:0;background:var(--fg);color:var(--on-fg);cursor:pointer}
 .submit:hover{background:var(--teal)}
 .submit[aria-disabled="true"]{cursor:progress;background:var(--sub)}
-.status{margin:0 0 20px}
+.status{margin-block:0 1.25rem;margin-inline:0}
 .status:empty{display:none}
 .status.sending{color:var(--sub);font-weight:700}
-.status.error{background:var(--talk-bg);color:var(--talk-fg);border-radius:16px;padding:14px 18px;font-weight:700}
+.status.error{background:var(--talk-bg);color:var(--talk-fg);border-radius:1rem;padding-block:0.875rem;padding-inline:1.125rem;font-weight:700}
 .status.done{background:var(--write-bg);color:var(--write-fg);font-weight:700}
 [hidden]{display:none!important}
-.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
-.reveal.on{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}}
-footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
-@media (max-width:900px){
- .tl-layout{grid-template-columns:1fr;gap:24px}
+@media (prefers-reduced-motion:no-preference){
+ .reveal-ready .reveal:not(.on){opacity:0;transform:translateY(1rem);transition:opacity .7s,transform .7s}
+ .reveal-ready .reveal.on{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media print{.reveal{opacity:1!important;transform:none!important}}
+footer{text-align:center;padding-block:1.5rem 3rem;padding-inline:0;color:var(--sub);font-size:0.8125rem}
+@media (max-width:56.25rem){
+ .tl-layout{grid-template-columns:1fr;gap:1.5rem}
  .side{position:static}
 }
-@media (max-width:760px){
- body{font-size:16px}
- .hero{grid-template-columns:1fr;gap:28px;padding:20px 0 32px}
- .hero .aim{padding-left:18px}
+@media (max-width:47.5rem){
+ body{font-size:1rem}
+ .hero{grid-template-columns:1fr;gap:1.75rem;padding-block:1.25rem 2rem;padding-inline:0}
+ .hero .aim{padding-inline-start:1.125rem}
  .layers{grid-template-columns:1fr}
- h2{font-size:24px}
- ol.tl{padding-left:22px;margin-left:8px}
- ol.tl li::before{left:-32px;width:16px;height:16px}
- .ev{padding:12px 16px}
- .contact form,.status.done{padding:20px}
+ h2{font-size:1.5rem}
+ ol.tl{padding-inline-start:1.375rem;margin-inline-start:0.5rem}
+ ol.tl li::before{inset-inline-start:-2rem;inline-size:1rem;block-size:1rem}
+ .ev{padding-block:0.75rem;padding-inline:1rem}
+ .contact form,.status.done{padding:1.25rem}
 }
-/* dark */
+/* dark: OS がダークで、明るい表示に固定していないとき */
 @media (prefers-color-scheme:dark){
- :root{--bg:#1f1b18;--fg:#f3ece4;--sub:#c8bdb0;--peach:#56352a;--mint:#21423a;--lav:#353050;--accent:#ff9d7a;--teal:#6fd4bd;--card:#2a2521;--line:#9a8468;
+ :root:not([data-theme="light"]){--bg:#1f1b18;--fg:#f3ece4;--sub:#c8bdb0;--peach:#56352a;--mint:#21423a;--lav:#353050;--accent:#ff9d7a;--teal:#6fd4bd;--card:#2a2521;--line:#9a8468;
   --talk:#ff8a5c;--talk-bg:#4a2b1f;--talk-fg:#ffc6ad;
   --write:#4fc7a5;--write-bg:#173f35;--write-fg:#aaeedb;
   --career:#a69cff;--career-bg:#332e5a;--career-fg:#d4ceff;
   --on-fg:#1f1b18;--tl-line:#5e5246;--shadow:rgba(0,0,0,.3);--nav-shadow:rgba(0,0,0,.4);--invalid-bg:#3a2620}
 }
+/* 暗い表示に固定したとき（OS がライトでも同じ変数） */
+:root[data-theme="dark"]{--bg:#1f1b18;--fg:#f3ece4;--sub:#c8bdb0;--peach:#56352a;--mint:#21423a;--lav:#353050;--accent:#ff9d7a;--teal:#6fd4bd;--card:#2a2521;--line:#9a8468;
+  --talk:#ff8a5c;--talk-bg:#4a2b1f;--talk-fg:#ffc6ad;
+  --write:#4fc7a5;--write-bg:#173f35;--write-fg:#aaeedb;
+  --career:#a69cff;--career-bg:#332e5a;--career-fg:#d4ceff;
+  --on-fg:#1f1b18;--tl-line:#5e5246;--shadow:rgba(0,0,0,.3);--nav-shadow:rgba(0,0,0,.4);--invalid-bg:#3a2620}
 /* high contrast */
 @media (prefers-contrast:more){
- :root{--fg:#1a1714;--sub:#3b3843;--teal:#0b4a40;--line:#4d3f2c;--accent:#8c2c0c;
+ :root:not([data-theme="dark"]){--fg:#1a1714;--sub:#3b3843;--teal:#0b4a40;--line:#4d3f2c;--accent:#8c2c0c;
   --talk:#a8360a;--talk-fg:#6b2408;--write:#0b4a40;--write-fg:#083b30;--career:#4338a8;--career-fg:#2b2370;
   --tl-line:var(--line);--shadow:transparent;--nav-shadow:transparent}
+ :root[data-theme="dark"]{--bg:#14110f;--fg:#fffaf3;--sub:#e8dfd4;--peach:#45291f;--mint:#1a3830;--lav:#2a2642;--accent:#ffb69c;--teal:#8ff0da;--card:#1c1815;--line:#d6c6ae;
+  --talk:#ff9a70;--talk-bg:#3e2216;--talk-fg:#ffd9c8;
+  --write:#5fd9b6;--write-bg:#10332a;--write-fg:#bff7e6;
+  --career:#b5adff;--career-bg:#29244c;--career-fg:#e2ddff;
+  --on-fg:#14110f;--invalid-bg:#2e1c16}
  a,.logo,header nav a,.links a,.to-contact a{text-decoration:underline}
  :focus-visible{outline-width:4px}
- header nav a,.links a,.layers li,.ev,.role-box,.contact form,.status.done,.status.error{border:2px solid var(--line)}
- .filters button,.field input,.field textarea{border-width:3px}
- .badge,.tag,.eyebrow{border:1.5px solid currentColor}
+ header nav a,.links a,.layers li,.ev,.role-box,.notice,.contact form,.status.done,.status.error{border:2px solid var(--line)}
+ .choice,.theme,.reset,.field input,.field textarea{border-width:3px}
+ .badge,.eyebrow{border:1.5px solid currentColor}
  .badge.plan{box-shadow:none;border:2px solid var(--c)}
  .layers .n{box-shadow:inset 0 0 0 2px var(--fg)}
- ol.tl{border-left-style:solid}
- .hero .aim{border-left-color:var(--line)}
+ ol.tl{border-inline-start-style:solid}
+ .hero .aim{border-inline-start-color:var(--line)}
 }
 @media (prefers-color-scheme:dark) and (prefers-contrast:more){
- :root{--bg:#14110f;--fg:#fffaf3;--sub:#e8dfd4;--peach:#45291f;--mint:#1a3830;--lav:#2a2642;--accent:#ffb69c;--teal:#8ff0da;--card:#1c1815;--line:#d6c6ae;
+ :root:not([data-theme="light"]){--bg:#14110f;--fg:#fffaf3;--sub:#e8dfd4;--peach:#45291f;--mint:#1a3830;--lav:#2a2642;--accent:#ffb69c;--teal:#8ff0da;--card:#1c1815;--line:#d6c6ae;
   --talk:#ff9a70;--talk-bg:#3e2216;--talk-fg:#ffd9c8;
   --write:#5fd9b6;--write-bg:#10332a;--write-fg:#bff7e6;
   --career:#b5adff;--career-bg:#29244c;--career-fg:#e2ddff;
@@ -185,28 +252,48 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
 }
 /* Windows forced colors */
 @media (forced-colors:active){
+ :root[data-theme="dark"]{--bg:#14110f;--fg:#fffaf3;--sub:#e8dfd4;--peach:#45291f;--mint:#1a3830;--lav:#2a2642;--accent:#ffb69c;--teal:#8ff0da;--card:#1c1815;--line:#d6c6ae;
+  --talk:#ff9a70;--talk-bg:#3e2216;--talk-fg:#ffd9c8;
+  --write:#5fd9b6;--write-bg:#10332a;--write-fg:#bff7e6;
+  --career:#b5adff;--career-bg:#29244c;--career-fg:#e2ddff;
+  --on-fg:#14110f;--invalid-bg:#2e1c16}
  :focus-visible{outline:3px solid Highlight}
- header nav a,.to-contact a,.layers li,.ev,.role-box,.contact form,.status.done,.status.error,.layers .n,.badge,.tag,.eyebrow{border:1px solid CanvasText}
- .submit{border:2px solid ButtonText}
- .filters button[aria-pressed="true"]{forced-color-adjust:none;background:SelectedItem;border-color:SelectedItem;color:SelectedItemText}
+ header nav a,.to-contact a,.layers li,.ev,.role-box,.notice,.layers .n,.badge,.eyebrow,.theme,.choice,.reset,.contact form,.status.done,.status.error,.submit{border:1px solid CanvasText}
+ .choice:has(:checked){forced-color-adjust:none;background:SelectedItem;border-color:SelectedItem;color:SelectedItemText}
+ .choice:has(:focus-visible){outline:3px solid Highlight}
  .sw{forced-color-adjust:none;background:ButtonText!important;box-shadow:none}
- .filters button[aria-pressed="true"] .sw{background:SelectedItemText!important}
- h2 .dot,ol.tl li::before{forced-color-adjust:none;background:CanvasText;box-shadow:0 0 0 5px Canvas}
- ol.tl li.plan::before{background:Canvas;box-shadow:inset 0 0 0 4px CanvasText,0 0 0 5px Canvas}
+ .choice:has(:checked) .sw{background:SelectedItemText!important}
  .field [aria-invalid="true"]{border-width:4px}
+ .submit{border:2px solid ButtonText}
+ h2 .dot,ol.tl li::before{forced-color-adjust:none;background:CanvasText;box-shadow:0 0 0 0.3125rem Canvas}
+ ol.tl li.plan::before{background:Canvas;box-shadow:inset 0 0 0 0.25rem CanvasText,0 0 0 0.3125rem Canvas}
+}
+@media (forced-colors:active) and (prefers-color-scheme:dark){
+ :root:not([data-theme="light"]){--bg:#14110f;--fg:#fffaf3;--sub:#e8dfd4;--peach:#45291f;--mint:#1a3830;--lav:#2a2642;--accent:#ffb69c;--teal:#8ff0da;--card:#1c1815;--line:#d6c6ae;
+  --talk:#ff9a70;--talk-bg:#3e2216;--talk-fg:#ffd9c8;
+  --write:#5fd9b6;--write-bg:#10332a;--write-fg:#bff7e6;
+  --career:#b5adff;--career-bg:#29244c;--career-fg:#e2ddff;
+  --on-fg:#14110f;--invalid-bg:#2e1c16}
 }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">本文へスキップ</a>
 <div class="bgdeco" aria-hidden="true">
- <div class="blob" style="width:380px;height:380px;background:var(--lav);left:-120px;top:-80px"></div>
- <div class="blob" style="width:300px;height:300px;background:var(--peach);right:-80px;top:360px;animation-delay:-5s"></div>
+ <div class="blob" style="inline-size:23.75rem;block-size:23.75rem;background:var(--lav);inset-inline-start:-7.5rem;inset-block-start:-5rem"></div>
+ <div class="blob" style="inline-size:18.75rem;block-size:18.75rem;background:var(--peach);inset-inline-end:-5rem;inset-block-start:22.5rem;animation-delay:-5s"></div>
 </div>
 <header class="top">
  <div class="wrap">
   <a class="logo" href="#main">榎本大貴</a>
-  <nav aria-label="メイン"><ul><li><a href="#layers">AI活用</a></li><li><a href="#timeline">タイムライン</a></li><li><a href="#links">リンク</a></li><li><a href="#contact">お問い合わせ</a></li></ul></nav>
+  <div class="head-tools"><button type="button" class="theme" id="theme">暗い表示にする</button><button type="button" class="theme" id="theme-reset" hidden>端末の設定に戻す</button><script>
+(function(){
+ var t=document.documentElement.getAttribute('data-theme');
+ var dark=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
+ document.getElementById('theme').textContent=dark?'明るい表示にする':'暗い表示にする';
+ document.getElementById('theme-reset').hidden=!(t==='dark'||t==='light');
+})();
+</script><nav><ul><li><a href="#layers">AI活用</a></li><li><a href="#timeline">タイムライン</a></li><li><a href="#works">研究業績</a></li><li><a href="#links">リンク</a></li><li><a href="#contact">お問い合わせ</a></li></ul></nav></div>
  </div>
 </header>
 <main id="main" tabindex="-1">
@@ -236,16 +323,16 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
   <section id="timeline" aria-labelledby="h-tl" tabindex="-1">
    <h2 id="h-tl"><span class="dot" aria-hidden="true"></span>活動のタイムライン</h2>
    <div class="tl-layout">
-    <aside class="side" aria-label="プロフィールとリンク">
+    <aside class="side" aria-labelledby="h-role">
      <div class="role-box">
-      <h3>現在の役割</h3>
+      <h3 id="h-role">現在の役割</h3>
       <p class="title">執行役員／LITALICO研究所 所長／AI統括部長</p>
       <ul>
        <li>任意団体「みんなのアクセス」代表</li>
        <li>修士（学際情報学）東京大学大学院 学際情報学府</li>
       </ul>
      </div>
-     <h3 class="lh" id="links">リンク</h3>
+     <h3 class="lh" id="links" tabindex="-1">リンク</h3>
      <ul class="links" aria-labelledby="links">
       <li><a href="https://note.com/enomotod">note</a></li>
       <li><a href="https://zenn.dev/enochan">Zenn</a></li>
@@ -258,14 +345,21 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
     </aside>
 
     <div>
-     <fieldset class="filters">
+     <fieldset class="filters" id="tl-filters">
       <legend>表示する種類</legend>
-      <button type="button" data-f="all" aria-pressed="true">すべて</button>
-      <button type="button" data-f="talk" aria-pressed="false"><span class="sw" style="background:var(--talk)" aria-hidden="true"></span>登壇・講座</button>
-      <button type="button" data-f="write" aria-pressed="false"><span class="sw" style="background:var(--write)" aria-hidden="true"></span>執筆・インタビュー</button>
-      <button type="button" data-f="career" aria-pressed="false"><span class="sw" style="background:var(--career)" aria-hidden="true"></span>経歴</button>
+      <div class="choices">
+       <label class="choice"><input type="radio" name="tl-kind" value="all" checked>すべて</label>
+       <label class="choice"><input type="radio" name="tl-kind" value="talk"><span class="sw" style="background:var(--talk)" aria-hidden="true"></span>登壇・講座</label>
+       <label class="choice"><input type="radio" name="tl-kind" value="write"><span class="sw" style="background:var(--write)" aria-hidden="true"></span>執筆・インタビュー</label>
+       <label class="choice"><input type="radio" name="tl-kind" value="career"><span class="sw" style="background:var(--career)" aria-hidden="true"></span>経歴</label>
+      </div>
      </fieldset>
-     <p id="count" class="vh" aria-live="polite"></p>
+     <div id="count" class="live" aria-live="polite">
+      <p id="count-text">すべて：16件を表示しています</p>
+      <p id="tl-empty" class="empty" hidden>該当する活動はありません</p>
+     </div>
+     <p id="tl-reset-wrap" hidden><button type="button" class="reset" id="tl-reset">条件を戻す</button></p>
+     <p id="tl-error" class="notice" role="status"></p>
 
      <div class="year" id="upcoming" hidden>
       <h3>これから</h3>
@@ -275,51 +369,94 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
      <div class="year">
       <h3>2026</h3>
       <ol class="tl">
-       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-10-30">10.30</time></div><span class="t">障害福祉の現場での生成AI活用</span><span class="w">明石市 サービス管理責任者・児童発達支援管理責任者向けAIレクチャー</span></div></li>
-       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-10-21">10.21</time></div><span class="t">測ること・評価することが、支援と人を変える</span><span class="w">KEIO-RRI ELSI/RRI Meetup Vol.2（SHIBUYA QWS）</span></div></li>
-       <li data-type="write"><div class="ev"><div class="meta"><span class="badge">執筆</span><time datetime="2026-10-15">10.15</time><span>Zenn</span></div><span class="t"><a href="https://zenn.dev/enochan/articles/exocortex-grokbot-update-2026-09">AIエージェントと共有する「外脳」の2026年9月アップデート——ManusからGrokBotへ</a></span></div></li>
-       <li data-type="write"><div class="ev"><div class="meta"><span class="badge">執筆</span><time datetime="2026-10-06">10.06</time><span>note</span></div><span class="t"><a href="https://note.com/enomotod/n/n73e9b3be4ab5">支援者は、生成AIに置き換わるのか。日本職業リハビリテーション学会シンポでの記録</a></span></div></li>
-       <li data-type="write"><div class="ev"><div class="meta"><span class="badge">インタビュー</span><time datetime="2026-09-28">09.28</time><span>LITALICO｜Technology</span></div><span class="t"><a href="https://note.com/litalico_tech/n/n8664813978c1">「テレパシー」から始まった。いまAIで、一人ひとりの「できる」を拡げる</a></span></div></li>
-       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-09-19">09.19</time></div><span class="t">就労支援の現場での生成AI活用</span><span class="w">日本職業リハビリテーション学会 第53回埼玉大会 シンポジウム</span></div></li>
-       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-08-19">08.19</time></div><span class="t">「データは人を自由にするか」での講演</span><span class="w">Social Science Boot Camp 2026</span></div></li>
-       <li data-type="write"><div class="ev"><div class="meta"><span class="badge">インタビュー</span><time datetime="2026-08-19">08.19</time><span>LITALICOストーリーズ</span></div><span class="t"><a href="https://litalico.co.jp/stories/detail/yxcezjylt">トークセッション：LITALICOワークスのDX・AI推進</a></span></div></li>
-       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">講義</span><time datetime="2026-06-18">06.18</time></div><span class="t">AIと障害福祉におけるサービスデザイン</span><span class="w">一橋大学 商学部「メディア・サービスデザイン」ゲスト講義</span></div></li>
-       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">ウェビナー</span><time datetime="2026-06-15">06.15</time></div><span class="t">児発・放デイ向け 生成AIとの付き合い方</span><span class="w">LITALICO発達ナビ ウェビナー</span></div></li>
+       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-10-30">2026年10月30日</time></div><h4>障害福祉の現場での生成AI活用</h4><span class="w">明石市 サービス管理責任者・児童発達支援管理責任者向けAIレクチャー</span></div></li>
+       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-10-21">2026年10月21日</time></div><h4>測ること・評価することが、支援と人を変える</h4><span class="w">KEIO-RRI ELSI/RRI Meetup Vol.2（SHIBUYA QWS）</span></div></li>
+       <li data-type="write"><div class="ev"><div class="meta"><span class="badge">執筆</span><time datetime="2026-10-15">2026年10月15日</time><span>Zenn</span></div><h4><a href="https://zenn.dev/enochan/articles/exocortex-grokbot-update-2026-09">AIエージェントと共有する「外脳」の2026年9月アップデート——ManusからGrokBotへ</a></h4></div></li>
+       <li data-type="write"><div class="ev"><div class="meta"><span class="badge">執筆</span><time datetime="2026-10-06">2026年10月6日</time><span>note</span></div><h4><a href="https://note.com/enomotod/n/n73e9b3be4ab5">支援者は、生成AIに置き換わるのか。日本職業リハビリテーション学会シンポでの記録</a></h4></div></li>
+       <li data-type="write"><div class="ev"><div class="meta"><span class="badge">インタビュー</span><time datetime="2026-09-28">2026年9月28日</time><span>LITALICO｜Technology</span></div><h4><a href="https://note.com/litalico_tech/n/n8664813978c1">「テレパシー」から始まった。いまAIで、一人ひとりの「できる」を拡げる</a></h4></div></li>
+       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-09-19">2026年9月19日</time></div><h4>就労支援の現場での生成AI活用</h4><span class="w">日本職業リハビリテーション学会 第53回埼玉大会 シンポジウム</span></div></li>
+       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-08-19">2026年8月19日</time></div><h4>「データは人を自由にするか」での講演</h4><span class="w">Social Science Boot Camp 2026</span></div></li>
+       <li data-type="write"><div class="ev"><div class="meta"><span class="badge">インタビュー</span><time datetime="2026-08-19">2026年8月19日</time><span>LITALICOストーリーズ</span></div><h4><a href="https://litalico.co.jp/stories/detail/yxcezjylt">トークセッション：LITALICOワークスのDX・AI推進</a></h4></div></li>
+       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">講義</span><time datetime="2026-06-18">2026年6月18日</time></div><h4>AIと障害福祉におけるサービスデザイン</h4><span class="w">一橋大学 商学部「メディア・サービスデザイン」ゲスト講義</span></div></li>
+       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">ウェビナー</span><time datetime="2026-06-15">2026年6月15日</time></div><h4>児発・放デイ向け 生成AIとの付き合い方</h4><span class="w">LITALICO発達ナビ ウェビナー</span></div></li>
       </ol>
      </div>
 
      <div class="year">
       <h3>2025</h3>
       <ol class="tl">
-       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2025-08-24">08.24</time></div><span class="t">実践・研究開発・品質マネジメント経験を通じた社会実装への貢献</span><span class="w">日本認知・行動療法学会 第51回大会 自主企画シンポジウム</span></div></li>
-       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2025-04-23">04.23</time></div><span class="t">福祉分野におけるAI利活用の事例・未来予想</span><span class="w">AI Leaders Connect #3</span></div></li>
-       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2025-03-06">03.06</time></div><span class="t">就労移行支援の実践からみた「適応」</span><span class="w">日本発達心理学会 第36回大会</span></div></li>
+       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2025-08-24">2025年8月24日</time></div><h4>実践・研究開発・品質マネジメント経験を通じた社会実装への貢献</h4><span class="w">日本認知・行動療法学会 第51回大会 自主企画シンポジウム</span></div></li>
+       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2025-04-23">2025年4月23日</time></div><h4>福祉分野におけるAI利活用の事例・未来予想</h4><span class="w">AI Leaders Connect #3</span></div></li>
+       <li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2025-03-06">2025年3月6日</time></div><h4>就労移行支援の実践からみた「適応」</h4><span class="w">日本発達心理学会 第36回大会</span></div></li>
       </ol>
      </div>
 
      <div class="year">
       <h3>2020</h3>
       <ol class="tl">
-       <li data-type="career"><div class="ev"><div class="meta"><span class="badge">経歴</span><time datetime="2020-10">10月</time></div><span class="t">執行役員に就任</span><span class="w">2025年3月まで 執行役員CQO／LITALICO研究所 所長</span></div></li>
+       <li data-type="career"><div class="ev"><div class="meta"><span class="badge">経歴</span><time datetime="2020-10">2020年10月</time></div><h4>執行役員に就任</h4><span class="w">2025年3月まで 執行役員CQO／LITALICO研究所 所長</span></div></li>
       </ol>
      </div>
 
      <div class="year">
       <h3>2017</h3>
       <ol class="tl">
-       <li data-type="career"><div class="ev"><div class="meta"><span class="badge">経歴</span><time datetime="2017-03">3月〜</time></div><span class="t">退職し、大学院で画像認識AIを研究</span><span class="w">東京大学大学院で修士（学際情報学）を取得</span></div></li>
+       <li data-type="career"><div class="ev"><div class="meta"><span class="badge">経歴</span><time datetime="2017-03">2017年3月〜</time></div><h4>退職し、大学院で画像認識AIを研究</h4><span class="w">東京大学大学院で修士（学際情報学）を取得</span></div></li>
       </ol>
      </div>
 
      <div class="year">
       <h3>2012</h3>
       <ol class="tl">
-       <li data-type="career"><div class="ev"><div class="meta"><span class="badge">経歴</span><time datetime="2012-04">4月</time></div><span class="t">LITALICOに新卒入社</span><span class="w">LITALICOジュニアの支援員、スーパーバイザー、教材・サービス開発のディレクター。LITALICO研究所と発達ナビの立ち上げに関わる</span></div></li>
+       <li data-type="career"><div class="ev"><div class="meta"><span class="badge">経歴</span><time datetime="2012-04">2012年4月</time></div><h4>LITALICOに新卒入社</h4><span class="w">LITALICOジュニアの支援員、スーパーバイザー、教材・サービス開発のディレクター。LITALICO研究所と発達ナビの立ち上げに関わる</span></div></li>
       </ol>
      </div>
      <p class="more">学会発表の一覧は <a href="https://researchmap.jp/denomoto/presentations">researchmap</a> にあります。</p>
     </div>
    </div>
+  </section>
+
+  <section id="works" aria-labelledby="h-works" class="reveal">
+   <h2 id="h-works"><span class="dot" aria-hidden="true"></span>研究業績</h2>
+   <p>全一覧と書誌は researchmap が正本です。特許は researchmap に登録されているもののうち、題名を確認できた4件です。</p>
+   <p class="noscript-works">一覧の表示には JavaScript を使っています。全一覧は <a href="https://researchmap.jp/denomoto">researchmap</a> にあります。</p>
+   <fieldset class="filters" id="works-filters">
+    <legend>表示する種類</legend>
+    <div class="choices">
+     <label class="choice"><input type="radio" name="works-kind" value="all" checked>すべて</label>
+     <label class="choice"><input type="radio" name="works-kind" value="paper"><span class="sw" style="background:var(--write)" aria-hidden="true"></span>論文</label>
+     <label class="choice"><input type="radio" name="works-kind" value="patent"><span class="sw" style="background:var(--career)" aria-hidden="true"></span>特許</label>
+     <label class="choice"><input type="radio" name="works-kind" value="award"><span class="sw" style="background:var(--talk)" aria-hidden="true"></span>受賞</label>
+     <label class="choice"><input type="radio" name="works-kind" value="book"><span class="sw" style="background:var(--teal)" aria-hidden="true"></span>書籍</label>
+    </div>
+   </fieldset>
+   <div id="works-count" class="live" aria-live="polite">
+    <p id="works-count-text"></p>
+    <p id="works-empty" class="empty" hidden>該当する業績はありません</p>
+   </div>
+   <p id="works-reset-wrap" hidden><button type="button" class="reset" id="works-reset">条件を戻す</button></p>
+   <p id="works-error" class="notice" role="status"></p>
+   <ol class="works" id="works-list"></ol>
+   <div class="facts">
+    <h3>学歴</h3>
+    <ul>
+     <li>2017–2019 東京大学大学院 情報学環・学際情報学府 修士（学際情報学）</li>
+     <li>2008–2012 北海道大学 農学部 応用生命科学科</li>
+    </ul>
+    <h3>所属学会</h3>
+    <p>日本認知・行動療法学会、日本自閉症スペクトラム学会、日本行動分析学会、日本児童青年精神医学会。</p>
+   </div>
+  </section>
+
+  <section id="practice" aria-labelledby="h-practice" class="reveal">
+   <h2 id="h-practice"><span class="dot" aria-hidden="true"></span>このサイトで守っていること</h2>
+   <ul class="practice">
+    <li>ページの先頭から「本文へスキップ」で、本文へ直接移動できます。</li>
+    <li>活動の種類は、色だけでなくバッジの文字でも示しています。</li>
+    <li>端末の「動きを減らす」設定に従い、アニメーションを止めます。</li>
+   </ul>
+   <p>note、Zenn、YouTube、researchmap の先は、このサイトの範囲外です。</p>
+   <p>使いにくい点は、<a href="#contact">お問い合わせ</a>から送ってください。</p>
   </section>
 
   <section id="contact" aria-labelledby="h-contact" tabindex="-1">
@@ -361,22 +498,47 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
 <script>
 (function(){
  var els=document.querySelectorAll('.reveal');
- if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('on')})}
- else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});els.forEach(function(e){io.observe(e)})}
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+  try{
+   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});
+   document.documentElement.classList.add('reveal-ready');
+   els.forEach(function(e){io.observe(e)});
+  }catch(err){
+   document.documentElement.classList.remove('reveal-ready');
+   els.forEach(function(e){e.classList.add('on')});
+  }
+ }else{els.forEach(function(e){e.classList.add('on')})}
  function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
- function pad(n){return(n<10?'0':'')+n}
- var now=new Date(),today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+ function visibleDate(d){
+  var m=String(d||'').match(/^(\d{4})-(\d{2})(?:-(\d{2}))?$/);
+  if(!m)return '';
+  var s=Number(m[1])+'年'+Number(m[2])+'月';
+  if(m[3])s+=Number(m[3])+'日';
+  return s;
+ }
+ function todayTokyo(){
+  try{
+   var parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+   var o={};
+   parts.forEach(function(p){if(p.type!=='literal')o[p.type]=p.value});
+   if(!o.year||!o.month||!o.day)return '';
+   return o.year+'-'+o.month+'-'+o.day;
+  }catch(e){return ''}
+ }
+ var today=todayTokyo();
  var upcoming=document.getElementById('upcoming'),upList=upcoming.querySelector('ol'),more=document.querySelector('.more');
+ var countText=document.getElementById('count-text'),tlEmpty=document.getElementById('tl-empty'),tlResetWrap=document.getElementById('tl-reset-wrap');
+ var tlError=document.getElementById('tl-error');
 
  function buildItem(d){
-  var li=el('li'),ev=el('div','ev'),meta=el('div','meta'),time=el('time'),t=el('span','t');
+  var li=el('li'),ev=el('div','ev'),meta=el('div','meta'),time=el('time'),title=el('h4');
   li.dataset.type=d.type;
   time.setAttribute('datetime',d.date);
-  time.textContent=d.date.slice(5).replace('-','.');
+  time.textContent=visibleDate(d.date);
   meta.appendChild(el('span','badge',d.label));meta.appendChild(time);
   if(d.media)meta.appendChild(el('span','',d.media));
-  if(d.url){var a=el('a','',d.title);a.href=d.url;t.appendChild(a)}else t.textContent=d.title;
-  ev.appendChild(meta);ev.appendChild(t);
+  if(d.url){var a=el('a','',d.title);a.href=d.url;title.appendChild(a)}else title.textContent=d.title;
+  ev.appendChild(meta);ev.appendChild(title);
   if(d.detail)ev.appendChild(el('span','w',d.detail));
   li.appendChild(ev);
   return li;
@@ -399,44 +561,118 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
   ol.insertBefore(li,sib||null);
  }
  function toPlan(li){
-  var time=li.querySelector('time'),d=dateOf(li),badge=el('span','badge plan','予定');
+  var badge=el('span','badge plan','予定');
   li.classList.add('plan');
-  time.textContent=d.replace(/-/g,'.');
-  time.parentNode.insertBefore(badge,time.parentNode.firstChild);
+  var meta=li.querySelector('.meta');
+  meta.insertBefore(badge,meta.firstChild);
   insertSorted(upList,li,true);
  }
-
- document.querySelectorAll('.year:not(#upcoming) ol.tl li').forEach(function(li){
-  var d=dateOf(li);
-  if(/^\d{4}-\d{2}-\d{2}$/.test(d)&&d>today){var ol=li.parentNode;toPlan(li);if(!ol.children.length)ol.parentNode.remove()}
- });
+ if(today){
+  document.querySelectorAll('.year:not(#upcoming) ol.tl li').forEach(function(li){
+   var d=dateOf(li);
+   if(/^\d{4}-\d{2}-\d{2}$/.test(d)&&d>today){var ol=li.parentNode;toPlan(li);if(!ol.children.length)ol.parentNode.remove()}
+  });
+ }
  upcoming.hidden=!upList.children.length;
 
- var btns=document.querySelectorAll('.filters button'),count=document.getElementById('count'),current='all';
- function applyFilter(){
-  var n=0,plans=0;
-  document.querySelectorAll('ol.tl li').forEach(function(li){var show=current==='all'||li.dataset.type===current;li.hidden=!show;if(show){n++;if(li.classList.contains('plan'))plans++}});
-  document.querySelectorAll('.year').forEach(function(y){y.hidden=!y.querySelector('li:not([hidden])')});
-  return '：'+n+'件を表示しています'+(plans?'（うち予定'+plans+'件）':'');
+ function choiceOf(root){
+  var input=root.querySelector('input:checked');
+  return {value:input.value,label:input.closest('label').textContent.replace(/\s+/g,' ').trim()};
  }
- btns.forEach(function(b){b.addEventListener('click',function(){
-  current=b.dataset.f;
-  btns.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-  count.textContent=b.textContent.trim()+applyFilter();
- })});
+ var tlCurrent='all';
+ function applyFilter(){
+  var n=0,plans=0,picked=choiceOf(document.getElementById('tl-filters')),label=picked.label;
+  tlCurrent=picked.value;
+  document.querySelectorAll('#timeline ol.tl li').forEach(function(li){var show=tlCurrent==='all'||li.dataset.type===tlCurrent;li.hidden=!show;if(show){n++;if(li.classList.contains('plan'))plans++}});
+  document.querySelectorAll('#timeline .year').forEach(function(y){y.hidden=!y.querySelector('li:not([hidden])')});
+  countText.textContent=label+'：'+n+'件を表示しています'+(plans?'（うち予定'+plans+'件）':'');
+  var none=n===0;
+  tlEmpty.hidden=!none;
+  tlResetWrap.hidden=!none;
+ }
+ document.getElementById('tl-filters').addEventListener('change',applyFilter);
+ document.getElementById('tl-reset').addEventListener('click',function(){
+  var all=document.querySelector('#tl-filters input[value="all"]');
+  all.checked=true;
+  all.focus();
+  applyFilter();
+ });
+ applyFilter();
 
  fetch('events.json',{cache:'no-cache'})
   .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
   .then(function(data){
    if(!Array.isArray(data))throw new Error('トップレベルが配列ではありません');
    data.forEach(function(d){
-    if(!d||!/^\d{4}-\d{2}-\d{2}$/.test(d.date||'')||!d.title){console.error('events.json の項目に date（YYYY-MM-DD）か title がありません',d);return}
+    if(!d||!/^\d{4}-\d{2}-\d{2}$/.test(d.date||'')||!d.title||!d.type||!d.label){console.error('events.json の項目に date（YYYY-MM-DD）、type、label、title のいずれかがありません',d);return}
     var li=buildItem(d);
-    if(d.date>today)toPlan(li);else insertSorted(yearList(d.date.slice(0,4)),li,false);
+    if(today&&d.date>today)toPlan(li);else insertSorted(yearList(d.date.slice(0,4)),li,false);
    });
+   upcoming.hidden=!upList.children.length;
    applyFilter();
   })
-  .catch(function(e){console.error('events.json を読み込めませんでした',e)});
+  .catch(function(e){
+   console.error('events.json を読み込めませんでした',e);
+   tlError.textContent='追加の予定を表示できませんでした';
+  });
+
+ var worksLoaded=false,worksCurrent='all';
+ var worksList=document.getElementById('works-list');
+ var worksCountText=document.getElementById('works-count-text');
+ var worksEmpty=document.getElementById('works-empty'),worksResetWrap=document.getElementById('works-reset-wrap');
+ var worksError=document.getElementById('works-error');
+ var workLabel={paper:'論文',patent:'特許',award:'受賞',book:'書籍'};
+ function buildWork(d){
+  var li=el('li'),ev=el('div','ev'),meta=el('div','meta'),title=el('h3'),sub=el('span','w'),bits=[];
+  li.dataset.type=d.type;
+  meta.appendChild(el('span','badge',workLabel[d.type]||d.type));
+  if(d.type==='patent')meta.appendChild(el('span','when',d.number));
+  else if(d.year){var time=el('time');time.setAttribute('datetime',String(d.year));time.textContent=d.year+'年';meta.appendChild(time)}
+  if(d.reviewed)meta.appendChild(el('span','rev','査読あり'));
+  title.textContent=d.title;
+  if(d.lang==='en'||(/[A-Za-z]/.test(d.title)&&!/[\u3040-\u30ff\u4e00-\u9faf]/.test(d.title)))title.lang='en';
+  if(d.work)bits.push('「'+d.work+'」');
+  if(d.venue)bits.push(d.venue);
+  if(d.people)bits.push(d.people);
+  if(d.note)bits.push(d.note);
+  sub.textContent=bits.join('。')+(bits.length?'。':'');
+  ev.appendChild(meta);ev.appendChild(title);ev.appendChild(sub);
+  li.appendChild(ev);
+  return li;
+ }
+ function applyWorks(){
+  var n=0,picked=choiceOf(document.getElementById('works-filters')),label=picked.label;
+  worksCurrent=picked.value;
+  worksList.querySelectorAll('li').forEach(function(li){var show=worksCurrent==='all'||li.dataset.type===worksCurrent;li.hidden=!show;if(show)n++});
+  worksCountText.textContent=label+'：'+n+'件を表示しています';
+  var none=worksLoaded&&n===0;
+  worksEmpty.hidden=!none;
+  worksResetWrap.hidden=!none;
+ }
+ document.getElementById('works-filters').addEventListener('change',applyWorks);
+ document.getElementById('works-reset').addEventListener('click',function(){
+  var all=document.querySelector('#works-filters input[value="all"]');
+  all.checked=true;
+  all.focus();
+  applyWorks();
+ });
+ fetch('works.json',{cache:'no-cache'})
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+  .then(function(data){
+   if(!Array.isArray(data))throw new Error('トップレベルが配列ではありません');
+   data.forEach(function(d){
+    if(!d||!d.type||!d.title||!workLabel[d.type]){console.error('works.json の項目に type か title がありません',d);return}
+    if(d.type==='patent'&&!d.number){console.error('works.json の特許に番号がありません',d);return}
+    worksList.appendChild(buildWork(d));
+   });
+   worksLoaded=true;
+   applyWorks();
+  })
+  .catch(function(e){
+   console.error('works.json を読み込めませんでした',e);
+   worksError.textContent='研究業績を表示できませんでした';
+  });
+
 
  var form=document.getElementById('contact-form'),status=document.getElementById('form-status'),submit=form.querySelector('.submit'),sending=false,tried=false;
  form.noValidate=true;
@@ -478,6 +714,63 @@ footer{text-align:center;padding:24px 0 48px;color:var(--sub);font-size:13px}
     setStatus('error','送信できませんでした。通信状況を確認して、もう一度お試しください。');
    })
    .then(function(){sending=false;submit.removeAttribute('aria-disabled')});
+ });
+
+ var themeBtn=document.getElementById('theme'),themeReset=document.getElementById('theme-reset');
+ function lockedTheme(){return document.documentElement.getAttribute('data-theme')}
+ function effectiveDark(){
+  var t=lockedTheme();
+  if(t==='dark'||t==='light')return t==='dark';
+  return matchMedia('(prefers-color-scheme: dark)').matches;
+ }
+ function themeLabel(){themeBtn.textContent=effectiveDark()?'明るい表示にする':'暗い表示にする'}
+ function setSchemeMeta(value){
+  var m=document.querySelector('meta[name="color-scheme"]');
+  if(m)m.setAttribute('content',value);
+ }
+ function themeColor(t){
+  var contrast=matchMedia('(prefers-contrast: more)').matches;
+  return t==='dark'?(contrast?'#14110f':'#1f1b18'):'#fffaf3';
+ }
+ function setThemeColor(t){
+  var metas=[].slice.call(document.querySelectorAll('meta[name="theme-color"]'));
+  if(t==='dark'||t==='light'){
+   var color=themeColor(t);
+   metas.forEach(function(m){m.setAttribute('content',color);m.removeAttribute('media')});
+  }else if(metas[0]&&metas[1]){
+   metas[0].setAttribute('content','#fffaf3');
+   metas[0].setAttribute('media','(prefers-color-scheme: light)');
+   metas[1].setAttribute('content','#1f1b18');
+   metas[1].setAttribute('media','(prefers-color-scheme: dark)');
+  }
+ }
+ function syncReset(){themeReset.hidden=!lockedTheme()}
+ themeLabel();
+ syncReset();
+ themeBtn.addEventListener('click',function(){
+  var next=effectiveDark()?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  try{localStorage.setItem('theme',next)}catch(e){}
+  setSchemeMeta(next);
+  setThemeColor(next);
+  themeLabel();
+  syncReset();
+ });
+ themeReset.addEventListener('click',function(){
+  try{localStorage.removeItem('theme')}catch(e){}
+  document.documentElement.removeAttribute('data-theme');
+  setSchemeMeta('light dark');
+  setThemeColor(null);
+  themeLabel();
+  syncReset();
+  themeBtn.focus();
+ });
+ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){
+  if(!lockedTheme()){setSchemeMeta('light dark');setThemeColor(null);themeLabel()}
+  else setThemeColor(lockedTheme());
+ });
+ matchMedia('(prefers-contrast: more)').addEventListener('change',function(){
+  if(lockedTheme())setThemeColor(lockedTheme());
  });
 })();
 </script>
