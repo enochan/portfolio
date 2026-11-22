@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1b18" media="(prefers-color-scheme: dark)">
+<title>問いを軸にする | 榎本大貴</title>
+<meta name="description" content="問いの形の見出しを中心にする。提案は、まだ置いていない問い。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="extra.css">
+<link rel="stylesheet" href="purpose.css">
+<script>
+(function(){
+ document.documentElement.classList.add('js');
+ function themeColor(t){
+  var contrast=false;
+  try{contrast=matchMedia('(prefers-contrast: more)').matches}catch(e){}
+  return t==='dark'?(contrast?'#14110f':'#1f1b18'):'#fffaf3';
+ }
+ try{
+  var t=localStorage.getItem('layout-theme');
+  if(t==='dark'||t==='light'){
+   document.documentElement.setAttribute('data-theme',t);
+   var m=document.querySelector('meta[name="color-scheme"]');
+   if(m)m.setAttribute('content',t);
+   var metas=document.querySelectorAll('meta[name="theme-color"]');
+   for(var i=0;i<metas.length;i++){
+    metas[i].setAttribute('content',themeColor(t));
+    metas[i].removeAttribute('media');
+   }
+  }
+ }catch(e){}
+})();
+</script>
+</head>
+<body class="floor14 ask">
+<a class="skip" href="#main">本文へスキップ</a>
+<div class="bgdeco" aria-hidden="true">
+ <div class="blob" style="inline-size:23.75rem;block-size:23.75rem;background:var(--lav);inset-inline-start:-7.5rem;inset-block-start:-5rem"></div>
+ <div class="blob" style="inline-size:18.75rem;block-size:18.75rem;background:var(--peach);inset-inline-end:-5rem;inset-block-start:22.5rem;animation-delay:-5s"></div>
+</div>
+<header class="top"><div class="wrap"><a class="logo" href="#main">榎本大貴</a>
+<div class="head-tools"><button type="button" class="theme" id="theme">暗い表示にする</button><button type="button" class="theme" id="theme-reset" hidden>端末の設定に戻す</button><script>
+(function(){
+ var t=document.documentElement.getAttribute('data-theme');
+ var dark=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
+ document.getElementById('theme').textContent=dark?'明るい表示にする':'暗い表示にする';
+ document.getElementById('theme-reset').hidden=!(t==='dark'||t==='light');
+})();
+</script><nav><ul><li><a href="#q-replace">問い</a></li><li><a href="#layers">レイヤー</a></li><li><a href="#more-questions">まだない問い</a></li><li><a href="#contact">お問い合わせ</a></li></ul></nav></div>
+</div></header>
+<main id="main" tabindex="-1"><div class="wrap">
+<p class="eyebrow">アクセシビリティ × 障害 × AI</p>
+<h1>問いの形になっている見出し</h1>
+<p class="lead">サイトにすでにある見出しのうち、問いの形になっているものを先に置いています。名前や経歴はこのページの中心にしていません。</p>
+<section class="q" id="q-replace" aria-labelledby="q-replace-h">
+ <h2 id="q-replace-h">支援者は、生成AIに置き換わるのか。日本職業リハビリテーション学会シンポでの記録</h2>
+ <ol class="stack"><li data-type="write"><div class="ev"><div class="meta"><span class="badge">執筆</span><time datetime="2026-10-06">2026年10月6日</time><span>note</span></div><h3><a href="https://note.com/enomotod/n/n73e9b3be4ab5">支援者は、生成AIに置き換わるのか。日本職業リハビリテーション学会シンポでの記録</a></h3></div></li></ol>
+</section>
+<section class="q" id="q-data" aria-labelledby="q-data-h">
+ <h2 id="q-data-h">「データは人を自由にするか」での講演</h2>
+ <ol class="stack"><li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-08-19">2026年8月19日</time></div><h3>「データは人を自由にするか」での講演</h3><span class="w">Social Science Boot Camp 2026</span></div></li></ol>
+</section>
+<section id="more-questions" class="proposal"><h2 id="more-questions-h"><span class="badge propose">提案</span>まだ置いていない問い</h2><p>ここに、活動をぶら下げる問いの文が入ります。文はまだありません。</p></section>
+<section id="layers"><h2><span class="dot" aria-hidden="true"></span>AI活用の3つのレイヤー</h2>
+<p class="lead">サイトがすでに置いている三つのレイヤーです。</p>
+<ol class="layers">
+ <li><span class="n" aria-hidden="true">1</span><h3>非支援業務を減らす</h3><p>LITALICOワークスでは AI議事録ツール Notta の活用で、記録にかかる時間が60〜70%減りました。</p></li>
+ <li><span class="n" aria-hidden="true">2</span><h3>支援の質を高める</h3><p>ロジックモデルで、支援の質を定義・測定・改善します。</p></li>
+ <li><span class="n" aria-hidden="true">3</span><h3>社会側の障害を減らす</h3><p>「みんなのアクセス」で、アクセシビリティを身近にする活動をしています。</p></li>
+</ol>
+</section>
+<p class="note-omit">登壇と研究業績の一覧は、この見本では載せていません。</p>
+<section id="links"><h2 id="h-links"><span class="dot" aria-hidden="true"></span>リンク</h2>
+<ul class="links" aria-labelledby="h-links">
+ <li><a href="https://note.com/enomotod">note</a></li>
+ <li><a href="https://zenn.dev/enochan">Zenn</a></li>
+ <li><a href="https://speakerdeck.com/enochan">Speaker Deck</a></li>
+ <li><a href="https://researchmap.jp/denomoto">researchmap</a></li>
+ <li><a href="https://litalico.co.jp/about/lab/">LITALICO研究所</a></li>
+ <li><a href="https://youtube.com/@everyonesaccesscollective">みんなのアクセス（YouTube）</a></li>
+</ul></section>
+<section id="practice"><h2><span class="dot" aria-hidden="true"></span>このサイトで守っていること</h2>
+<ul class="practice">
+ <li>ページの先頭から「本文へスキップ」で、本文へ直接移動できます。</li>
+ <li>活動の種類は、色だけでなくバッジの文字でも示しています。</li>
+ <li>端末の「動きを減らす」設定に従い、アニメーションを止めます。</li>
+</ul>
+<p>note、Zenn、YouTube、researchmap の先は、このサイトの範囲外です。</p>
+<p>使いにくい点は、<a href="#contact">お問い合わせ</a>から送ってください。</p></section>
+<section id="contact" tabindex="-1"><h2 id="h-contact"><span class="dot" aria-hidden="true"></span>お問い合わせ</h2>
+<div class="contact">
+ <p class="note">送信内容は、外部サービスの <a href="https://formsubmit.co/">FormSubmit</a> を経由して届きます。</p>
+ <div id="form-status" class="status" role="status" aria-live="polite" tabindex="-1"></div>
+ <form id="contact-form" action="https://formsubmit.co/dffb1aba5090e823fb3f12306cceace2" method="POST">
+  <input type="hidden" name="_subject" value="ポートフォリオサイトからのお問い合わせ">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <div class="field"><label for="f-name">お名前<span class="tag req">必須</span></label><input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err"><p class="err" id="f-name-err"></p></div>
+  <div class="field"><label for="f-email">メールアドレス<span class="tag req">必須</span></label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err"><p class="err" id="f-email-err"></p></div>
+  <div class="field"><label for="f-org">ご所属<span class="tag opt">任意</span></label><input id="f-org" name="organization" type="text" autocomplete="organization"></div>
+  <div class="field"><label for="f-message">お問い合わせ内容<span class="tag req">必須</span></label><textarea id="f-message" name="message" required aria-describedby="f-message-err"></textarea><p class="err" id="f-message-err"></p></div>
+  <button type="submit" class="submit">送信する</button>
+ </form>
+</div></section>
+</div></main>
+<footer>© 榎本大貴</footer>
+<script src="site.js"></script>
+</body>
+</html>

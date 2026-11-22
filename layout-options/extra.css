@@ -38,3 +38,15 @@ summary:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-ra
 @media (forced-colors:active){
  .jumps a,summary{border:1px solid CanvasText}
 }
+/* 案6〜10だけ、最小文字を 14px にする。案1〜5の見た目は変えない。 */
+.floor14 .badge,
+.floor14 footer,
+.floor14 .tag,
+.floor14 .meta,
+.floor14 .ev .w,
+.floor14 .live,
+.floor14 .filters legend,
+.floor14 .more,
+.floor14 .contact .note,
+.floor14 header nav a,
+.floor14 .links a{font-size:0.875rem}
