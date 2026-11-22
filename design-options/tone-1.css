@@ -1,0 +1,40 @@
+/* 静かな端正。今のクリームと丸ゴシックを、影を落として整える。 */
+:root{
+ --bg:#fffaf3;--fg:#2b2a33;--sub:#575463;--card:#fff;--line:#8d7356;--link:#17675a;--accent:#9a3e1c;
+ --mark:#ffe8dc;--talk-bg:#ffe3d6;--talk-fg:#8a3412;--write-bg:#d7f3e9;--write-fg:#0f5243;
+ --career-bg:#e6e1fa;--career-fg:#3d3492;--on-fg:#fffaf3;--header-bg:#fffaf3;--header-fg:#2b2a33;
+ --shadow:none;
+ --font-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+ --font-display:var(--font-body);
+ --lh:1.8;--radius:.75rem;--section:4.25rem;--measure:68rem;
+}
+@media (prefers-color-scheme:dark){
+ :root:not([data-theme="light"]){
+  --bg:#1f1b18;--fg:#f3ece4;--sub:#d2c4b6;--card:#2a2521;--line:#b79b78;--link:#8ee0cb;--accent:#ffb59a;
+  --mark:#4a332c;--talk-bg:#4a2b1f;--talk-fg:#ffd0bc;--write-bg:#173f35;--write-fg:#b7f3e0;
+  --career-bg:#332e5a;--career-fg:#ddd6ff;--on-fg:#1f1b18;--header-bg:#1f1b18;--header-fg:#f3ece4;
+ }
+}
+:root[data-theme="dark"]{
+ --bg:#1f1b18;--fg:#f3ece4;--sub:#d2c4b6;--card:#2a2521;--line:#b79b78;--link:#8ee0cb;--accent:#ffb59a;
+ --mark:#4a332c;--talk-bg:#4a2b1f;--talk-fg:#ffd0bc;--write-bg:#173f35;--write-fg:#b7f3e0;
+ --career-bg:#332e5a;--career-fg:#ddd6ff;--on-fg:#1f1b18;--header-bg:#1f1b18;--header-fg:#f3ece4;
+}
+@media (prefers-contrast:more){
+ :root:not([data-theme="dark"]){--fg:#1a1714;--sub:#3b3843;--link:#0b4a40;--line:#4d3f2c}
+ :root[data-theme="dark"]{--bg:#14110f;--fg:#fffaf3;--sub:#f0e6dc;--link:#b6ffe9}
+}
+@media (prefers-color-scheme:dark) and (prefers-contrast:more){
+ :root:not([data-theme="light"]){--bg:#14110f;--fg:#fffaf3;--sub:#f0e6dc;--link:#b6ffe9;--header-bg:#14110f;--header-fg:#fffaf3}
+}
+header.top{border-block-end:1px solid var(--line)}
+.eyebrow{background:transparent;color:var(--sub);letter-spacing:.12em}
+.hero .aim{border-inline-start:2px solid var(--accent);padding-inline-start:1.5rem}
+.layers li,.ev,.role-box{box-shadow:none}
+ol.tl{border-inline-start:1px solid var(--line);margin-inline-start:.4rem;padding-inline-start:1.25rem}
+ol.tl li{position:relative}
+ol.tl li::before{
+ content:"";position:absolute;inset-inline-start:-1.55rem;inset-block-start:1.3rem;
+ inline-size:.55rem;block-size:.55rem;border-radius:50%;background:var(--c,var(--accent));
+}
+.vision em{background:linear-gradient(transparent 62%,var(--mark) 62%)}

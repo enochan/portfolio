@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>デザインのトーン見本 | 榎本大貴</title>
+<meta name="description" content="ポートフォリオのデザイン見本5案。見比べ用で、本番には反映しません。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+ :root{color-scheme:light dark;--bg:#f7f6f3;--fg:#1a1a1a;--sub:#3a3a3a;--link:#0a3d91;--line:#5c5c5c;--card:#fff}
+ @media (prefers-color-scheme:dark){
+  :root{--bg:#121212;--fg:#f5f5f5;--sub:#d5d5d5;--link:#9dc1ff;--line:#9a9a9a;--card:#1c1c1c}
+ }
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;font-size:1.0625rem;line-height:1.75}
+ a{color:var(--link);text-underline-offset:.18em}
+ :focus-visible{outline:3px solid var(--link);outline-offset:3px}
+ .skip{position:absolute;inset-block-start:1rem;inset-inline-start:1rem;transform:translateY(calc(-100% - 1rem));z-index:10}
+ .skip:focus-visible{transform:translateY(0);background:var(--fg);color:var(--bg);padding:.5em 1em}
+ main{max-inline-size:46rem;margin-inline:auto;padding:2.5rem 1.5rem 4rem}
+ h1{font-size:clamp(1.75rem,4vw,2.25rem);line-height:1.35;margin-block:0 .4em}
+ .lead{color:var(--sub);font-size:1rem}
+ ol{list-style:none;padding:0;margin:2rem 0 0;display:flex;flex-direction:column;gap:1rem}
+ li{background:var(--card);border:1px solid var(--line);padding:1.1rem 1.25rem}
+ h2{font-size:1.25rem;margin:0 0 .35em;line-height:1.4}
+ li p{margin:0;font-size:1rem}
+ footer{text-align:center;color:var(--sub);font-size:0.875rem;padding-block:0 2rem}
+ @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<main id="main" tabindex="-1">
+ <h1>デザインのトーン見本</h1>
+ <p class="lead">見比べ用です。本番のページには反映しません。文言と実績はいまのサイトと同じで、配色・書体・余白・見出し・カードや年表・ヘッダーだけを変えています。</p>
+ <ol>
+  <li>
+   <h2><a href="tone-1.html">静かな端正</a></h2>
+   <p>今のクリーム地を、影を抑えて端正に整えた案。書体は Zen Maru Gothic、本文の行間は 1.8。</p>
+  </li>
+  <li>
+   <h2><a href="tone-2.html">研究紙面</a></h2>
+   <p>研究ノートのように、明朝と罫線で書誌として見せる案。見出しは Shippori Mincho、本文は Noto Serif JP、行間は 1.85。</p>
+  </li>
+  <li>
+   <h2><a href="tone-3.html">ひだまり</a></h2>
+   <p>福祉や子ども支援の文脈に寄せた、角の丸い温かい案。見出しは Zen Maru Gothic、本文は Noto Sans JP、行間は 1.75。</p>
+  </li>
+  <li>
+   <h2><a href="tone-4.html">余白だけ</a></h2>
+   <p>色をほぼ使わず、余白と細い罫線だけで組む案。書体は Zen Kaku Gothic New、行間は 1.7。</p>
+  </li>
+  <li>
+   <h2><a href="tone-5.html">道標</a></h2>
+   <p>見出しの帯と強いコントラストで、情報の位置をすぐ見つける案。本文も見出しも BIZ UDPGothic、行間は 1.72。</p>
+  </li>
+ </ol>
+</main>
+<footer>見比べ用・マージしない</footer>
+</body>
+</html>

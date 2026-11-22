@@ -1,0 +1,43 @@
+/* ひだまり。丸いカードと、見出しだけの丸ゴシック。 */
+:root{
+ --bg:#fff4ea;--fg:#3d291f;--sub:#5a4034;--card:#fffaf6;--line:#8a6248;--link:#0f5c4a;--accent:#c45c38;
+ --mark:#ffe0c2;--talk-bg:#ffe4d4;--talk-fg:#8a3412;--write-bg:#e5f4ea;--write-fg:#145c45;
+ --career-bg:#efe7fb;--career-fg:#3d3492;--on-fg:#fffaf6;--header-bg:#fff4ea;--header-fg:#3d291f;
+ --font-body:"Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+ --font-display:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+ --lh:1.75;--radius:1.75rem;--section:4.5rem;--measure:70rem;
+}
+@media (prefers-color-scheme:dark){
+ :root:not([data-theme="light"]){
+  --bg:#2c211b;--fg:#fff3ea;--sub:#ecd9cc;--card:#3a2c25;--line:#d7bba8;--link:#9ee0cf;--accent:#ffb088;
+  --mark:#5a3a2c;--talk-bg:#5a3224;--talk-fg:#ffd5c2;--write-bg:#1d4036;--write-fg:#c6f6e4;
+  --career-bg:#3a3358;--career-fg:#e4dcff;--on-fg:#2c211b;--header-bg:#2c211b;--header-fg:#fff3ea;
+ }
+}
+:root[data-theme="dark"]{
+ --bg:#2c211b;--fg:#fff3ea;--sub:#ecd9cc;--card:#3a2c25;--line:#d7bba8;--link:#9ee0cf;--accent:#ffb088;
+ --mark:#5a3a2c;--talk-bg:#5a3224;--talk-fg:#ffd5c2;--write-bg:#1d4036;--write-fg:#c6f6e4;
+ --career-bg:#3a3358;--career-fg:#e4dcff;--on-fg:#2c211b;--header-bg:#2c211b;--header-fg:#fff3ea;
+}
+@media (prefers-contrast:more){
+ :root:not([data-theme="dark"]){--fg:#2a160e;--sub:#3f2a20;--link:#084538;--line:#6a4030}
+ :root[data-theme="dark"]{--fg:#fffaf6;--sub:#ffe8da;--link:#d7fff2}
+}
+@media (prefers-color-scheme:dark) and (prefers-contrast:more){
+ :root:not([data-theme="light"]){--fg:#fffaf6;--sub:#ffe8da;--link:#d7fff2;--header-fg:#fffaf6}
+}
+body{background:
+ radial-gradient(28rem 28rem at 0% -10%,#ffd9c2 0%,transparent 70%),
+ radial-gradient(22rem 22rem at 100% 20%,#f3d9c4 0%,transparent 65%),
+ var(--bg)}
+header.top{background:color-mix(in srgb,var(--header-bg) 88%,transparent)}
+.logo{background:var(--card);border-radius:999px;padding-block:.45em;padding-inline:.9em;text-decoration:none;border:1px solid var(--line)}
+header nav a{background:var(--card);border:1px solid var(--line);text-decoration:underline}
+.eyebrow{background:var(--mark);border-radius:999px;padding-block:.25em;padding-inline:.9em;color:var(--fg)}
+.hero .aim{background:var(--card);border-radius:2rem;padding:1.75rem;border:1px solid var(--line)}
+.layers li,.ev,.role-box{box-shadow:0 .4rem 0 color-mix(in srgb,var(--accent) 25%,transparent)}
+.layers .n{background:var(--mark)}
+.choice,.theme,.reset,.submit,.to-contact a,.links a,.badge{border-radius:999px}
+.field input,.field textarea{border-radius:1.1rem}
+@media (prefers-reduced-motion:reduce){body{background:var(--bg)}}
+@media (forced-colors:active){body{background:Canvas} header.top{background:Canvas}}

@@ -1,0 +1,57 @@
+/* 道標。太い帯と、読みやすい BIZ UDPGothic。 */
+:root{
+ --bg:#fff;--fg:#101010;--sub:#2e2e2e;--card:#fff;--line:#222;--link:#0a3d91;--accent:#0a3d91;
+ --mark:#ffe14a;--talk-bg:#fff1e8;--talk-fg:#7a2e0e;--write-bg:#e7f6f1;--write-fg:#0d4f42;
+ --career-bg:#eeeefe;--career-fg:#2c2a8a;--on-fg:#fff;--header-bg:#101010;--header-fg:#fff;
+ --band:#10233f;--band-fg:#fff;
+ --font-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+ --font-display:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+ --lh:1.72;--radius:.25rem;--section:3.25rem;--measure:76rem;--hero-gap:2rem;
+}
+@media (prefers-color-scheme:dark){
+ :root:not([data-theme="light"]){
+  --bg:#0a0a0a;--fg:#f7f7f7;--sub:#d8d8d8;--card:#141414;--line:#d0d0d0;--link:#9dc1ff;--accent:#9dc1ff;
+  --mark:#ffe14a;--talk-bg:#4a2b1f;--talk-fg:#ffd0bc;--write-bg:#14362e;--write-fg:#c6f6e4;
+  --career-bg:#2c2a4e;--career-fg:#ddd6ff;--on-fg:#101010;--header-bg:#f4f4f4;--header-fg:#101010;
+  --band:#f4f4f4;--band-fg:#101010;
+ }
+}
+:root[data-theme="dark"]{
+ --bg:#0a0a0a;--fg:#f7f7f7;--sub:#d8d8d8;--card:#141414;--line:#d0d0d0;--link:#9dc1ff;--accent:#9dc1ff;
+ --mark:#ffe14a;--talk-bg:#4a2b1f;--talk-fg:#ffd0bc;--write-bg:#14362e;--write-fg:#c6f6e4;
+ --career-bg:#2c2a4e;--career-fg:#ddd6ff;--on-fg:#101010;--header-bg:#f4f4f4;--header-fg:#101010;
+ --band:#f4f4f4;--band-fg:#101010;
+}
+@media (prefers-contrast:more){
+ :root:not([data-theme="dark"]){--fg:#000;--sub:#1a1a1a;--link:#062a6b}
+ :root[data-theme="dark"]{--fg:#fff;--sub:#f3f3f3;--link:#d6e6ff}
+}
+@media (prefers-color-scheme:dark) and (prefers-contrast:more){
+ :root:not([data-theme="light"]){--fg:#fff;--sub:#f3f3f3;--link:#d6e6ff}
+}
+header.top{background:var(--header-bg);color:var(--header-fg)}
+.logo,.head-tools,.theme{color:var(--header-fg)}
+header nav a{color:var(--header-fg);text-decoration:underline;font-weight:700}
+.theme{background:transparent;border-color:var(--header-fg);color:var(--header-fg)}
+.hero{align-items:stretch;padding-block:2.5rem 1rem}
+.eyebrow{background:var(--fg);color:var(--bg);padding-block:.2em;padding-inline:.7em;border-radius:var(--radius);letter-spacing:.08em}
+h1{font-weight:700;letter-spacing:0;font-size:clamp(2.75rem,6vw,4.5rem)}
+.vision em{background:var(--mark);color:#161616}
+.hero .aim{border:3px solid var(--fg);padding:1.25rem 1.4rem;border-radius:var(--radius)}
+h2{
+ background:var(--band);color:var(--band-fg);
+ margin-inline:-1.5rem;padding-block:.55rem;padding-inline:1.5rem;border-radius:0;
+}
+h2 .dot{background:var(--mark)}
+.layers li,.ev,.role-box{border-width:2px;border-color:var(--line)}
+.layers .n{background:var(--fg);color:var(--bg);border-radius:var(--radius)}
+.badge{border-radius:var(--radius);box-shadow:inset 0 0 0 1px var(--cf)}
+.choice{border-width:2px}
+.choice:has(:checked){outline:2px solid var(--link);outline-offset:2px}
+.year h3{font-size:1.35rem;letter-spacing:.04em;background:var(--fg);color:var(--bg);display:inline-block;padding-block:.15em;padding-inline:.6em}
+.tl-layout{gap:1.5rem}
+.side{inset-block-start:5rem}
+.links a{font-weight:700;border-width:2px}
+.to-contact a{border:2px solid var(--fg)}
+.field input,.field textarea{border-width:2px}
+.submit{border:2px solid var(--fg)}

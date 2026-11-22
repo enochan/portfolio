@@ -1,0 +1,65 @@
+/* 余白だけ。ほぼ無彩色で、角ゴシックと細い罫線。 */
+:root{
+ --bg:#fafafa;--fg:#161616;--sub:#3a3a3a;--card:#fafafa;--line:#5c5c5c;--link:#161616;--accent:#161616;
+ --mark:transparent; --talk:#161616;--talk-bg:transparent;--talk-fg:#161616;--write:#161616;--write-bg:transparent;--write-fg:#161616;
+ --career:#161616;--career-bg:transparent;--career-fg:#161616;--on-fg:#fafafa;--header-bg:#fafafa;--header-fg:#161616;
+ --font-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+ --font-display:var(--font-body);
+ --lh:1.7;--radius:0;--section:6.5rem;--measure:62rem;--hero-gap:4rem;
+}
+@media (prefers-color-scheme:dark){
+ :root:not([data-theme="light"]){
+  --bg:#101010;--fg:#f4f4f4;--sub:#cfcfcf;--card:#101010;--line:#9a9a9a;--link:#f4f4f4;--accent:#f4f4f4;
+  --talk:#f4f4f4;--talk-fg:#f4f4f4;--write:#f4f4f4;--write-fg:#f4f4f4;--career:#f4f4f4;--career-fg:#f4f4f4;--on-fg:#101010;
+  --header-bg:#101010;--header-fg:#f4f4f4;
+ }
+}
+:root[data-theme="dark"]{
+ --bg:#101010;--fg:#f4f4f4;--sub:#cfcfcf;--card:#101010;--line:#9a9a9a;--link:#f4f4f4;--accent:#f4f4f4;
+ --talk:#f4f4f4;--talk-fg:#f4f4f4;--write:#f4f4f4;--write-fg:#f4f4f4;--career:#f4f4f4;--career-fg:#f4f4f4;--on-fg:#101010;
+ --header-bg:#101010;--header-fg:#f4f4f4;
+}
+@media (prefers-contrast:more){
+ :root:not([data-theme="dark"]){--fg:#000;--sub:#1a1a1a;--line:#000}
+ :root[data-theme="dark"]{--fg:#fff;--sub:#f2f2f2;--line:#fff}
+}
+@media (prefers-color-scheme:dark) and (prefers-contrast:more){
+ :root:not([data-theme="light"]){--fg:#fff;--sub:#f2f2f2;--line:#fff;--header-fg:#fff;--talk-fg:#fff;--write-fg:#fff;--career-fg:#fff}
+}
+header.top{position:static;background:transparent}
+header.top .wrap{padding-block:2rem 0}
+.logo{font-weight:500;text-decoration:none;letter-spacing:.08em}
+header nav a{text-decoration:underline;border-radius:0;padding-inline:.4em}
+.theme,.reset{background:transparent;border-radius:0;border-width:1px}
+.hero{align-items:start;padding-block:5.5rem 2rem}
+.eyebrow{color:var(--sub);font-weight:500;letter-spacing:.16em}
+h1{font-weight:500;letter-spacing:-.03em;font-size:clamp(3rem,8vw,5.25rem)}
+.vision{font-weight:500}
+.vision em{background:none;box-shadow:inset 0 -1px 0 var(--fg)}
+h2 .dot{display:none}
+h2{font-weight:500;letter-spacing:-.02em}
+.layers{gap:2rem}
+.layers li{background:transparent;border:0;border-block-start:1px solid var(--fg);border-radius:0;padding-inline:0;padding-block:1.5rem}
+.layers .n{background:transparent;border:1px solid var(--fg);border-radius:0;font-weight:500}
+.tl-layout{grid-template-columns:16rem 1fr;gap:4rem}
+.side{background:transparent}
+.role-box{background:transparent;border:0;border-block-start:1px solid var(--fg);border-radius:0;padding-inline:0}
+.links a{background:transparent;border:0;border-radius:0;padding-inline:0;text-decoration:underline;color:var(--fg)}
+.year h3{font-weight:500;font-size:clamp(2.5rem,6vw,4rem);letter-spacing:-.04em;color:var(--sub)}
+.ev{background:transparent;border:0;border-block-end:1px solid var(--line);border-radius:0;padding-inline:0}
+.badge{background:transparent;color:var(--fg);border-radius:0;box-shadow:inset 0 0 0 1px var(--fg);padding-block:.1em}
+.badge.plan{background:transparent}
+.choice{background:transparent;border-radius:0;border-width:1px}
+.choice:has(:checked){background:var(--fg);color:var(--on-fg)}
+.sw{border-radius:0}
+li[data-type="talk"] .sw{border-radius:50%}
+li[data-type="write"] .sw,.choice:has(input[value="write"]) .sw,.choice:has(input[value="paper"]) .sw{border-radius:0}
+.choice:has(input[value="career"]) .sw,.choice:has(input[value="patent"]) .sw{border-radius:0;transform:rotate(45deg);inline-size:.55rem;block-size:.55rem}
+.to-contact a,.submit{border-radius:0}
+.field input,.field textarea,.contact form,.status.done,.status.error{border-radius:0;background:transparent}
+.contact form{padding-inline:0;border-inline:0;border-radius:0}
+@media (max-width:56.25rem){
+ .tl-layout{grid-template-columns:1fr;gap:2rem}
+ .hero{padding-block:3rem 1.5rem}
+ h1{font-size:2.75rem}
+}
