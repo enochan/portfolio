@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1b18" media="(prefers-color-scheme: dark)">
+<title>ステートメント | 榎本大貴</title>
+<meta name="description" content="言葉を中心に置いたページの見本。本文は、サイトにある一文だけです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="extra.css">
+<link rel="stylesheet" href="purpose.css">
+<script>
+(function(){
+ document.documentElement.classList.add('js');
+ function themeColor(t){
+  var contrast=false;
+  try{contrast=matchMedia('(prefers-contrast: more)').matches}catch(e){}
+  return t==='dark'?(contrast?'#14110f':'#1f1b18'):'#fffaf3';
+ }
+ try{
+  var t=localStorage.getItem('layout-theme');
+  if(t==='dark'||t==='light'){
+   document.documentElement.setAttribute('data-theme',t);
+   var m=document.querySelector('meta[name="color-scheme"]');
+   if(m)m.setAttribute('content',t);
+   var metas=document.querySelectorAll('meta[name="theme-color"]');
+   for(var i=0;i<metas.length;i++){
+    metas[i].setAttribute('content',themeColor(t));
+    metas[i].removeAttribute('media');
+   }
+  }
+ }catch(e){}
+})();
+</script>
+</head>
+<body class="floor14 statement">
+<a class="skip" href="#main">本文へスキップ</a>
+<div class="bgdeco" aria-hidden="true">
+ <div class="blob" style="inline-size:23.75rem;block-size:23.75rem;background:var(--lav);inset-inline-start:-7.5rem;inset-block-start:-5rem"></div>
+ <div class="blob" style="inline-size:18.75rem;block-size:18.75rem;background:var(--peach);inset-inline-end:-5rem;inset-block-start:18rem;animation-delay:-5s"></div>
+</div>
+<header class="top"><div class="wrap"><a class="logo" href="#main">榎本大貴</a>
+<div class="head-tools"><button type="button" class="theme" id="theme">暗い表示にする</button><button type="button" class="theme" id="theme-reset" hidden>端末の設定に戻す</button><script>
+(function(){
+ var t=document.documentElement.getAttribute('data-theme');
+ var dark=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
+ document.getElementById('theme').textContent=dark?'明るい表示にする':'暗い表示にする';
+ document.getElementById('theme-reset').hidden=!(t==='dark'||t==='light');
+})();
+</script><nav><ul><li><a href="layout-11.html">キーワードのグラフ</a></li><li><a href="index.html">見本の一覧</a></li></ul></nav></div>
+</div></header>
+<main id="main" tabindex="-1"><div class="wrap">
+ <p class="eyebrow">アクセシビリティ × 障害 × AI</p>
+ <p class="who">榎本大貴</p>
+ <p class="role">株式会社LITALICO 執行役員／LITALICO研究所 所長／AI統括部長<br>任意団体「みんなのアクセス」代表</p>
+ <h1><em>誰もがアクセシビリティを身近に感じ、</em>実践したくなる社会を目指す</h1>
+ <p class="def">アクセシビリティとは、<q>必要とする人にちゃんと届くようにすること</q>だと考えます。</p>
+ <section class="proposal" id="statement-body">
+  <h2><span class="badge propose">提案</span>ステートメントの本文</h2>
+  <p>考えていることを、短い文で重ねて置く場所です。上の二文以外の本文は、まだサイトにありません。</p>
+ </section>
+ <section class="proposal" id="short-words">
+  <h2><span class="badge propose">提案</span>短い言葉</h2>
+  <p>繰り返す短い言葉を、数行で置く場所です。言葉はまだありません。</p>
+ </section>
+ <section id="how">
+  <h2>このページへの行き方</h2>
+  <ul>
+   <li><a href="index.html">見本の一覧</a>から、このページへ入れます。</li>
+   <li><a href="layout-11.html">キーワードのグラフ</a>のヘッダーと、本文のリンクから、このページへ入れます。</li>
+   <li>このページのヘッダーから、キーワードのグラフへ戻れます。</li>
+  </ul>
+ </section>
+ <section class="proposal" id="other-links">
+  <h2><span class="badge propose">提案</span>他の案からのリンク</h2>
+  <p>案1から10では、名前の近くに「ステートメント」へのリンクを置く場所です。この見本では、案1から10にリンクを足していません。</p>
+ </section>
+</div></main>
+<footer>© 榎本大貴</footer>
+<script src="site.js"></script>
+</body>
+</html>
