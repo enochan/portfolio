@@ -58,7 +58,7 @@
 <main id="main" tabindex="-1"><div class="wrap">
  <p class="eyebrow">アクセシビリティ × 障害 × AI</p>
  <h1>グラフの見比べ</h1>
- <p>同じ <a href="../keywords.json">keywords.json</a> で、4つのライブラリの動きを見ます。キーワードを選ぶと中央に寄り、関連と項目がパネルに出ます。線のラベルは、選んだノードと、見ているノードにつながる線に出ます。拡大すると、ほかの線にも出ます。「仮」は、二つのキーワードが同じ項目に書かれているだけで、関係の種類は題名や説明から決まらない印です。「表記を含む」は、一方の表記が他方に含まれます。項目とのラベルは、その項目の種類です。</p>
+ <p>同じ <a href="../keywords.json">keywords.json</a> で、4つのライブラリの動きを見ます。キーワードを選ぶと中央に寄り、関連と項目がパネルに出ます。線のラベルは、線の真ん中に、線の向きに沿って書きます。文字が逆さまにならないようにし、線と重なるところは背景色で抜きます。入りきらないときは、選んだキーワードと、見ているキーワードにつながる線だけに出ます。「線に沿うラベル」と「細い線」で、線の太さとラベルの出方を切り替えられます。「仮」は、二つのキーワードが同じ項目に書かれているだけで、関係の種類は題名や説明から決まらない印です。「表記を含む」は、一方の表記が他方に含まれます。項目とのラベルは、その項目の種類です。</p>
  <nav aria-label="グラフのライブラリ">
   <ul class="lib-tabs">
    <li><a href="index.html" aria-current="page">force-graph</a></li>
@@ -85,6 +85,10 @@
      <button type="button" id="to-near" aria-pressed="true">周りだけ</button>
      <button type="button" id="to-all" aria-pressed="false">全体</button>
     </div>
+    <div class="switch" id="label-switch" role="group" aria-label="線の表示">
+     <button type="button" id="to-along" aria-pressed="true">線に沿うラベル</button>
+     <button type="button" id="to-thin" aria-pressed="false">細い線</button>
+    </div>
     <p id="graph-status" class="live" aria-live="polite"></p>
     <div class="switch" id="graph-tools" role="group" aria-label="グラフの操作">
      <button type="button" id="to-fit">全体を表示</button>
@@ -92,7 +96,7 @@
      <button type="button" id="to-out">縮小</button>
      <button type="button" id="motion-stop" aria-pressed="false">動きを止める</button>
     </div>
-    <p id="graph-help">キーワードは円、実績は形と種類の文字です。ドラッグすると周りも動きます。ホイールやピンチで拡大でき、余白をドラッグすると眺めを動かせます。Tab でグラフのボタンに移り、矢印キーで隣へ、Enter で選びます。フォーカス中のノードはグラフ上に「フォーカス」と出ます。動きを止めると、配置は止まったままです。線の「仮」は、関係の種類がまだ決まっていない印です。</p>
+    <p id="graph-help">キーワードは円、実績は形と種類の文字です。ドラッグすると周りも動きます。ホイールやピンチで拡大でき、余白をドラッグすると眺めを動かせます。Tab でグラフのボタンに移り、矢印キーで隣へ、Enter で選びます。フォーカス中のノードはグラフ上に「フォーカス」と出ます。動きを止めると、配置は止まったままです。「線に沿うラベル」は線の真ん中に向きを合わせて書き、「細い線」は線を細くしてラベルを控えめにします。文字は画面上で14px以上です。入りきらないときは、選んだキーワードと、見ているキーワードにつながる線だけに出ます。同じラベルはパネルと一覧にも出ます。線の「仮」は、関係の種類がまだ決まっていない印です。</p>
     <p id="graph-noscript">グラフの配置には JavaScript を使います。キーワードと項目の対応は、下の一覧で読めます。</p>
     <div id="graph-host" class="graph-host"></div>
     <div id="graph-keys" class="graph-keys" role="group" aria-label="グラフのキーワードと項目"></div>

@@ -22,6 +22,7 @@
  var keywords=[];
  var model=null;
  var mode='all';
+ var labelMode='along';
  var selected=null;
  var pointed=null;
  var focused=null;
@@ -43,7 +44,7 @@
   return {fg:v('--fg','#2b2a33'),sub:v('--sub','#575463'),card:v('--card','#ffffff'),line:v('--line','#a38a66'),bg:v('--bg','#fffaf3'),teal:v('--teal','#17675a')};
  }
  function state(){
-  return {selected:selected,mode:mode,motion:!motionStopped,focused:focused,pointed:pointed};
+  return {selected:selected,mode:mode,motion:!motionStopped,focused:focused,pointed:pointed,labelMode:labelMode};
  }
  function visibleIds(){
   var ids=[];
@@ -76,12 +77,153 @@
   return hot;
  }
  window.graphHot=hotMap;
- window.graphShowEdge=function(link,zoom){
-  if(zoom>=1.15)return true;
-  var a=link.source&&link.source.id?link.source.id:link.source;
-  var b=link.target&&link.target.id?link.target.id:link.target;
+ function endId(x){return x&&x.id?x.id:x}
+ window.graphShowEdge=function(link){
+  var a=endId(link.source),b=endId(link.target);
   return a===selected||b===selected||(pointed&&(a===pointed||b===pointed))||(focused&&(a===focused||b===focused));
  };
+ function labelWidthPx(text){
+  var w=0,s=String(text||'仮');
+  for(var i=0;i<s.length;i++)w+=s.charCodeAt(i)<128?8.6:14;
+  return w;
+ }
+ window.graphReadableAngle=function(dx,dy){
+  var ang=Math.atan2(dy,dx);
+  if(ang>Math.PI/2)ang-=Math.PI;
+  else if(ang<-Math.PI/2)ang+=Math.PI;
+  return ang;
+ };
+ window.graphLabelMetrics=function(label){
+  var thin=labelMode==='thin';
+  var text=label||'仮';
+  return {text:text,textW:labelWidthPx(text),font:14,padX:thin?4:8,padY:thin?2:4,border:thin?0:1.5};
+ };
+ window.graphLinePx=function(hot){
+  if(labelMode==='thin')return hot?1.2:0.55;
+  return hot?3:1.7;
+ };
+ window.graphLayout=function(ids,hubId){
+  var hot=window.graphHot();
+  var near=[],far=[];
+  ids.forEach(function(id){
+   if(id===hubId)return;
+   if(hot[id])near.push(id);
+   else far.push(id);
+  });
+  var pos={};
+  pos[hubId]={x:0,y:0};
+  function place(list,radius){
+   list.forEach(function(id,i){
+    var a=-Math.PI/2+i*2*Math.PI/Math.max(1,list.length);
+    pos[id]={x:Math.cos(a)*radius,y:Math.sin(a)*radius};
+   });
+  }
+  place(near,180);
+  place(far,330);
+  return pos;
+ };
+ window.graphFrameScale=function(w,h){
+  return Math.max(0.55,Math.min(1.8,Math.min(w,h)*0.4/180));
+ };
+ window.graphOutward=function(x,y,hx,hy){
+  var dx=x-hx,dy=y-hy,len=Math.hypot(dx,dy);
+  if(len<1)return {x:1,y:0};
+  return {x:dx/len,y:dy/len};
+ };
+ window.graphPickLabels=function(edges,zoom){
+  var z=Math.max(0.05,zoom||1);
+  var thin=labelMode==='thin';
+  var slack=thin?36:18;
+  var items=edges.map(function(e){
+   var dx=e.x2-e.x1,dy=e.y2-e.y1;
+   var text=e.label||'仮';
+   return {
+    key:e.key,
+    hot:window.graphShowEdge({source:e.source,target:e.target}),
+    len:Math.hypot(dx,dy)*z,
+    need:labelWidthPx(text)+(thin?12:18),
+    mx:(e.x1+e.x2)/2,
+    my:(e.y1+e.y2)/2,
+    ang:window.graphReadableAngle(dx,dy)
+   };
+  });
+  function box(it){
+   var c=Math.abs(Math.cos(it.ang)),s=Math.abs(Math.sin(it.ang));
+   var hw=it.need/2/z,hh=12/z;
+   return {x:it.mx,y:it.my,hw:c*hw+s*hh+4/z,hh:s*hw+c*hh+4/z};
+  }
+  function hit(a,b){
+   return Math.abs(a.x-b.x)<a.hw+b.hw&&Math.abs(a.y-b.y)<a.hh+b.hh;
+  }
+  items.sort(function(a,b){
+   if(a.hot!==b.hot)return a.hot?-1:1;
+   return b.len-a.len;
+  });
+  var placed=[],accepted={},crowded=false;
+  items.forEach(function(it){
+   var b=box(it);
+   var overlap=false;
+   for(var i=0;i<placed.length;i++){if(hit(b,placed[i])){overlap=true;break}}
+   var fits=it.len>=it.need+slack&&!overlap;
+   if(fits){accepted[it.key]=1;placed.push(b)}
+   else if(it.hot){accepted[it.key]=1;placed.push(b)}
+   else crowded=true;
+  });
+  var show=accepted;
+  if(crowded){
+   show={};
+   items.forEach(function(it){if(it.hot)show[it.key]=1});
+  }
+  window.__labelCount=Object.keys(show).length;
+  window.__zoom=z;
+  return show;
+ };
+ function roundBand(c,x,y,w,h,r){
+  var rad=Math.min(r,w/2,h/2);
+  c.beginPath();
+  c.moveTo(x+rad,y);
+  c.arcTo(x+w,y,x+w,y+h,rad);
+  c.arcTo(x+w,y+h,x,y+h,rad);
+  c.arcTo(x,y+h,x,y,rad);
+  c.arcTo(x,y,x+w,y,rad);
+  c.closePath();
+ }
+ window.graphDrawEdgeLabel=function(c,x,y,ang,label,provisional,unit){
+  var m=window.graphLabelMetrics(label);
+  var u=unit>0?unit:1;
+  var col=colors();
+  c.save();
+  c.translate(x,y);
+  c.rotate(ang);
+  c.font='700 '+(m.font*u)+'px "Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif';
+  c.textAlign='center';
+  c.textBaseline='middle';
+  var tw=c.measureText(m.text).width;
+  var w=tw+m.padX*2*u;
+  var h=Math.max(20*u,m.font*u+m.padY*2*u);
+  roundBand(c,-w/2,-h/2,w,h,Math.min(h/2,8*u));
+  c.fillStyle=col.bg;
+  c.fill();
+  if(m.border>0){
+   c.lineWidth=m.border*u;
+   c.strokeStyle=col.line;
+   c.setLineDash(provisional?[4*u,3*u]:[]);
+   c.stroke();
+  }
+  c.setLineDash([]);
+  c.fillStyle=col.fg;
+  c.fillText(m.text,0,0);
+  c.restore();
+ };
+ function setLabelMode(next){
+  labelMode=next==='thin'?'thin':'along';
+  host.setAttribute('data-lines',labelMode);
+  var along=document.getElementById('to-along');
+  var thin=document.getElementById('to-thin');
+  if(along)along.setAttribute('aria-pressed',labelMode==='along'?'true':'false');
+  if(thin)thin.setAttribute('aria-pressed',labelMode==='thin'?'true':'false');
+  if(engine&&engine.paint)engine.paint();
+ }
 
  function loadNotes(){
   try{var raw=JSON.parse(localStorage.getItem(STORE)||'[]');return Array.isArray(raw)?raw:[]}catch(e){return []}
@@ -461,6 +603,11 @@
   });
   document.getElementById('to-near').setAttribute('aria-pressed','false');
   document.getElementById('to-all').setAttribute('aria-pressed','true');
+  var alongBtn=document.getElementById('to-along');
+  var thinBtn=document.getElementById('to-thin');
+  if(alongBtn)alongBtn.addEventListener('click',function(){setLabelMode('along')});
+  if(thinBtn)thinBtn.addEventListener('click',function(){setLabelMode('thin')});
+  setLabelMode('along');
   document.getElementById('to-graph').addEventListener('click',showGraph);
   document.getElementById('to-list').addEventListener('click',function(){
    page.setAttribute('data-view','list');

@@ -25,6 +25,7 @@
    labelSize:14,
    labelFont:'Zen Maru Gothic, "Hiragino Maru Gothic ProN", sans-serif',
    labelVisibility:'visible',
+   labelPosition:{attribute:'labelPosition',defaultValue:'right'},
    labelColor:{attribute:'labelColor',defaultValue:'#2b2a33'},
    color:{attribute:'color',defaultValue:'#fffaf3'},
    size:{attribute:'size',defaultValue:12},
@@ -53,7 +54,7 @@
   };
   var settings={
    renderLabels:true,
-   renderEdgeLabels:true,
+   renderEdgeLabels:false,
    labelRenderedSizeThreshold:0,
    labelDensity:0.55,
    enableNodeDrag:!!ctx.state().motion,
@@ -62,6 +63,7 @@
    minCameraRatio:0.05,
    maxCameraRatio:12,
    itemSizesReference:'screen',
+   minEdgeThickness:0.45,
    autoRescale:true,
    zoomDuration:280
   };
@@ -73,6 +75,36 @@
    renderer=new B.Sigma(graph,host,{settings:settings});
   }
   host.querySelectorAll('canvas').forEach(function(c){c.setAttribute('aria-hidden','true')});
+  var overlay=document.createElement('canvas');
+  overlay.className='edge-overlay';
+  overlay.setAttribute('aria-hidden','true');
+  host.appendChild(overlay);
+  var octx=overlay.getContext('2d');
+  function drawOverlay(){
+   try{drawOverlayBody()}catch(e){console.error(e)}
+  }
+  function drawOverlayBody(){
+   var w=host.clientWidth||1,h=host.clientHeight||1;
+   var dpr=window.devicePixelRatio||1;
+   var pw=Math.max(1,Math.round(w*dpr)),ph=Math.max(1,Math.round(h*dpr));
+   if(overlay.width!==pw||overlay.height!==ph){overlay.width=pw;overlay.height=ph}
+   octx.setTransform(dpr,0,0,dpr,0,0);
+   octx.clearRect(0,0,w,h);
+   var edges=[];
+   graph.forEachEdge(function(edge,attrs,source,target){
+    if(!graph.hasNode(source)||!graph.hasNode(target))return;
+    var a=renderer.graphToViewport({x:graph.getNodeAttribute(source,'x'),y:graph.getNodeAttribute(source,'y')});
+    var b=renderer.graphToViewport({x:graph.getNodeAttribute(target,'x'),y:graph.getNodeAttribute(target,'y')});
+    if(!a||!b||a.x==null||b.x==null)return;
+    edges.push({key:source+'|'+target,source:source,target:target,label:attrs.label,provisional:!!attrs.provisional,x1:a.x,y1:a.y,x2:b.x,y2:b.y});
+   });
+   var show=window.graphPickLabels(edges,1);
+   edges.forEach(function(e){
+    if(!show[e.key])return;
+    window.graphDrawEdgeLabel(octx,(e.x1+e.x2)/2,(e.y1+e.y2)/2,window.graphReadableAngle(e.x2-e.x1,e.y2-e.y1),e.label,e.provisional,1);
+   });
+  }
+  renderer.on('afterRender',drawOverlay);
   renderer.on('clickNode',function(e){
    if(graph.getNodeAttribute(e.node,'group')==='keyword')ctx.onSelect(e.node);
   });
@@ -136,15 +168,23 @@
    var col=ctx.colors();
    var cam=renderer.getCamera();
    var zoomed=(window.__fitRatio||cam.ratio)/Math.max(0.0001,cam.ratio);
-   var shown=0;
+   var hx=graph.hasNode(st.selected)?graph.getNodeAttribute(st.selected,'x'):0;
+   var hy=graph.hasNode(st.selected)?graph.getNodeAttribute(st.selected,'y'):0;
    graph.forEachNode(function(id,attrs){
     var parts=[attrs.line1];
     if(attrs.group==='item'&&attrs.line2)parts.push(attrs.line2);
     if(attrs.group==='keyword'&&id===st.selected)parts.push('選択中');
     if(id===st.focused)parts.push('フォーカス');
     var dim=!hot[id];
+    var out=window.graphOutward(attrs.x,attrs.y,hx,hy);
+    var labelPosition='over';
+    if(id!==st.selected){
+     if(Math.abs(out.x)>Math.abs(out.y))labelPosition=out.x>=0?'right':'left';
+     else labelPosition=out.y>=0?'below':'above';
+    }
     graph.mergeNodeAttributes(id,{
      label:parts.join(' '),
+     labelPosition:labelPosition,
      labelColor:dim?col.sub:col.fg,
      color:id===st.selected?col.fg:(dim?col.line:col.teal),
      size:id===st.selected?18:14,
@@ -155,22 +195,27 @@
    });
    graph.forEachEdge(function(edge,attrs,source,target){
     var link={source:source,target:target};
-    var isHot=window.graphShowEdge(link,0);
-    var show=window.graphShowEdge(link,zoomed>=1.15?1.15:0);
-    if(show)shown++;
+    var isHot=window.graphShowEdge(link);
     graph.mergeEdgeAttributes(edge,{
      label:attrs.label,
-     labelVisibility:show?'visible':'hidden',
-     labelColor:col.fg,
-     labelBg:col.card,
+     labelVisibility:'hidden',
      color:isHot?col.fg:col.line,
-     size:isHot?3:1.3,
-     gap:isHot?0:7
+     size:window.graphLinePx(isHot),
+     gap:isHot?0:(ctx.state().labelMode==='thin'?5:7)
     });
    });
-   window.__labelCount=shown;
    window.__zoom=zoomed;
    renderer.refresh();
+  }
+  function applyRing(){
+   var ids=[];
+   graph.forEachNode(function(id){ids.push(id)});
+   var pos=window.graphLayout(ids,ctx.state().selected);
+   ids.forEach(function(id){
+    if(!pos[id])return;
+    graph.setNodeAttribute(id,'x',pos[id].x);
+    graph.setNodeAttribute(id,'y',pos[id].y);
+   });
   }
   function settle(iters){
    try{B.forceAtlas2.assign(graph,{iterations:iters,settings:fa})}catch(e){}
@@ -183,7 +228,8 @@
     if(!st.motion){
      stop();
      renderer.setSetting('enableNodeDrag',false);
-     if(laidFor!==st.selected){settle(80);laidFor=st.selected}
+     applyRing();
+     laidFor=st.selected;
      paint();
      ctx.onReady();
     }else{

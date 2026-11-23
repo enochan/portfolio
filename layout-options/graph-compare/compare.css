@@ -7,8 +7,8 @@
 .lib-notes{margin:0 0 1.25rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.35rem}
 .lib-notes li{margin:0;padding:.45rem .7rem;border:2px dashed transparent;border-radius:.8rem;line-height:1.6}
 .lib-notes li[aria-current="true"]{border-color:var(--line);background:var(--card)}
-.view-switch,#range-switch,#graph-tools{display:none}
-.js .view-switch,.js #range-switch,.js #graph-tools{display:flex}
+.view-switch,#range-switch,#label-switch,#graph-tools{display:none}
+.js .view-switch,.js #range-switch,.js #label-switch,.js #graph-tools{display:flex}
 .js .compare[data-view="graph"] #list{display:none}
 .js .compare[data-view="list"] #graph-panel{display:none}
 .explore{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(16rem,.9fr);gap:1.25rem;align-items:start}
@@ -16,6 +16,7 @@
 .graph-host{position:relative;inline-size:100%;max-inline-size:100%;block-size:32rem;overflow:hidden;border:2px solid var(--line);border-radius:1.25rem;background:var(--bg);touch-action:none}
 .js .graph-host{display:block}
 .graph-host canvas,.graph-host svg{display:block;max-inline-size:100%}
+.edge-overlay{position:absolute;inset:0;inline-size:100%;block-size:100%;pointer-events:none;z-index:2}
 .graph-host .cy{position:absolute;inset:0}
 .graph-keys{position:fixed;inset-inline-start:0;inset-block-start:0;inline-size:1px;block-size:1px;margin:0;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .graph-keys button{font:inherit}
@@ -35,12 +36,12 @@
 #notes-list label{display:flex;flex-direction:column;gap:.25rem;font-weight:700;margin-block:.4rem}
 #notes-list input{font:inherit;font-size:1rem;color:var(--fg);background:var(--bg);border:2px solid var(--line);border-radius:.7rem;padding:.4rem .7rem;min-block-size:2.75rem;inline-size:100%;max-inline-size:100%}
 .kw-block h3,.item-title{overflow-wrap:anywhere}
-.edge-label text{fill:var(--fg);font-size:14px;font-weight:700;font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
-.edge-label rect{fill:var(--card);stroke:var(--line);stroke-width:1.5}
-.edge-label.is-provisional rect{stroke-dasharray:4 3}
+.edge-label text{fill:var(--fg);font-weight:700;font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
+.edge-label rect{fill:var(--bg);stroke:var(--line)}
+.graph-host[data-lines="thin"] .edge-label rect{stroke:none}
 .force-svg{inline-size:100%;block-size:100%;cursor:grab}
-.force-svg line{stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 4}
-.force-svg line.is-hot{stroke:var(--fg);stroke-width:2.5;stroke-dasharray:none}
+.force-svg line{stroke:var(--line);stroke-linecap:round}
+.force-svg line.is-hot{stroke:var(--fg)}
 .force-node .plate{fill:var(--card);stroke:var(--line);stroke-width:2.5}
 .force-node.is-hot .plate{stroke:var(--fg);stroke-width:3.5;stroke-dasharray:none}
 .force-node.is-dim .plate{stroke-dasharray:5 4}
@@ -56,6 +57,6 @@
 }
 @media (forced-colors:active){
  .lib-tabs a,.rel-label,.memo-btn,.textbtn,#notes-open,#notes-copy{border-color:CanvasText}
- .force-node .plate,.edge-label rect{stroke:CanvasText}
+ .force-node .plate,.edge-label rect{stroke:CanvasText;fill:Canvas}
  .force-svg line,.edge-label text,.force-node text{stroke:CanvasText;fill:CanvasText}
 }

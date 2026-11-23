@@ -78,13 +78,16 @@
     c.fill();
    })
    .linkColor(function(l){return edgeHot(l)?ctx.colors().fg:ctx.colors().line})
-   .linkWidth(function(l){return edgeHot(l)?2.4:1.2})
+   .linkWidth(function(l){return window.graphLinePx(edgeHot(l))})
    .linkLineDash(function(l){
     if(edgeHot(l))return null;
     var z=Graph.zoom()||1;
     return [4/z,3/z];
    })
-   .linkCanvasObjectMode(function(l){return window.graphShowEdge(l,Graph.zoom()||1)?'after':undefined})
+   .linkCanvasObjectMode(function(l){
+    var key=idOf(l.source)+'|'+idOf(l.target);
+    return window.__edgeShow&&window.__edgeShow[key]?'after':undefined;
+   })
    .linkCanvasObject(drawLinkLabel)
    .linkDirectionalParticles(function(l){
     if(!ctx.state().motion)return 0;
@@ -103,23 +106,24 @@
     if(!ctx.state().motion)return;
     dragged=true;
     followUntil=0;
-    Graph.d3AlphaTarget(0.32);
+    setAlpha(0.32);
    })
    .onNodeDragEnd(function(node){
     if(!ctx.state().motion){
      node.fx=node.x;node.fy=node.y;return;
     }
     node.fx=null;node.fy=null;
-    Graph.d3AlphaTarget(0);
+    setAlpha(0);
    })
    .onEngineStop(function(){ctx.onReady()})
    .onRenderFramePre(function(){
+    planLabels();
     if(followUntil&&performance.now()<followUntil){
      var n=nodeBy[ctx.state().selected];
      if(n&&n.x!=null)Graph.centerAt(n.x,n.y,0);
     }
    })
-   .onZoom(function(){window.__zoom=Graph.zoom();countLabels()});
+   .onZoom(function(){planLabels()});
   Graph.d3Force('gather',function(alpha){
    var st=ctx.state();
    if(!st.motion)return;
@@ -139,7 +143,10 @@
     n.vy+=(ty-n.y)*pull*alpha;
    });
   });
-  function edgeHot(l){return window.graphShowEdge(l,0)}
+  function edgeHot(l){return window.graphShowEdge(l)}
+  function setAlpha(v){
+   if(typeof Graph.d3AlphaTarget==='function')Graph.d3AlphaTarget(v);
+  }
   function drawNode(node,c,globalScale){
    if(node.x==null)return;
    var st=ctx.state();
@@ -166,42 +173,34 @@
    }
    var size=14/z;
    c.font='700 '+size+'px "Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif';
-   c.textAlign='center';
    c.textBaseline='middle';
    c.fillStyle=dim?col.sub:col.fg;
    c.setLineDash([]);
+   var hub=nodeBy[st.selected];
    var line1=node.group==='keyword'?node.full:node.kindLabel;
    var line2=node.group==='keyword'?(node.id===st.selected?'選択中':''):shortTitle(node.full);
-   c.fillText(line1,node.x,node.y+r+size);
-   if(line2)c.fillText(line2,node.x,node.y+r+size*2.15);
-   if(node.id===st.focused)c.fillText('フォーカス',node.x,node.y+r+size*(line2?3.3:2.15));
+   var line3=node.id===st.focused?'フォーカス':'';
+   var gap=size*1.15;
+   var lines=[line1,line2,line3].filter(Boolean);
+   if(!hub||node.id===st.selected){
+    c.textAlign='center';
+    var shift0=(lines.length-1)*gap/2;
+    lines.forEach(function(text,i){c.fillText(text,node.x,node.y+i*gap-shift0)});
+   }else{
+    var out=window.graphOutward(node.x,node.y,hub.x,hub.y);
+    c.textAlign=out.x>0.35?'left':out.x<-0.35?'right':'center';
+    var ox=out.x*(r+8/z),oy=out.y*(r+8/z);
+    lines.forEach(function(text,i){
+     c.fillText(text,node.x+ox+out.x*i*gap,node.y+oy+out.y*i*gap);
+    });
+   }
    c.restore();
   }
   function drawLinkLabel(link,c,globalScale){
    var a=link.source,b=link.target;
    if(!a||a.x==null||!b||b.x==null)return;
-   var col=ctx.colors();
-   var z=globalScale||1;
-   var label=link.label||'仮';
-   var size=14/z;
-   c.save();
-   c.font='700 '+size+'px "Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif';
-   c.textAlign='center';
-   c.textBaseline='middle';
-   var w=c.measureText(label).width+12/z;
-   var h=20/z;
-   var x=(a.x+b.x)/2,y=(a.y+b.y)/2;
-   roundRect(c,x-w/2,y-h/2,w,h,h/2);
-   c.fillStyle=col.card;
-   c.fill();
-   c.lineWidth=1.5/z;
-   c.strokeStyle=col.line;
-   c.setLineDash(link.provisional?[4/z,3/z]:[]);
-   c.stroke();
-   c.setLineDash([]);
-   c.fillStyle=col.fg;
-   c.fillText(label,x,y);
-   c.restore();
+   var ang=window.graphReadableAngle(b.x-a.x,b.y-a.y);
+   window.graphDrawEdgeLabel(c,(a.x+b.x)/2,(a.y+b.y)/2,ang,link.label,link.provisional,1/(globalScale||1));
   }
   function syncNodes(){
    var ids=ctx.visibleIds();
@@ -237,44 +236,37 @@
    var charge=Graph.d3Force('charge');
    if(charge)charge.strength(-80);
   }
+  function frameStill(){
+   var hub=nodeBy[ctx.state().selected];
+   var scale=window.graphFrameScale(host.clientWidth||320,host.clientHeight||360);
+   Graph.zoom(scale,0);
+   Graph.centerAt(hub&&hub.x!=null?hub.x:0,hub&&hub.y!=null?hub.y:0,0);
+  }
   function arrangeStatic(){
    var sel=ctx.state().selected;
-   var hub=nodeBy[sel];
-   if(!hub)return;
-   if(hub.x==null){hub.x=0;hub.y=0}
-   var hot=window.graphHot();
-   var relK=[],relI=[],other=[];
+   var pos=window.graphLayout(nodes.map(function(n){return n.id}),sel);
    nodes.forEach(function(n){
-    if(n.id===sel)return;
-    if(hot[n.id]&&n.group==='keyword')relK.push(n);
-    else if(hot[n.id])relI.push(n);
-    else other.push(n);
+    var p=pos[n.id];
+    if(!p)return;
+    n.x=p.x;n.y=p.y;
    });
-   function ring(list,radius){
-    list.forEach(function(n,i){
-     var a=-Math.PI/2+i*2*Math.PI/Math.max(1,list.length);
-     n.x=hub.x+Math.cos(a)*radius;
-     n.y=hub.y+Math.sin(a)*radius;
-    });
-   }
-   ring(relK,120);
-   ring(relI,210);
-   ring(other,430);
    nodes.forEach(function(n){n.fx=n.x;n.fy=n.y});
-   Graph.centerAt(hub.x,hub.y,0);
-   if((Graph.zoom()||1)<0.75)Graph.zoom(1,0);
+   frameStill();
   }
-  function countLabels(){
+  function planLabels(){
    var z=Graph.zoom()||1;
-   var n=0;
-   (Graph.graphData().links||[]).forEach(function(l){if(window.graphShowEdge(l,z))n++});
-   window.__labelCount=n;
-   window.__zoom=z;
+   var edges=[];
+   (Graph.graphData().links||[]).forEach(function(l){
+    var a=l.source,b=l.target;
+    if(!a||a.x==null||!b||b.x==null)return;
+    edges.push({key:idOf(a)+'|'+idOf(b),source:idOf(a),target:idOf(b),label:l.label,x1:a.x,y1:a.y,x2:b.x,y2:b.y});
+   });
+   window.__edgeShow=window.graphPickLabels(edges,z);
   }
   function poke(){
    var c=Graph.centerAt();
    if(c&&c.x!=null&&!(followUntil&&performance.now()<followUntil))Graph.centerAt(c.x,c.y,0);
-   countLabels();
+   planLabels();
   }
   var canvas=host.querySelector('canvas');
   if(canvas)canvas.setAttribute('aria-hidden','true');
@@ -292,18 +284,18 @@
       arrangeStatic();
       laidFor=st.selected;
      }else nodes.forEach(function(n){if(n.x!=null){n.fx=n.x;n.fy=n.y}});
-     Graph.d3AlphaTarget(0);
+     setAlpha(0);
      Graph.cooldownTime(0);
     }else{
      Graph.enableNodeDrag(true);
      Graph.autoPauseRedraw(false);
      nodes.forEach(function(n){n.fx=null;n.fy=null});
      Graph.cooldownTime(12000);
-     if(booted)Graph.d3ReheatSimulation();
+     if(booted&&typeof Graph.d3ReheatSimulation==='function')Graph.d3ReheatSimulation();
      booted=true;
      laidFor=null;
     }
-    countLabels();
+    planLabels();
     if(!st.motion)ctx.onReady();
    },
    paint:function(){poke()},
@@ -332,8 +324,7 @@
      if((Graph.zoom()||1)<0.75)Graph.zoom(1,900);
     }else{
      followUntil=0;
-     Graph.centerAt(n.x,n.y,0);
-     if((Graph.zoom()||1)<0.75)Graph.zoom(1,0);
+     frameStill();
     }
    },
    setMotion:function(on){
@@ -341,7 +332,7 @@
     Graph.autoPauseRedraw(!on);
     if(!on){
      followUntil=0;
-     Graph.d3AlphaTarget(0);
+     setAlpha(0);
      Graph.cooldownTime(0);
      nodes.forEach(function(n){if(n.x!=null){n.fx=n.x;n.fy=n.y}});
      poke();
@@ -349,7 +340,7 @@
    },
    pause:function(){
     followUntil=0;
-    Graph.d3AlphaTarget(0);
+    setAlpha(0);
     Graph.cooldownTime(0);
    }
   };
