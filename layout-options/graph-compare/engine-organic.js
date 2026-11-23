@@ -161,6 +161,24 @@
    });
   });
   function edgeHot(l){return window.graphShowEdge(l)}
+  function organicLinePx(hot){
+   // 共有の太さは、選んだ線 3・それ以外 1.7。細い線は 1.2・0.55。
+   // 有機的な版だけ、その約 3 分の 2 にする。細い線はさらに一段下げる。
+   if(ctx.state().labelMode==='thin')return hot?0.8:0.45;
+   return hot?2:1.15;
+  }
+  function channel(hex,i){return parseInt(String(hex||'').replace('#','').slice(i,i+2),16)||0}
+  function relLum(hex){
+   function lin(c){c=c/255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4)}
+   return 0.2126*lin(channel(hex,0))+0.7152*lin(channel(hex,2))+0.0722*lin(channel(hex,4));
+  }
+  function dimStroke(col){
+   // 明るい背景の --line は 3.17:1 で、1px 未満だと背景に溶ける。
+   // 同じ系統の濃い茶（#fffaf3 に対して 5.3:1）にする。暗い背景の --line はそのまま。
+   var bg=col.bg||'#fffaf3';
+   if(relLum(bg)>0.4)return '#7d6544';
+   return col.line;
+  }
   function setAlpha(v){
    if(typeof Graph.d3AlphaTarget==='function')Graph.d3AlphaTarget(v);
   }
@@ -276,8 +294,8 @@
    c.beginPath();
    c.moveTo(a.x,a.y);
    c.quadraticCurveTo(ctrl.x,ctrl.y,b.x,b.y);
-   c.strokeStyle=system?'CanvasText':(hot?col.fg:col.line);
-   c.lineWidth=window.graphLinePx(hot)/z;
+   c.strokeStyle=system?'CanvasText':(hot?col.fg:dimStroke(col));
+   c.lineWidth=organicLinePx(hot)/z;
    c.lineCap='round';
    c.setLineDash(hot?[]:[5/z,4/z]);
    c.stroke();
