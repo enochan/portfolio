@@ -1,0 +1,69 @@
+/* まとめた見本。色と書体は site.css のまま。 */
+.combo{position:relative}
+.combo .bgdeco{block-size:100%}
+.combo .vision{font-size:clamp(1.45rem,3vw,2rem);font-weight:700;line-height:1.55;margin-block:.4em 1em}
+.combo .vision em{font-style:normal;background:linear-gradient(transparent 62%,var(--mint) 62%)}
+.combo .def q{quotes:"「" "」";font-weight:700}
+.view-switch,#range-switch{display:none}
+.js .view-switch,.js #range-switch{display:flex}
+.js .combo[data-view="graph"] #list{display:none}
+.js .combo[data-view="list"] #graph-panel{display:none}
+.explore{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(16rem,.9fr);gap:1.25rem;align-items:start}
+.js .combo[data-view="list"] .explore{grid-template-columns:1fr}
+.detail{background:var(--card);border:2px solid var(--line);border-radius:1.25rem;padding:1rem 1.1rem}
+.kw-block[aria-current="true"]{border-inline-start:4px solid var(--fg);padding-inline-start:.7rem}
+.detail h3{font-size:1.35rem;margin-block:.1em .4em}
+.detail h4{font-size:1.05rem;margin-block:1em .4em}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.memo-btn,.textbtn,#notes-open,#notes-copy,.rel-keys button,#notes-list button{font:inherit;font-size:1rem;font-weight:700;min-block-size:2.75rem;padding:.35rem 1rem;border-radius:62rem;border:2px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.memo-btn[aria-pressed="true"],.textbtn{border-style:solid;border-color:var(--fg)}
+.rel-keys{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}
+#notes-list{list-style:none;margin:1rem 0;padding:0;display:flex;flex-direction:column;gap:.8rem}
+#notes-list li{border:2px dashed var(--line);border-radius:1rem;padding:.8rem 1rem}
+#notes-list label{display:flex;flex-direction:column;gap:.25rem;font-weight:700;margin-block:.4rem}
+#notes-list input{font:inherit;font-size:1rem;color:var(--fg);background:var(--bg);border:2px solid var(--line);border-radius:.7rem;padding:.4rem .7rem;min-block-size:2.75rem}
+#notes-open,#notes-copy{margin-inline-end:.5rem}
+.shape-key{display:flex;flex-wrap:wrap;gap:.5rem 1rem;list-style:none;margin:0 0 1rem;padding:0}
+.shape-key li{display:flex;align-items:center;gap:.4rem;font-size:.875rem;font-weight:700}
+.shape-key svg{flex:none}
+.force-host{position:relative;inline-size:100%;max-inline-size:100%}
+.force-svg{display:block;inline-size:100%;max-inline-size:100%;height:auto;overflow:hidden}
+.force-node{cursor:pointer}
+.force-node .plate{fill:var(--card);stroke:var(--line);stroke-width:2.5}
+.force-node .ring{fill:none;stroke:var(--line);stroke-width:2}
+.force-node.is-hot .plate{stroke:var(--node);stroke-width:3.5;stroke-dasharray:none}
+.force-node.is-dim .plate{stroke:var(--line);stroke-width:2;stroke-dasharray:5 4}
+.force-node.is-dim text{fill:var(--sub)}
+.force-node text{fill:var(--fg);font-size:14px;font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;font-weight:700}
+.force-node .kindline,.force-node .pick{font-size:14px;font-weight:500}
+.force-node.is-on .plate{stroke:var(--fg);stroke-width:4}
+.force-node:focus{outline:none}
+.force-node:focus-visible{outline:3px solid var(--teal);outline-offset:4px}
+.force-svg line{stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 4}
+.force-svg line.is-hot{stroke:var(--fg);stroke-width:2.5;stroke-dasharray:none}
+.force-svg line.is-dim{stroke:var(--line);stroke-width:1}
+.detail{margin-block:1rem 0}
+.detail h3{font-size:1.35rem;margin-block:.2em}
+.cards,.books{display:grid;gap:1rem;list-style:none;margin:0;padding:0}
+.cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cards li,.book{min-block-size:8rem}
+.books{grid-template-columns:repeat(3,minmax(0,10rem));justify-content:start}
+.book{min-block-size:16rem;display:flex;align-items:flex-end}
+.sns{display:flex;flex-wrap:wrap;gap:.6rem;list-style:none;margin:0;padding:0}
+.sns a{display:inline-flex;align-items:center;min-block-size:2.75rem;padding:.35rem 1rem;border:2px solid var(--line);border-radius:62rem;background:var(--card);color:var(--fg);font-weight:700;text-decoration:underline;text-underline-offset:.18em}
+.sns a:hover{background:var(--mint)}
+li[data-type="layer"]{--c:var(--teal);--cb:var(--mint);--cf:var(--teal)}
+@media (max-width:56.25rem){
+ .explore{grid-template-columns:1fr}
+}
+@media (max-width:47.5rem){
+ .cards,.books{grid-template-columns:1fr}
+ .book{min-block-size:8rem}
+}
+@media (forced-colors:active){
+ .force-node .plate,.sns a,.cards li,.book{stroke:CanvasText;border-color:CanvasText}
+ .force-svg line{stroke:CanvasText}
+}
+@media (prefers-reduced-motion:reduce){
+ .force-node,.force-svg line{transition:none}
+}
