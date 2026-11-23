@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1b18" media="(prefers-color-scheme: dark)">
+<title>最新を上に | 榎本大貴</title>
+<meta name="description" content="直近の活動を先頭に置く。提案は、執筆・メディア掲載と考えていること。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="extra.css">
+<script>
+(function(){
+ document.documentElement.classList.add('js');
+ function themeColor(t){
+  var contrast=false;
+  try{contrast=matchMedia('(prefers-contrast: more)').matches}catch(e){}
+  return t==='dark'?(contrast?'#14110f':'#1f1b18'):'#fffaf3';
+ }
+ try{
+  var t=localStorage.getItem('layout-theme');
+  if(t==='dark'||t==='light'){
+   document.documentElement.setAttribute('data-theme',t);
+   var m=document.querySelector('meta[name="color-scheme"]');
+   if(m)m.setAttribute('content',t);
+   var metas=document.querySelectorAll('meta[name="theme-color"]');
+   for(var i=0;i<metas.length;i++){
+    metas[i].setAttribute('content',themeColor(t));
+    metas[i].removeAttribute('media');
+   }
+  }
+ }catch(e){}
+})();
+</script>
+</head>
+<body class="feed">
+<a class="skip" href="#main">本文へスキップ</a>
+<div class="bgdeco" aria-hidden="true">
+ <div class="blob" style="inline-size:23.75rem;block-size:23.75rem;background:var(--lav);inset-inline-start:-7.5rem;inset-block-start:-5rem"></div>
+ <div class="blob" style="inline-size:18.75rem;block-size:18.75rem;background:var(--peach);inset-inline-end:-5rem;inset-block-start:22.5rem;animation-delay:-5s"></div>
+</div>
+<header class="top">
+ <div class="wrap">
+  <a class="logo" href="#main">榎本大貴</a>
+  <div class="head-tools"><button type="button" class="theme" id="theme">暗い表示にする</button><button type="button" class="theme" id="theme-reset" hidden>端末の設定に戻す</button><script>
+(function(){
+ var t=document.documentElement.getAttribute('data-theme');
+ var dark=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
+ document.getElementById('theme').textContent=dark?'明るい表示にする':'暗い表示にする';
+ document.getElementById('theme-reset').hidden=!(t==='dark'||t==='light');
+})();
+</script><nav><ul><li><a href="#now">最新の活動</a></li><li><a href="#media">執筆・掲載</a></li><li><a href="#essays">考えていること</a></li><li><a href="#past">それ以前</a></li><li><a href="#works">研究業績</a></li><li><a href="#contact">お問い合わせ</a></li></ul></nav></div>
+ </div>
+</header>
+<main id="main" tabindex="-1">
+ <div class="wrap">
+<div class="mast">
+   <p class="eyebrow">アクセシビリティ × 障害 × AI</p>
+   <h1>榎本大貴</h1>
+   <p class="role">株式会社LITALICO 執行役員／LITALICO研究所 所長／AI統括部長。任意団体「みんなのアクセス」代表。</p>
+  </div>
+  <section id="now"><h2 id="h-now"><span class="dot" aria-hidden="true"></span>最新の活動</h2>
+   <div class="year" ><h3>これから</h3><ol class="tl"><li class="plan" data-type="talk"><div class="ev"><div class="meta"><span class="badge plan">予定</span><span class="badge">研修</span><time datetime="2026-11-27">2026年11月27日</time></div><h4>福祉事業所のAI導入と活用セミナー</h4><span class="w">神奈川県後援・障害福祉サービス事業所の方向け／ユニコムプラザさがみはら</span></div></li></ol></div>
+   <div class="year" ><h3>2026</h3><ol class="tl"><li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-10-30">2026年10月30日</time></div><h4>障害福祉の現場での生成AI活用</h4><span class="w">明石市 サービス管理責任者・児童発達支援管理責任者向けAIレクチャー</span></div></li><li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-10-21">2026年10月21日</time></div><h4>測ること・評価することが、支援と人を変える</h4><span class="w">KEIO-RRI ELSI/RRI Meetup Vol.2（SHIBUYA QWS）</span></div></li><li data-type="write"><div class="ev"><div class="meta"><span class="badge">執筆</span><time datetime="2026-10-15">2026年10月15日</time><span>Zenn</span></div><h4><a href="https://zenn.dev/enochan/articles/exocortex-grokbot-update-2026-09">AIエージェントと共有する「外脳」の2026年9月アップデート——ManusからGrokBotへ</a></h4></div></li><li data-type="write"><div class="ev"><div class="meta"><span class="badge">執筆</span><time datetime="2026-10-06">2026年10月6日</time><span>note</span></div><h4><a href="https://note.com/enomotod/n/n73e9b3be4ab5">支援者は、生成AIに置き換わるのか。日本職業リハビリテーション学会シンポでの記録</a></h4></div></li><li data-type="write"><div class="ev"><div class="meta"><span class="badge">インタビュー</span><time datetime="2026-09-28">2026年9月28日</time><span>LITALICO｜Technology</span></div><h4><a href="https://note.com/litalico_tech/n/n8664813978c1">「テレパシー」から始まった。いまAIで、一人ひとりの「できる」を拡げる</a></h4></div></li><li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-09-19">2026年9月19日</time></div><h4>就労支援の現場での生成AI活用</h4><span class="w">日本職業リハビリテーション学会 第53回埼玉大会 シンポジウム</span></div></li><li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2026-08-19">2026年8月19日</time></div><h4>「データは人を自由にするか」での講演</h4><span class="w">Social Science Boot Camp 2026</span></div></li><li data-type="write"><div class="ev"><div class="meta"><span class="badge">インタビュー</span><time datetime="2026-08-19">2026年8月19日</time><span>LITALICOストーリーズ</span></div><h4><a href="https://litalico.co.jp/stories/detail/yxcezjylt">トークセッション：LITALICOワークスのDX・AI推進</a></h4></div></li><li data-type="talk"><div class="ev"><div class="meta"><span class="badge">講義</span><time datetime="2026-06-18">2026年6月18日</time></div><h4>AIと障害福祉におけるサービスデザイン</h4><span class="w">一橋大学 商学部「メディア・サービスデザイン」ゲスト講義</span></div></li><li data-type="talk"><div class="ev"><div class="meta"><span class="badge">ウェビナー</span><time datetime="2026-06-15">2026年6月15日</time></div><h4>児発・放デイ向け 生成AIとの付き合い方</h4><span class="w">LITALICO発達ナビ ウェビナー</span></div></li></ol></div>
+  </section>
+  <section id="past"><h2 id="h-past"><span class="dot" aria-hidden="true"></span>それ以前の活動</h2>
+   <details>
+    <summary>2025年の登壇を表示</summary>
+    <div class="year" ><h3>2025</h3><ol class="tl"><li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2025-08-24">2025年8月24日</time></div><h4>実践・研究開発・品質マネジメント経験を通じた社会実装への貢献</h4><span class="w">日本認知・行動療法学会 第51回大会 自主企画シンポジウム</span></div></li><li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2025-04-23">2025年4月23日</time></div><h4>福祉分野におけるAI利活用の事例・未来予想</h4><span class="w">AI Leaders Connect #3</span></div></li><li data-type="talk"><div class="ev"><div class="meta"><span class="badge">登壇</span><time datetime="2025-03-06">2025年3月6日</time></div><h4>就労移行支援の実践からみた「適応」</h4><span class="w">日本発達心理学会 第36回大会</span></div></li></ol></div>
+   </details>
+   <details>
+    <summary>経歴を表示</summary>
+    <div class="year" ><h3>2020</h3><ol class="tl"><li data-type="career"><div class="ev"><div class="meta"><span class="badge">経歴</span><time datetime="2020-10">2020年10月</time></div><h4>執行役員に就任</h4><span class="w">2025年3月まで 執行役員CQO／LITALICO研究所 所長</span></div></li></ol></div>
+    <div class="year" ><h3>2017</h3><ol class="tl"><li data-type="career"><div class="ev"><div class="meta"><span class="badge">経歴</span><time datetime="2017-03">2017年3月〜</time></div><h4>退職し、大学院で画像認識AIを研究</h4><span class="w">東京大学大学院で修士（学際情報学）を取得</span></div></li></ol></div>
+    <div class="year" ><h3>2012</h3><ol class="tl"><li data-type="career"><div class="ev"><div class="meta"><span class="badge">経歴</span><time datetime="2012-04">2012年4月</time></div><h4>LITALICOに新卒入社</h4><span class="w">LITALICOジュニアの支援員、スーパーバイザー、教材・サービス開発のディレクター。LITALICO研究所と発達ナビの立ち上げに関わる</span></div></li></ol></div>
+   </details>
+   <p class="more">学会発表の一覧は <a href="https://researchmap.jp/denomoto/presentations">researchmap</a> にあります。</p>
+  </section>
+  <section id="media" class="proposal">
+   <h2 id="media-h"><span class="badge propose">提案</span>執筆・メディア掲載</h2>
+   <p>文章やメディアへの掲載を、活動の年表とは別に一覧にする欄です。項目はまだありません。</p>
+  </section>
+  <section id="essays" class="proposal">
+   <h2 id="essays-h"><span class="badge propose">提案</span>考えていること</h2>
+   <p>考えていることを書いた文章へのリンクを置く欄です。リンクはまだ選んでいません。</p>
+  </section>
+  <section id="works"><h2 id="h-works"><span class="dot" aria-hidden="true"></span>研究業績</h2>
+   <details>
+    <summary>論文・特許・受賞・書籍を表示</summary>
+    <p>全一覧と書誌は researchmap が正本です。特許は researchmap に登録されているもののうち、題名を確認できた4件です。</p>
+    <ol class="works" id="works-list"><li data-type="paper"><div class="ev"><div class="meta"><span class="badge">論文</span><time datetime="2025">2025年</time><span class="rev">査読あり</span></div><h3 lang="en">Comprehensive search for assessment indicators that influence the level of handwriting difficulties among children in educational settings.</h3><span class="w">Scientific Reports。共著。</span></div></li><li data-type="paper"><div class="ev"><div class="meta"><span class="badge">論文</span><time datetime="2023">2023年</time><span class="rev">査読あり</span></div><h3>読み書き困難児の包括的・網羅的スクリーニング検査の開発にむけた予備的研究</h3><span class="w">日本発達系作業療法学会誌。高畑脩平・榎本大貴ほか。</span></div></li><li data-type="paper"><div class="ev"><div class="meta"><span class="badge">論文</span><time datetime="2022">2022年</time></div><h3 lang="en">Development and Verification of Postural Control Assessment Using Deep-Learning-Based Pose Estimators: Towards Clinical Applications.</h3><span class="w">Occupational Therapy International。共著。</span></div></li><li data-type="paper"><div class="ev"><div class="meta"><span class="badge">論文</span><time datetime="2020">2020年</time><span class="rev">査読あり</span></div><h3 lang="en">Computer Vision-Based Approach for Quantifying Occupational Therapists' Qualitative Evaluations of Postural Control.</h3><span class="w">Occupational Therapy International。共著。</span></div></li><li data-type="paper"><div class="ev"><div class="meta"><span class="badge">論文</span><time datetime="2020">2020年</time></div><h3 lang="en">New telecare approach based on 3D convolutional neural network for estimating quality of life.</h3><span class="w">Neurocomputing。Nakagawa, Enomoto, Yonekura, Kanazawa, Kuniyoshi。</span></div></li><li data-type="paper"><div class="ev"><div class="meta"><span class="badge">論文</span><time datetime="2019">2019年</time><span class="rev">査読あり</span></div><h3>福祉現場での行動変容のためのデジタルツールの開発と応用可能性について</h3><span class="w">計測と制御。岸田崇志・榎本大貴。</span></div></li><li data-type="patent"><div class="ev"><div class="meta"><span class="badge">特許</span><span class="when">特許7706589</span></div><h3>発達特性検査システム、発達特性検査方法、サーバ装置、及びプログラム</h3><span class="w">野田遥、榎本大貴、山下修平。</span></div></li><li data-type="patent"><div class="ev"><div class="meta"><span class="badge">特許</span><span class="when">特許7448699</span></div><h3>計画作成支援システム、計画作成支援装置、及び計画作成支援方法</h3><span class="w">榎本大貴、野口晃菜、齋藤伸秀、青野友香、寺下胡桃。</span></div></li><li data-type="patent"><div class="ev"><div class="meta"><span class="badge">特許</span><span class="when">特許7315959</span></div><h3>要支援者の支援システムおよび支援方法</h3><span class="w">辻井正次、曽我部哲也、明翫光宜、井上雅彦、榎本大貴ほか。</span></div></li><li data-type="patent"><div class="ev"><div class="meta"><span class="badge">特許</span><span class="when">特許6803444</span></div><h3>児童発達支援装置、児童発達支援システム、及びプログラム</h3><span class="w">榎本大貴、田村亮太。</span></div></li><li data-type="award"><div class="ev"><div class="meta"><span class="badge">受賞</span><time datetime="2022">2022年</time></div><h3>令和3年度 第6回日本自閉症スペクトラム学会 実践賞</h3><span class="w">「行動上の問題を示す自閉スペクトラム症の疑いのある幼児をもつ母親への家庭訪問支援」。松本好、榎本大貴、井上雅彦。</span></div></li><li data-type="award"><div class="ev"><div class="meta"><span class="badge">受賞</span><time datetime="2019">2019年</time></div><h3>日本職業リハビリテーション学会 学会大会奨励賞（調査・研究部門）</h3><span class="w">「障害者雇用の職場定着に影響を与える要因の検討について」。榎本大貴、陶貴行。</span></div></li><li data-type="book"><div class="ev"><div class="meta"><span class="badge">書籍</span><time datetime="2020">2020年</time></div><h3>発達障害のある子どもと周囲との関係性を支援する</h3><span class="w">中央法規出版。野口晃菜・陶貴行 編。分担執筆「７章 テクノロジーを活用した支援」。</span></div></li></ol>
+    
+   <div class="facts">
+    <h3>学歴</h3>
+    <ul>
+     <li>2017–2019 東京大学大学院 情報学環・学際情報学府 修士（学際情報学）</li>
+     <li>2008–2012 北海道大学 農学部 応用生命科学科</li>
+    </ul>
+    <h3>所属学会</h3>
+    <p>日本認知・行動療法学会、日本自閉症スペクトラム学会、日本行動分析学会、日本児童青年精神医学会。</p>
+   </div>
+   </details>
+  </section>
+  <section id="aim"><h2 id="h-aim"><span class="dot" aria-hidden="true"></span>目指していること</h2>
+   <p class="vision"><em>誰もがアクセシビリティを身近に感じ、</em>実践したくなる社会を目指す</p>
+   <p class="def">アクセシビリティとは、<q>必要とする人にちゃんと届くようにすること</q>だと考えます。</p>
+   <p>発達支援の現場から入り、研究所の設立、サービス品質のマネジメントを経て、いまは全社の生成AI活用と研究開発に取り組んでいます。</p>
+  </section>
+    <section id="layers">
+   <h2 id="h-ai"><span class="dot" aria-hidden="true"></span>AI活用の3つのレイヤー</h2>
+   <ol class="layers">
+    <li><span class="n" aria-hidden="true">1</span><h3>非支援業務を減らす</h3><p>LITALICOワークスでは AI議事録ツール Notta の活用で、記録にかかる時間が60〜70%減りました。</p></li>
+    <li><span class="n" aria-hidden="true">2</span><h3>支援の質を高める</h3><p>ロジックモデルで、支援の質を定義・測定・改善します。</p></li>
+    <li><span class="n" aria-hidden="true">3</span><h3>社会側の障害を減らす</h3><p>「みんなのアクセス」で、アクセシビリティを身近にする活動をしています。</p></li>
+   </ol>
+  </section>
+  
+  <section id="links">
+   <h2 id="h-links"><span class="dot" aria-hidden="true"></span>リンク</h2>
+   <ul class="links" aria-labelledby="h-links">
+    <li><a href="https://note.com/enomotod">note</a></li>
+    <li><a href="https://zenn.dev/enochan">Zenn</a></li>
+    <li><a href="https://speakerdeck.com/enochan">Speaker Deck</a></li>
+    <li><a href="https://researchmap.jp/denomoto">researchmap</a></li>
+    <li><a href="https://litalico.co.jp/about/lab/">LITALICO研究所</a></li>
+    <li><a href="https://youtube.com/@everyonesaccesscollective">みんなのアクセス（YouTube）</a></li>
+   </ul>
+  </section>
+  
+  <section id="practice">
+   <h2 id="h-practice"><span class="dot" aria-hidden="true"></span>このサイトで守っていること</h2>
+   <ul class="practice">
+    <li>ページの先頭から「本文へスキップ」で、本文へ直接移動できます。</li>
+    <li>活動の種類は、色だけでなくバッジの文字でも示しています。</li>
+    <li>端末の「動きを減らす」設定に従い、アニメーションを止めます。</li>
+   </ul>
+   <p>note、Zenn、YouTube、researchmap の先は、このサイトの範囲外です。</p>
+   <p>使いにくい点は、<a href="#contact">お問い合わせ</a>から送ってください。</p>
+  </section>
+  
+  <section id="contact" tabindex="-1">
+   <h2 id="h-contact"><span class="dot" aria-hidden="true"></span>お問い合わせ</h2>
+   <div class="contact">
+    <p class="note">送信内容は、外部サービスの <a href="https://formsubmit.co/">FormSubmit</a> を経由して届きます。</p>
+    <div id="form-status" class="status" role="status" aria-live="polite" tabindex="-1"></div>
+    <form id="contact-form" action="https://formsubmit.co/dffb1aba5090e823fb3f12306cceace2" method="POST">
+     <input type="hidden" name="_subject" value="ポートフォリオサイトからのお問い合わせ">
+     <input type="hidden" name="_template" value="table">
+     <input type="hidden" name="_captcha" value="false">
+     <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+     <div class="field">
+      <label for="f-name">お名前<span class="tag req">必須</span></label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+      <p class="err" id="f-name-err"></p>
+     </div>
+     <div class="field">
+      <label for="f-email">メールアドレス<span class="tag req">必須</span></label>
+      <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err">
+      <p class="err" id="f-email-err"></p>
+     </div>
+     <div class="field">
+      <label for="f-org">ご所属<span class="tag opt">任意</span></label>
+      <input id="f-org" name="organization" type="text" autocomplete="organization">
+     </div>
+     <div class="field">
+      <label for="f-message">お問い合わせ内容<span class="tag req">必須</span></label>
+      <textarea id="f-message" name="message" required aria-describedby="f-message-err"></textarea>
+      <p class="err" id="f-message-err"></p>
+     </div>
+     <button type="submit" class="submit">送信する</button>
+    </form>
+   </div>
+  </section>
+ </div>
+</main>
+<footer>© 榎本大貴</footer>
+<script src="site.js"></script>
+</body>
+</html>

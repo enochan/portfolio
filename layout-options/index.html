@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1b18" media="(prefers-color-scheme: dark)">
+<title>レイアウトの見本 | 榎本大貴</title>
+<meta name="description" content="ポートフォリオのレイアウト見本11案と、ステートメントのページ。見比べ用で、本番には反映しません。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="extra.css">
+<script>
+(function(){
+ document.documentElement.classList.add('js');
+ function themeColor(t){
+  var contrast=false;
+  try{contrast=matchMedia('(prefers-contrast: more)').matches}catch(e){}
+  return t==='dark'?(contrast?'#14110f':'#1f1b18'):'#fffaf3';
+ }
+ try{
+  var t=localStorage.getItem('layout-theme');
+  if(t==='dark'||t==='light'){
+   document.documentElement.setAttribute('data-theme',t);
+   var m=document.querySelector('meta[name="color-scheme"]');
+   if(m)m.setAttribute('content',t);
+   var metas=document.querySelectorAll('meta[name="theme-color"]');
+   for(var i=0;i<metas.length;i++){
+    metas[i].setAttribute('content',themeColor(t));
+    metas[i].removeAttribute('media');
+   }
+  }
+ }catch(e){}
+})();
+</script>
+</head>
+<body class="floor14">
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="top"><div class="wrap"><a class="logo" href="#main">レイアウトの見本</a>
+<div class="head-tools"><button type="button" class="theme" id="theme">暗い表示にする</button><button type="button" class="theme" id="theme-reset" hidden>端末の設定に戻す</button></div>
+</div></header>
+<main id="main" tabindex="-1"><div class="wrap">
+ <h1>レイアウトの見本</h1>
+ <p class="lead">見比べ用です。本番のページには反映しません。色と書体はいまのサイトのままです。1から5は、セクションの順序と、何を前に出して何を別ページやたたみに置くかの違いです。6から10は、サイトが何を中心に見せるか自体を変えています。11は、キーワードのつながりで活動をたどる見本です。ステートメントは、言葉を中心に置いた別ページです。まとめた見本は、それらを1ページに置いたものです。グラフの見比べは、同じデータで4つのライブラリの動きを並べたものです。事実はいまのサイトにあるものだけです。「提案」と点線の枠がついた欄は、今はない欄の置き場所で、中身はまだありません。</p>
+ <ol class="stack">
+  <li>
+   <h2><a href="layout-1.html">一本の道</a></h2>
+   <p>今の順序のまま上から読める1ページにする。提案は、プロフィール写真と短い経歴、考えていること、アクセシビリティ方針。</p>
+   <p>自己紹介、プロフィール写真と短い経歴（提案）、AI活用の3つのレイヤー、現在の役割、活動のタイムライン、研究業績、学歴・所属学会、リンク、考えていること（提案）、このサイトで守っていること、アクセシビリティ方針（提案）、お問い合わせ。</p>
+  </li>
+  <li>
+   <h2><a href="layout-2.html">研究プロフィール</a></h2>
+   <p>経歴と研究業績を先に置き、登壇や執筆は後ろに回す。提案は、所属組織とプロジェクト、執筆・メディア掲載、英語の概要。</p>
+   <p>名前・役割・学歴、経歴、所属組織とプロジェクト（提案）、研究業績、執筆・メディア掲載（提案）、登壇・執筆、AI活用の3つのレイヤー、英語の概要（提案）、リンク、このサイトで守っていること、お問い合わせ。</p>
+  </li>
+  <li>
+   <h2><a href="layout-3.html">テーマで分ける</a></h2>
+   <p>いまのサイトにある「障害 × AI」「福祉の現場」「研究」でまとめ直す。提案は、よく聞かれるテーマ、考えていること。</p>
+   <p>自己紹介、よく聞かれるテーマ（提案）、障害 × AI、福祉の現場、研究、考えていること（提案）、リンク、このサイトで守っていること、お問い合わせ。</p>
+  </li>
+  <li>
+   <h2><a href="layout-4.html">カードと詳細</a></h2>
+   <p>短い自己紹介と詳細ページに分ける。提案は、プロフィール写真と短い経歴、長い経歴、プレス向けの素材。</p>
+   <p>最初のページは自己紹介、プロフィール写真と短い経歴（提案）、AI活用の3つのレイヤー、詳細へのリンク、リンク、このサイトで守っていること、お問い合わせ。詳細ページは長い経歴（提案）、活動のタイムライン、研究業績、学歴・所属学会、プレス向けの素材（提案）、このサイトで守っていること、お問い合わせ。</p>
+  </li>
+  <li>
+   <h2><a href="layout-5.html">最新を上に</a></h2>
+   <p>直近の活動を先頭に置き、過去はたたむ。提案は、執筆・メディア掲載、考えていること。</p>
+   <p>名前と役割、これからと2026年の活動、執筆・メディア掲載（提案）、考えていること（提案）、2025年と経歴（たたみ）、研究業績（たたみ）、目指していること、AI活用の3つのレイヤー、リンク、このサイトで守っていること、お問い合わせ。</p>
+  </li>
+  <li>
+   <h2><a href="layout-6.html">問いを軸にする</a></h2>
+   <p>問いの形になっている見出しを中心にし、名前や経歴は前に出さない。提案は、まだ置いていない問い。</p>
+  </li>
+  <li>
+   <h2><a href="layout-7.html">一本の歩み</a></h2>
+   <p>経歴、登壇、執筆、研究業績を、古い年から一本の時系列にする。提案は、時期ごとの振り返り。</p>
+  </li>
+  <li>
+   <h2><a href="layout-8.html">一枚の名刺</a></h2>
+   <p>肩書、一行の紹介、リンクだけで1画面に収める。提案は、プロフィール写真。</p>
+  </li>
+  <li>
+   <h2><a href="layout-9.html">入口を分ける</a></h2>
+   <p>研究、現場の実践、掲載やインタビューで入口を分ける。提案は、英語の概要、プレス向けの素材。</p>
+  </li>
+  <li>
+   <h2><a href="layout-10.html">文章を先に</a></h2>
+   <p>公開している文章を主役にし、登壇と研究業績は脇に置く。提案は、考えていることの導入。</p>
+  </li>
+  <li>
+   <h2><a href="layout-11.html">キーワードのグラフ</a></h2>
+   <p>題名や説明にあるキーワードをノードにし、同じ項目でつながるものだけを線で結ぶ。選ぶと関連する登壇・文章・論文が出る。同じ内容の一覧にも切り替えられる。提案は、まだサイトに無いキーワード。</p>
+  </li>
+ </ol>
+ <h2><a href="combined.html">まとめた見本</a></h2>
+ <p>キーワードのグラフ、ステートメント、関わったプロダクト、本の話、フォローを1ページに置いています。キーワードを選ぶと、関連と中身が一覧に出ます。グラフはドラッグや拡大ができ、線には短いラベルが付きます。動きは止められます。メモはこのブラウザの中だけに残します。</p>
+ <h2><a href="graph-compare/index.html">グラフの見比べ</a></h2>
+ <p>同じキーワードのデータで、force-graph、D3、Cytoscape.js、sigma.js の動きを見比べます。force-graph をもとにした有機的な見せ方もあります。選ぶと関連と中身が出て、線には短いラベルが付きます。一覧、メモ、キーボード、動きを止める切り替えはどれも同じです。</p>
+ <h2>ステートメント</h2>
+ <p><a href="statement.html">言葉を中心に置いたページ</a>です。本文は、サイトにある「目指していること」の一文と、アクセシビリティの定義だけです。案11のヘッダーと、この一覧からリンクしています。提案は、ステートメントの本文、短い言葉、他の案からのリンク。</p>
+</div></main>
+<footer>見比べ用・マージしない</footer>
+<script src="site.js"></script>
+</body>
+</html>

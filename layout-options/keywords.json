@@ -1,0 +1,1470 @@
+{
+  "note": "このファイルが正本です。キーワードの付け外しは、items の keywords を直してください。layout-11.html と combined.html と graph-compare/ は、このファイルを読んでグラフを作ります。JavaScript が無いときの一覧は、同じ内容をページに書き出した控えです。線のラベルは edges です。",
+  "rules": [
+    "項目は、いまのサイトにある登壇・研修・講義・ウェビナー、執筆・インタビュー、論文・特許・受賞・書籍、AI活用の3つのレイヤー、役割、経歴のうち、題名か併記の説明にキーワードの表記があるものです。",
+    "キーワードは、その表記が題名か併記の説明に含まれるときだけ付けます。話題が似ているだけでは付けません。",
+    "表記の包含だけ、親のキーワードにも付けます。「生成AI」「画像認識AI」「AI議事録」「AIエージェント」「AI利活用」「DX・AI」のように表記の中に「AI」があるものは「AI」にも付けます。",
+    "「障害福祉」「福祉事業所」「福祉分野」「福祉現場」は「福祉」にも付けます。「就労支援」「就労移行支援」は「就労」にまとめ、それぞれ独立したキーワードにはしません。",
+    "「障害福祉」は「障害」には付けません。「社会側の障害を減らす」のように「障害」が単独の語になっているときだけ「障害」に付けます。",
+    "「支援者」「要支援者」「非支援業務」「就労支援」「児童発達支援」「家庭訪問支援」「計画作成支援」「関係性を支援する」は「支援」に付けません。「支援と人」「支援の質」「活用した支援」のように、支援が単独の語になっているときだけ「支援」に付けます。",
+    "役職名の一部からは取りません。「児童発達支援管理責任者」は「児童発達支援」に付けません。",
+    "「児発・放デイ」は、その略称が書いてある項目だけに付けます。「児童発達支援」とはつなぎません。",
+    "英語の題名は、サイトに日本語の訳が無いので英語のままキーワードにします。handwriting と読み書き、assessment と評価は、訳が近くてもつなぎません。",
+    "論文題名の手法名（Deep Learning、neural network、Computer Vision、Pose Estimators）はキーワードにしません。Evaluations もキーワードにしません。",
+    "「測定」は「測ること」にまとめません。「測ること」は題名にあるので別のキーワードです。",
+    "会社名の「LITALICO」だけではキーワードにしません。「LITALICOワークス」「発達ナビ」は、その表記がある項目だけです。",
+    "会場、日付、媒体名、人名、学会の回次はキーワードにしません。学会名のうち「職業リハビリテーション」は、その表記が項目に書かれているときだけ付けます。",
+    "節の見出し「AI活用の3つのレイヤー」だけでは、本文に AI と無いレイヤーへは AI を付けません。",
+    "2020年10月の「執行役員に就任」は入れていません。説明の CQO を「品質マネジメント」とは読みません。",
+    "キーワード同士の線は、同じ項目に両方のキーワードが付いているときだけ引きます。"
+  ],
+  "omitted": [
+    "2020年10月「執行役員に就任」（CQO を品質マネジメントとは読まない）",
+    "論文題名の手法名: Deep Learning、neural network、Computer Vision、Pose Estimators、Evaluations",
+    "児童発達支援管理責任者（役職名）からの「児童発達支援」",
+    "児発・放デイ と 児童発達支援 の相互リンク",
+    "handwriting と 読み書き、assessment と 評価 の相互リンク",
+    "会社名だけの LITALICO、会場、媒体名、人名"
+  ],
+  "keywords": [
+    {
+      "id": "ai",
+      "label": "AI"
+    },
+    {
+      "id": "genai",
+      "label": "生成AI"
+    },
+    {
+      "id": "fukushi",
+      "label": "福祉"
+    },
+    {
+      "id": "shogai-fukushi",
+      "label": "障害福祉"
+    },
+    {
+      "id": "shuro",
+      "label": "就労"
+    },
+    {
+      "id": "shokugyo",
+      "label": "職業リハビリテーション"
+    },
+    {
+      "id": "shien",
+      "label": "支援"
+    },
+    {
+      "id": "hyoka",
+      "label": "評価"
+    },
+    {
+      "id": "hakaru",
+      "label": "測ること"
+    },
+    {
+      "id": "gauno",
+      "label": "外脳"
+    },
+    {
+      "id": "shiensha",
+      "label": "支援者"
+    },
+    {
+      "id": "telepathy",
+      "label": "テレパシー"
+    },
+    {
+      "id": "data",
+      "label": "データ"
+    },
+    {
+      "id": "works",
+      "label": "LITALICOワークス"
+    },
+    {
+      "id": "dx",
+      "label": "DX",
+      "lang": "en"
+    },
+    {
+      "id": "service",
+      "label": "サービスデザイン"
+    },
+    {
+      "id": "jihatsu",
+      "label": "児発・放デイ"
+    },
+    {
+      "id": "navi",
+      "label": "発達ナビ"
+    },
+    {
+      "id": "kenkyu",
+      "label": "研究開発"
+    },
+    {
+      "id": "hinshitsu",
+      "label": "品質マネジメント"
+    },
+    {
+      "id": "shakai",
+      "label": "社会実装"
+    },
+    {
+      "id": "tekio",
+      "label": "適応"
+    },
+    {
+      "id": "handwriting",
+      "label": "handwriting",
+      "lang": "en"
+    },
+    {
+      "id": "assessment",
+      "label": "assessment",
+      "lang": "en"
+    },
+    {
+      "id": "yomikaki",
+      "label": "読み書き"
+    },
+    {
+      "id": "screening",
+      "label": "スクリーニング"
+    },
+    {
+      "id": "postural",
+      "label": "Postural Control",
+      "lang": "en"
+    },
+    {
+      "id": "telecare",
+      "label": "telecare",
+      "lang": "en"
+    },
+    {
+      "id": "qol",
+      "label": "quality of life",
+      "lang": "en"
+    },
+    {
+      "id": "kodo",
+      "label": "行動変容"
+    },
+    {
+      "id": "digital",
+      "label": "デジタルツール"
+    },
+    {
+      "id": "tokusei",
+      "label": "発達特性"
+    },
+    {
+      "id": "keikaku",
+      "label": "計画作成"
+    },
+    {
+      "id": "yoshien",
+      "label": "要支援者"
+    },
+    {
+      "id": "jido",
+      "label": "児童発達支援"
+    },
+    {
+      "id": "asd",
+      "label": "自閉スペクトラム症"
+    },
+    {
+      "id": "koyou",
+      "label": "障害者雇用"
+    },
+    {
+      "id": "teichaku",
+      "label": "職場定着"
+    },
+    {
+      "id": "hattatsu",
+      "label": "発達障害"
+    },
+    {
+      "id": "tech",
+      "label": "テクノロジー"
+    },
+    {
+      "id": "notta",
+      "label": "Notta",
+      "lang": "en"
+    },
+    {
+      "id": "logic",
+      "label": "ロジックモデル"
+    },
+    {
+      "id": "a11y",
+      "label": "アクセシビリティ"
+    },
+    {
+      "id": "minna",
+      "label": "みんなのアクセス"
+    },
+    {
+      "id": "shogai",
+      "label": "障害"
+    },
+    {
+      "id": "gazou",
+      "label": "画像認識"
+    },
+    {
+      "id": "hi-shien",
+      "label": "非支援業務"
+    }
+  ],
+  "edgeLabelNote": "線のラベルです。項目とのラベルは、その項目の種類（登壇、論文など）です。キーワード同士は、一方の表記が他方に含まれるときだけ「表記を含む」です。それ以外は、同じ項目に両方の表記があるだけで、関係の種類は題名や説明から決まらないので「仮」です。",
+  "edges": [
+    {
+      "from": "ai",
+      "to": "seminar-2026-11-27",
+      "label": "研修",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "seminar-2026-11-27",
+      "label": "研修",
+      "provisional": false
+    },
+    {
+      "from": "shogai-fukushi",
+      "to": "seminar-2026-11-27",
+      "label": "研修",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "fukushi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "shogai-fukushi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "fukushi",
+      "to": "shogai-fukushi",
+      "label": "表記を含む",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "t-akashi",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "genai",
+      "to": "t-akashi",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "t-akashi",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shogai-fukushi",
+      "to": "t-akashi",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "genai",
+      "label": "表記を含む",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "genai",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "shogai-fukushi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shien",
+      "to": "t-eval",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "hyoka",
+      "to": "t-eval",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "hakaru",
+      "to": "t-eval",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "hyoka",
+      "to": "shien",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hakaru",
+      "to": "shien",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hakaru",
+      "to": "hyoka",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "w-gauno",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "gauno",
+      "to": "w-gauno",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "gauno",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "w-shiensha",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "genai",
+      "to": "w-shiensha",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "shiensha",
+      "to": "w-shiensha",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "shokugyo",
+      "to": "w-shiensha",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "shiensha",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "shokugyo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "shiensha",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "shokugyo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shiensha",
+      "to": "shokugyo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "w-telepathy",
+      "label": "インタビュー",
+      "provisional": false
+    },
+    {
+      "from": "telepathy",
+      "to": "w-telepathy",
+      "label": "インタビュー",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "telepathy",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "t-shuro",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "genai",
+      "to": "t-shuro",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shuro",
+      "to": "t-shuro",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shokugyo",
+      "to": "t-shuro",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "shuro",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "shuro",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shokugyo",
+      "to": "shuro",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "data",
+      "to": "t-data",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "w-works",
+      "label": "インタビュー",
+      "provisional": false
+    },
+    {
+      "from": "works",
+      "to": "w-works",
+      "label": "インタビュー",
+      "provisional": false
+    },
+    {
+      "from": "dx",
+      "to": "w-works",
+      "label": "インタビュー",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "works",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "dx",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "dx",
+      "to": "works",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "t-service",
+      "label": "講義",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "t-service",
+      "label": "講義",
+      "provisional": false
+    },
+    {
+      "from": "shogai-fukushi",
+      "to": "t-service",
+      "label": "講義",
+      "provisional": false
+    },
+    {
+      "from": "service",
+      "to": "t-service",
+      "label": "講義",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "service",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "fukushi",
+      "to": "service",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "service",
+      "to": "shogai-fukushi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "t-jihatsu",
+      "label": "ウェビナー",
+      "provisional": false
+    },
+    {
+      "from": "genai",
+      "to": "t-jihatsu",
+      "label": "ウェビナー",
+      "provisional": false
+    },
+    {
+      "from": "jihatsu",
+      "to": "t-jihatsu",
+      "label": "ウェビナー",
+      "provisional": false
+    },
+    {
+      "from": "navi",
+      "to": "t-jihatsu",
+      "label": "ウェビナー",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "jihatsu",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "navi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "jihatsu",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "navi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "jihatsu",
+      "to": "navi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "kenkyu",
+      "to": "t-shakai",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "hinshitsu",
+      "to": "t-shakai",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shakai",
+      "to": "t-shakai",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "hinshitsu",
+      "to": "kenkyu",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "kenkyu",
+      "to": "shakai",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hinshitsu",
+      "to": "shakai",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "t-fukushi-ai",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "t-fukushi-ai",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shuro",
+      "to": "t-tekio",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "tekio",
+      "to": "t-tekio",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shuro",
+      "to": "tekio",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "c-gazou",
+      "label": "経歴",
+      "provisional": false
+    },
+    {
+      "from": "gazou",
+      "to": "c-gazou",
+      "label": "経歴",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "gazou",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "navi",
+      "to": "c-navi",
+      "label": "経歴",
+      "provisional": false
+    },
+    {
+      "from": "handwriting",
+      "to": "p-hand",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "assessment",
+      "to": "p-hand",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "assessment",
+      "to": "handwriting",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "yomikaki",
+      "to": "p-yomi",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "screening",
+      "to": "p-yomi",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "screening",
+      "to": "yomikaki",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "postural",
+      "to": "p-posture-dl",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "assessment",
+      "to": "p-posture-dl",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "assessment",
+      "to": "postural",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "postural",
+      "to": "p-posture-cv",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "telecare",
+      "to": "p-telecare",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "qol",
+      "to": "p-telecare",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "qol",
+      "to": "telecare",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "fukushi",
+      "to": "p-kodo",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "kodo",
+      "to": "p-kodo",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "digital",
+      "to": "p-kodo",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "kodo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "digital",
+      "to": "fukushi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "digital",
+      "to": "kodo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "tokusei",
+      "to": "pat-tokusei",
+      "label": "特許",
+      "provisional": false
+    },
+    {
+      "from": "keikaku",
+      "to": "pat-keikaku",
+      "label": "特許",
+      "provisional": false
+    },
+    {
+      "from": "yoshien",
+      "to": "pat-yoshien",
+      "label": "特許",
+      "provisional": false
+    },
+    {
+      "from": "jido",
+      "to": "pat-jido",
+      "label": "特許",
+      "provisional": false
+    },
+    {
+      "from": "asd",
+      "to": "aw-asd",
+      "label": "受賞",
+      "provisional": false
+    },
+    {
+      "from": "shokugyo",
+      "to": "aw-koyou",
+      "label": "受賞",
+      "provisional": false
+    },
+    {
+      "from": "koyou",
+      "to": "aw-koyou",
+      "label": "受賞",
+      "provisional": false
+    },
+    {
+      "from": "teichaku",
+      "to": "aw-koyou",
+      "label": "受賞",
+      "provisional": false
+    },
+    {
+      "from": "koyou",
+      "to": "shokugyo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shokugyo",
+      "to": "teichaku",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "koyou",
+      "to": "teichaku",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hattatsu",
+      "to": "book-2020",
+      "label": "書籍",
+      "provisional": false
+    },
+    {
+      "from": "tech",
+      "to": "book-2020",
+      "label": "書籍",
+      "provisional": false
+    },
+    {
+      "from": "shien",
+      "to": "book-2020",
+      "label": "書籍",
+      "provisional": false
+    },
+    {
+      "from": "hattatsu",
+      "to": "tech",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hattatsu",
+      "to": "shien",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shien",
+      "to": "tech",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hi-shien",
+      "to": "layer-1",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "works",
+      "to": "layer-1",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "layer-1",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "notta",
+      "to": "layer-1",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "hi-shien",
+      "to": "works",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "hi-shien",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hi-shien",
+      "to": "notta",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "notta",
+      "to": "works",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "notta",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shien",
+      "to": "layer-2",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "logic",
+      "to": "layer-2",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "logic",
+      "to": "shien",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shogai",
+      "to": "layer-3",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "minna",
+      "to": "layer-3",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "a11y",
+      "to": "layer-3",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "minna",
+      "to": "shogai",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "a11y",
+      "to": "shogai",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "a11y",
+      "to": "minna",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "minna",
+      "to": "role-minna",
+      "label": "役割",
+      "provisional": false
+    }
+  ],
+  "items": [
+    {
+      "id": "seminar-2026-11-27",
+      "kind": "talk",
+      "kindLabel": "研修",
+      "date": "2026-11-27",
+      "dateLabel": "2026年11月27日",
+      "title": "福祉事業所のAI導入と活用セミナー",
+      "note": "神奈川県後援・障害福祉サービス事業所の方向け／ユニコムプラザさがみはら",
+      "keywords": [
+        "ai",
+        "fukushi",
+        "shogai-fukushi"
+      ]
+    },
+    {
+      "id": "t-akashi",
+      "kind": "talk",
+      "kindLabel": "登壇",
+      "date": "2026-10-30",
+      "dateLabel": "2026年10月30日",
+      "title": "障害福祉の現場での生成AI活用",
+      "note": "明石市 サービス管理責任者・児童発達支援管理責任者向けAIレクチャー",
+      "keywords": [
+        "ai",
+        "genai",
+        "fukushi",
+        "shogai-fukushi"
+      ]
+    },
+    {
+      "id": "t-eval",
+      "kind": "talk",
+      "kindLabel": "登壇",
+      "date": "2026-10-21",
+      "dateLabel": "2026年10月21日",
+      "title": "測ること・評価することが、支援と人を変える",
+      "note": "KEIO-RRI ELSI/RRI Meetup Vol.2（SHIBUYA QWS）",
+      "keywords": [
+        "shien",
+        "hyoka",
+        "hakaru"
+      ]
+    },
+    {
+      "id": "w-gauno",
+      "kind": "write",
+      "kindLabel": "執筆",
+      "date": "2026-10-15",
+      "dateLabel": "2026年10月15日",
+      "title": "AIエージェントと共有する「外脳」の2026年9月アップデート——ManusからGrokBotへ",
+      "note": "Zenn",
+      "href": "https://zenn.dev/enochan/articles/exocortex-grokbot-update-2026-09",
+      "keywords": [
+        "ai",
+        "gauno"
+      ]
+    },
+    {
+      "id": "w-shiensha",
+      "kind": "write",
+      "kindLabel": "執筆",
+      "date": "2026-10-06",
+      "dateLabel": "2026年10月6日",
+      "title": "支援者は、生成AIに置き換わるのか。日本職業リハビリテーション学会シンポでの記録",
+      "note": "note",
+      "href": "https://note.com/enomotod/n/n73e9b3be4ab5",
+      "keywords": [
+        "ai",
+        "genai",
+        "shiensha",
+        "shokugyo"
+      ]
+    },
+    {
+      "id": "w-telepathy",
+      "kind": "write",
+      "kindLabel": "インタビュー",
+      "date": "2026-09-28",
+      "dateLabel": "2026年9月28日",
+      "title": "「テレパシー」から始まった。いまAIで、一人ひとりの「できる」を拡げる",
+      "note": "LITALICO｜Technology",
+      "href": "https://note.com/litalico_tech/n/n8664813978c1",
+      "keywords": [
+        "ai",
+        "telepathy"
+      ]
+    },
+    {
+      "id": "t-shuro",
+      "kind": "talk",
+      "kindLabel": "登壇",
+      "date": "2026-09-19",
+      "dateLabel": "2026年9月19日",
+      "title": "就労支援の現場での生成AI活用",
+      "note": "日本職業リハビリテーション学会 第53回埼玉大会 シンポジウム",
+      "keywords": [
+        "ai",
+        "genai",
+        "shuro",
+        "shokugyo"
+      ]
+    },
+    {
+      "id": "t-data",
+      "kind": "talk",
+      "kindLabel": "登壇",
+      "date": "2026-08-19",
+      "dateLabel": "2026年8月19日",
+      "title": "「データは人を自由にするか」での講演",
+      "note": "Social Science Boot Camp 2026",
+      "keywords": [
+        "data"
+      ]
+    },
+    {
+      "id": "w-works",
+      "kind": "write",
+      "kindLabel": "インタビュー",
+      "date": "2026-08-19",
+      "dateLabel": "2026年8月19日",
+      "title": "トークセッション：LITALICOワークスのDX・AI推進",
+      "note": "LITALICOストーリーズ",
+      "href": "https://litalico.co.jp/stories/detail/yxcezjylt",
+      "keywords": [
+        "ai",
+        "works",
+        "dx"
+      ]
+    },
+    {
+      "id": "t-service",
+      "kind": "talk",
+      "kindLabel": "講義",
+      "date": "2026-06-18",
+      "dateLabel": "2026年6月18日",
+      "title": "AIと障害福祉におけるサービスデザイン",
+      "note": "一橋大学 商学部「メディア・サービスデザイン」ゲスト講義",
+      "keywords": [
+        "ai",
+        "fukushi",
+        "shogai-fukushi",
+        "service"
+      ]
+    },
+    {
+      "id": "t-jihatsu",
+      "kind": "talk",
+      "kindLabel": "ウェビナー",
+      "date": "2026-06-15",
+      "dateLabel": "2026年6月15日",
+      "title": "児発・放デイ向け 生成AIとの付き合い方",
+      "note": "LITALICO発達ナビ ウェビナー",
+      "keywords": [
+        "ai",
+        "genai",
+        "jihatsu",
+        "navi"
+      ]
+    },
+    {
+      "id": "t-shakai",
+      "kind": "talk",
+      "kindLabel": "登壇",
+      "date": "2025-08-24",
+      "dateLabel": "2025年8月24日",
+      "title": "実践・研究開発・品質マネジメント経験を通じた社会実装への貢献",
+      "note": "日本認知・行動療法学会 第51回大会 自主企画シンポジウム",
+      "keywords": [
+        "kenkyu",
+        "hinshitsu",
+        "shakai"
+      ]
+    },
+    {
+      "id": "t-fukushi-ai",
+      "kind": "talk",
+      "kindLabel": "登壇",
+      "date": "2025-04-23",
+      "dateLabel": "2025年4月23日",
+      "title": "福祉分野におけるAI利活用の事例・未来予想",
+      "note": "AI Leaders Connect #3",
+      "keywords": [
+        "ai",
+        "fukushi"
+      ]
+    },
+    {
+      "id": "t-tekio",
+      "kind": "talk",
+      "kindLabel": "登壇",
+      "date": "2025-03-06",
+      "dateLabel": "2025年3月6日",
+      "title": "就労移行支援の実践からみた「適応」",
+      "note": "日本発達心理学会 第36回大会",
+      "keywords": [
+        "shuro",
+        "tekio"
+      ]
+    },
+    {
+      "id": "c-gazou",
+      "kind": "career",
+      "kindLabel": "経歴",
+      "date": "2017-03",
+      "dateLabel": "2017年3月",
+      "title": "退職し、大学院で画像認識AIを研究",
+      "note": "東京大学大学院で修士（学際情報学）を取得",
+      "keywords": [
+        "ai",
+        "gazou"
+      ]
+    },
+    {
+      "id": "c-navi",
+      "kind": "career",
+      "kindLabel": "経歴",
+      "date": "2012-04",
+      "dateLabel": "2012年4月",
+      "title": "LITALICOに新卒入社",
+      "note": "LITALICOジュニアの支援員、スーパーバイザー、教材・サービス開発のディレクター。LITALICO研究所と発達ナビの立ち上げに関わる",
+      "keywords": [
+        "navi"
+      ]
+    },
+    {
+      "id": "p-hand",
+      "kind": "paper",
+      "kindLabel": "論文",
+      "date": "2025",
+      "dateLabel": "2025年",
+      "title": "Comprehensive search for assessment indicators that influence the level of handwriting difficulties among children in educational settings.",
+      "note": "Scientific Reports。共著。",
+      "reviewed": true,
+      "keywords": [
+        "handwriting",
+        "assessment"
+      ]
+    },
+    {
+      "id": "p-yomi",
+      "kind": "paper",
+      "kindLabel": "論文",
+      "date": "2023",
+      "dateLabel": "2023年",
+      "title": "読み書き困難児の包括的・網羅的スクリーニング検査の開発にむけた予備的研究",
+      "note": "日本発達系作業療法学会誌。高畑脩平・榎本大貴ほか。",
+      "reviewed": true,
+      "keywords": [
+        "yomikaki",
+        "screening"
+      ]
+    },
+    {
+      "id": "p-posture-dl",
+      "kind": "paper",
+      "kindLabel": "論文",
+      "date": "2022",
+      "dateLabel": "2022年",
+      "title": "Development and Verification of Postural Control Assessment Using Deep-Learning-Based Pose Estimators: Towards Clinical Applications.",
+      "note": "Occupational Therapy International。共著。",
+      "keywords": [
+        "postural",
+        "assessment"
+      ]
+    },
+    {
+      "id": "p-posture-cv",
+      "kind": "paper",
+      "kindLabel": "論文",
+      "date": "2020",
+      "dateLabel": "2020年",
+      "title": "Computer Vision-Based Approach for Quantifying Occupational Therapists' Qualitative Evaluations of Postural Control.",
+      "note": "Occupational Therapy International。共著。",
+      "reviewed": true,
+      "keywords": [
+        "postural"
+      ]
+    },
+    {
+      "id": "p-telecare",
+      "kind": "paper",
+      "kindLabel": "論文",
+      "date": "2020",
+      "dateLabel": "2020年",
+      "title": "New telecare approach based on 3D convolutional neural network for estimating quality of life.",
+      "note": "Neurocomputing。Nakagawa, Enomoto, Yonekura, Kanazawa, Kuniyoshi。",
+      "keywords": [
+        "telecare",
+        "qol"
+      ]
+    },
+    {
+      "id": "p-kodo",
+      "kind": "paper",
+      "kindLabel": "論文",
+      "date": "2019",
+      "dateLabel": "2019年",
+      "title": "福祉現場での行動変容のためのデジタルツールの開発と応用可能性について",
+      "note": "計測と制御。岸田崇志・榎本大貴。",
+      "reviewed": true,
+      "keywords": [
+        "fukushi",
+        "kodo",
+        "digital"
+      ]
+    },
+    {
+      "id": "pat-tokusei",
+      "kind": "patent",
+      "kindLabel": "特許",
+      "number": "特許7706589",
+      "title": "発達特性検査システム、発達特性検査方法、サーバ装置、及びプログラム",
+      "note": "野田遥、榎本大貴、山下修平。",
+      "keywords": [
+        "tokusei"
+      ]
+    },
+    {
+      "id": "pat-keikaku",
+      "kind": "patent",
+      "kindLabel": "特許",
+      "number": "特許7448699",
+      "title": "計画作成支援システム、計画作成支援装置、及び計画作成支援方法",
+      "note": "榎本大貴、野口晃菜、齋藤伸秀、青野友香、寺下胡桃。",
+      "keywords": [
+        "keikaku"
+      ]
+    },
+    {
+      "id": "pat-yoshien",
+      "kind": "patent",
+      "kindLabel": "特許",
+      "number": "特許7315959",
+      "title": "要支援者の支援システムおよび支援方法",
+      "note": "辻井正次、曽我部哲也、明翫光宜、井上雅彦、榎本大貴ほか。",
+      "keywords": [
+        "yoshien"
+      ]
+    },
+    {
+      "id": "pat-jido",
+      "kind": "patent",
+      "kindLabel": "特許",
+      "number": "特許6803444",
+      "title": "児童発達支援装置、児童発達支援システム、及びプログラム",
+      "note": "榎本大貴、田村亮太。",
+      "keywords": [
+        "jido"
+      ]
+    },
+    {
+      "id": "aw-asd",
+      "kind": "award",
+      "kindLabel": "受賞",
+      "date": "2022",
+      "dateLabel": "2022年",
+      "title": "令和3年度 第6回日本自閉症スペクトラム学会 実践賞",
+      "note": "「行動上の問題を示す自閉スペクトラム症の疑いのある幼児をもつ母親への家庭訪問支援」。松本好、榎本大貴、井上雅彦。",
+      "keywords": [
+        "asd"
+      ]
+    },
+    {
+      "id": "aw-koyou",
+      "kind": "award",
+      "kindLabel": "受賞",
+      "date": "2019",
+      "dateLabel": "2019年",
+      "title": "日本職業リハビリテーション学会 学会大会奨励賞（調査・研究部門）",
+      "note": "「障害者雇用の職場定着に影響を与える要因の検討について」。榎本大貴、陶貴行。",
+      "keywords": [
+        "shokugyo",
+        "koyou",
+        "teichaku"
+      ]
+    },
+    {
+      "id": "book-2020",
+      "kind": "book",
+      "kindLabel": "書籍",
+      "date": "2020",
+      "dateLabel": "2020年",
+      "title": "発達障害のある子どもと周囲との関係性を支援する",
+      "note": "中央法規出版。野口晃菜・陶貴行 編。分担執筆「７章 テクノロジーを活用した支援」。",
+      "keywords": [
+        "hattatsu",
+        "tech",
+        "shien"
+      ]
+    },
+    {
+      "id": "layer-1",
+      "kind": "layer",
+      "kindLabel": "レイヤー",
+      "title": "非支援業務を減らす",
+      "note": "LITALICOワークスでは AI議事録ツール Notta の活用で、記録にかかる時間が60〜70%減りました。",
+      "keywords": [
+        "hi-shien",
+        "works",
+        "ai",
+        "notta"
+      ]
+    },
+    {
+      "id": "layer-2",
+      "kind": "layer",
+      "kindLabel": "レイヤー",
+      "title": "支援の質を高める",
+      "note": "ロジックモデルで、支援の質を定義・測定・改善します。",
+      "keywords": [
+        "shien",
+        "logic"
+      ]
+    },
+    {
+      "id": "layer-3",
+      "kind": "layer",
+      "kindLabel": "レイヤー",
+      "title": "社会側の障害を減らす",
+      "note": "「みんなのアクセス」で、アクセシビリティを身近にする活動をしています。",
+      "keywords": [
+        "shogai",
+        "minna",
+        "a11y"
+      ]
+    },
+    {
+      "id": "role-minna",
+      "kind": "career",
+      "kindLabel": "役割",
+      "title": "任意団体「みんなのアクセス」代表",
+      "keywords": [
+        "minna"
+      ]
+    }
+  ]
+}

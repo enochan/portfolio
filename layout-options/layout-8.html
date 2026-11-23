@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1b18" media="(prefers-color-scheme: dark)">
+<title>一枚の名刺 | 榎本大貴</title>
+<meta name="description" content="1画面の最小構成。肩書、一行、リンクだけ。提案は、プロフィール写真。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="extra.css">
+<link rel="stylesheet" href="purpose.css">
+<script>
+(function(){
+ document.documentElement.classList.add('js');
+ function themeColor(t){
+  var contrast=false;
+  try{contrast=matchMedia('(prefers-contrast: more)').matches}catch(e){}
+  return t==='dark'?(contrast?'#14110f':'#1f1b18'):'#fffaf3';
+ }
+ try{
+  var t=localStorage.getItem('layout-theme');
+  if(t==='dark'||t==='light'){
+   document.documentElement.setAttribute('data-theme',t);
+   var m=document.querySelector('meta[name="color-scheme"]');
+   if(m)m.setAttribute('content',t);
+   var metas=document.querySelectorAll('meta[name="theme-color"]');
+   for(var i=0;i<metas.length;i++){
+    metas[i].setAttribute('content',themeColor(t));
+    metas[i].removeAttribute('media');
+   }
+  }
+ }catch(e){}
+})();
+</script>
+</head>
+<body class="floor14 cardone">
+<a class="skip" href="#main">本文へスキップ</a>
+<div class="bgdeco" aria-hidden="true">
+ <div class="blob" style="inline-size:23.75rem;block-size:23.75rem;background:var(--lav);inset-inline-start:-7.5rem;inset-block-start:-5rem"></div>
+ <div class="blob" style="inline-size:18.75rem;block-size:18.75rem;background:var(--peach);inset-inline-end:-5rem;inset-block-start:22.5rem;animation-delay:-5s"></div>
+</div>
+<header class="top"><div class="wrap"><a class="logo" href="#main">榎本大貴</a>
+<div class="head-tools"><button type="button" class="theme" id="theme">暗い表示にする</button><button type="button" class="theme" id="theme-reset" hidden>端末の設定に戻す</button><script>
+(function(){
+ var t=document.documentElement.getAttribute('data-theme');
+ var dark=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
+ document.getElementById('theme').textContent=dark?'明るい表示にする':'暗い表示にする';
+ document.getElementById('theme-reset').hidden=!(t==='dark'||t==='light');
+})();
+</script><nav><ul><li><a href="layout-8-contact.html">お問い合わせ</a></li></ul></nav></div>
+</div></header>
+<main id="main" tabindex="-1"><div class="wrap">
+<div class="hero">
+ <p class="eyebrow">アクセシビリティ × 障害 × AI</p>
+ <h1>榎本大貴</h1>
+ <p class="role">株式会社LITALICO<br>執行役員／LITALICO研究所 所長／AI統括部長<br>任意団体「みんなのアクセス」代表</p>
+ <p class="vision"><em>誰もがアクセシビリティを身近に感じ、</em>実践したくなる社会を目指す</p>
+ <ul class="links">
+  <li><a href="https://note.com/enomotod">note</a></li>
+  <li><a href="https://zenn.dev/enochan">Zenn</a></li>
+  <li><a href="https://speakerdeck.com/enochan">Speaker Deck</a></li>
+  <li><a href="https://researchmap.jp/denomoto">researchmap</a></li>
+  <li><a href="https://litalico.co.jp/about/lab/">LITALICO研究所</a></li>
+  <li><a href="https://youtube.com/@everyonesaccesscollective">みんなのアクセス（YouTube）</a></li>
+ </ul>
+ <p><a href="layout-8-contact.html">お問い合わせ</a></p>
+ <section id="photo" class="proposal"><h2 id="photo-h"><span class="badge propose">提案</span>プロフィール写真</h2><p>顔写真を置く位置です。写真はまだありません。</p></section>
+</div>
+</div></main>
+<footer>© 榎本大貴</footer>
+<script src="site.js"></script>
+</body>
+</html>

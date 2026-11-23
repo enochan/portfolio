@@ -1,0 +1,78 @@
+/* 案6〜10。色と書体は site.css のまま、ページの目的だけを変える。 */
+.ask h1,.essay h1{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.45;max-inline-size:40rem}
+.ask .q{margin-block:0 2.25rem}
+.ask .q h2{display:block;font-size:clamp(1.45rem,3vw,2rem);line-height:1.5;margin-block:0 .6em}
+.note-omit{color:var(--sub);font-size:1rem}
+.walk .year h3{font-size:clamp(1.75rem,4vw,2.5rem)}
+.cardone{min-block-size:100dvh;display:flex;flex-direction:column}
+.cardone .bgdeco{block-size:100dvh}
+.cardone header.top .wrap{padding-block:.6rem}
+.cardone main{flex:1;display:flex;align-items:center;min-block-size:0}
+.cardone .wrap{max-inline-size:34rem}
+.cardone .hero{display:block;padding-block:0}
+.cardone h1{font-size:2.5rem;margin-block:.15em}
+.cardone .role,.cardone .vision{margin-block:.25em .55em;line-height:1.55}
+@media (max-width:47.5rem){
+ .cardone h1{font-size:2.1rem}
+ .cardone .vision{font-size:1.05rem}
+ .cardone .proposal{padding:.5rem .75rem 0}
+ .cardone header.top .wrap{padding-block:.3rem}
+ .cardone footer{padding-block:.15rem .35rem}
+}
+.cardone .proposal{margin-block:.4rem 0;padding:.8rem 1rem .15rem}
+.cardone .proposal h2{font-size:1.15rem}
+.cardone footer{padding-block:.35rem .7rem}
+.doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:0;padding:0;list-style:none}
+.doors a{display:flex;flex-direction:column;justify-content:center;gap:.35rem;min-block-size:7rem;padding:1.1rem 1.2rem;border:2px solid var(--line);border-radius:1.25rem;background:var(--card);color:var(--fg);font-weight:700;text-decoration:underline;text-underline-offset:.18em}
+.doors a span{font-weight:500;color:var(--sub)}
+.doors a:hover{background:var(--mint)}
+.split{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(16rem,.8fr);gap:2rem;align-items:start}
+.essay .byline{margin:0;font-weight:700}
+.sideways h2{font-size:1.2rem}
+@media (max-width:56.25rem){
+ .split,.doors{grid-template-columns:1fr}
+}
+@media (forced-colors:active){
+ .doors a,.proposal{border:2px dashed CanvasText}
+}
+
+/* 案11とステートメント。色と書体は site.css のまま。 */
+.netpage,.statement{position:relative}
+.netpage .bgdeco,.statement .bgdeco{block-size:100%}
+.js .netpage:not(.fallback-show) #fallback{display:none}
+.rules{margin-block:0 1.25rem}
+.rules summary{font-size:1.05rem}
+.switch{display:flex;flex-wrap:wrap;gap:.5rem;margin-block:0 1.25rem}
+.switch button{font:inherit;font-size:1rem;font-weight:700;min-block-size:2.75rem;padding-inline:1.15rem;border-radius:62rem;border:2px dashed var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.switch button[aria-pressed="true"]{border-style:solid;border-width:3px;border-color:var(--fg)}
+.legend{margin-block:0 1rem}
+.net-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(16rem,.8fr);gap:1.5rem;align-items:start}
+.net{position:relative;display:grid;grid-template-columns:repeat(auto-fill,minmax(8.5rem,1fr));gap:1.75rem 1rem;align-items:center;padding:.4rem}
+.net-svg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.net-svg line{stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 4}
+.net-svg line.on{stroke:var(--fg);stroke-width:2.75;stroke-dasharray:none}
+.net-node{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;inline-size:100%;min-inline-size:0;min-block-size:2.75rem;margin:0;padding:.45rem .55rem;border:2px dashed var(--line);border-radius:1rem;background:var(--card);color:var(--fg);text-decoration:none;text-align:center;font-size:.875rem;font-weight:700;line-height:1.35;overflow-wrap:anywhere}
+.net-node.on{border-style:solid;border-color:var(--fg)}
+.net-node[aria-current="true"]{border-style:solid;border-width:3px;border-color:var(--fg)}
+.net-n{font-size:.875rem;font-weight:500;color:var(--sub)}
+.picked .kw-items{margin-block-start:.5rem}
+.kw-block{margin-block:0 1.75rem}
+.kw-block h3{font-size:1.35rem;margin-block:.2em}
+.kw-items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.75rem}
+.item-title{font-weight:700;line-height:1.6;margin:.15rem 0;font-size:1.0625rem}
+.statement .wrap{max-inline-size:40rem}
+.statement .eyebrow{margin-block:2.2rem 1rem}
+.statement .who{margin:0;font-size:1.35rem;font-weight:700}
+.statement .role{margin-block:.35rem 2rem;color:var(--sub)}
+.statement h1{font-size:clamp(1.8rem,4.5vw,2.75rem);line-height:1.5;font-weight:700;margin-block:0 .7em}
+.statement h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--mint) 62%)}
+.statement .def{font-size:1.15rem;margin-block:0 2rem}
+.statement .def q{quotes:"「" "」";font-weight:700}
+.statement #how ul{padding-inline-start:1.2em}
+@media (max-width:56.25rem){
+ .net-layout{grid-template-columns:1fr}
+}
+@media (forced-colors:active){
+ .net-node,.switch button,.net-svg line{border-color:CanvasText;stroke:CanvasText}
+ .net-node[aria-current="true"],.switch button[aria-pressed="true"]{border-width:3px}
+}

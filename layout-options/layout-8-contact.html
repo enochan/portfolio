@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1b18" media="(prefers-color-scheme: dark)">
+<title>お問い合わせ | 榎本大貴</title>
+<meta name="description" content="名刺の見本から開く、お問い合わせのページ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="extra.css">
+<link rel="stylesheet" href="purpose.css">
+<script>
+(function(){
+ document.documentElement.classList.add('js');
+ function themeColor(t){
+  var contrast=false;
+  try{contrast=matchMedia('(prefers-contrast: more)').matches}catch(e){}
+  return t==='dark'?(contrast?'#14110f':'#1f1b18'):'#fffaf3';
+ }
+ try{
+  var t=localStorage.getItem('layout-theme');
+  if(t==='dark'||t==='light'){
+   document.documentElement.setAttribute('data-theme',t);
+   var m=document.querySelector('meta[name="color-scheme"]');
+   if(m)m.setAttribute('content',t);
+   var metas=document.querySelectorAll('meta[name="theme-color"]');
+   for(var i=0;i<metas.length;i++){
+    metas[i].setAttribute('content',themeColor(t));
+    metas[i].removeAttribute('media');
+   }
+  }
+ }catch(e){}
+})();
+</script>
+</head>
+<body class="floor14 plain">
+<a class="skip" href="#main">本文へスキップ</a>
+<div class="bgdeco" aria-hidden="true">
+ <div class="blob" style="inline-size:23.75rem;block-size:23.75rem;background:var(--lav);inset-inline-start:-7.5rem;inset-block-start:-5rem"></div>
+ <div class="blob" style="inline-size:18.75rem;block-size:18.75rem;background:var(--peach);inset-inline-end:-5rem;inset-block-start:22.5rem;animation-delay:-5s"></div>
+</div>
+<header class="top"><div class="wrap"><a class="logo" href="layout-8.html">榎本大貴</a>
+<div class="head-tools"><button type="button" class="theme" id="theme">暗い表示にする</button><button type="button" class="theme" id="theme-reset" hidden>端末の設定に戻す</button><script>
+(function(){
+ var t=document.documentElement.getAttribute('data-theme');
+ var dark=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
+ document.getElementById('theme').textContent=dark?'明るい表示にする':'暗い表示にする';
+ document.getElementById('theme-reset').hidden=!(t==='dark'||t==='light');
+})();
+</script><nav><ul><li><a href="layout-8.html">名刺</a></li></ul></nav></div>
+</div></header>
+<main id="main" tabindex="-1"><div class="wrap">
+<h1>お問い合わせ</h1>
+<p class="back"><a href="layout-8.html">名刺へ戻る</a></p>
+<section id="contact" tabindex="-1"><h2 id="h-contact"><span class="dot" aria-hidden="true"></span>お問い合わせ</h2>
+<div class="contact">
+ <p class="note">送信内容は、外部サービスの <a href="https://formsubmit.co/">FormSubmit</a> を経由して届きます。</p>
+ <div id="form-status" class="status" role="status" aria-live="polite" tabindex="-1"></div>
+ <form id="contact-form" action="https://formsubmit.co/dffb1aba5090e823fb3f12306cceace2" method="POST">
+  <input type="hidden" name="_subject" value="ポートフォリオサイトからのお問い合わせ">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <div class="field"><label for="f-name">お名前<span class="tag req">必須</span></label><input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err"><p class="err" id="f-name-err"></p></div>
+  <div class="field"><label for="f-email">メールアドレス<span class="tag req">必須</span></label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err"><p class="err" id="f-email-err"></p></div>
+  <div class="field"><label for="f-org">ご所属<span class="tag opt">任意</span></label><input id="f-org" name="organization" type="text" autocomplete="organization"></div>
+  <div class="field"><label for="f-message">お問い合わせ内容<span class="tag req">必須</span></label><textarea id="f-message" name="message" required aria-describedby="f-message-err"></textarea><p class="err" id="f-message-err"></p></div>
+  <button type="submit" class="submit">送信する</button>
+ </form>
+</div></section>
+</div></main>
+<footer>© 榎本大貴</footer>
+<script src="site.js"></script>
+</body>
+</html>
