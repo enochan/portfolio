@@ -4,8 +4,8 @@
 .combo .vision{font-size:clamp(1.45rem,3vw,2rem);font-weight:700;line-height:1.55;margin-block:.4em 1em}
 .combo .vision em{font-style:normal;background:linear-gradient(transparent 62%,var(--mint) 62%)}
 .combo .def q{quotes:"「" "」";font-weight:700}
-.view-switch,#range-switch{display:none}
-.js .view-switch,.js #range-switch{display:flex}
+.view-switch,#range-switch,#graph-tools{display:none}
+.js .view-switch,.js #range-switch,.js #graph-tools{display:flex}
 .js .combo[data-view="graph"] #list{display:none}
 .js .combo[data-view="list"] #graph-panel{display:none}
 .explore{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(16rem,.9fr);gap:1.25rem;align-items:start}
@@ -26,12 +26,14 @@
 .shape-key{display:flex;flex-wrap:wrap;gap:.5rem 1rem;list-style:none;margin:0 0 1rem;padding:0}
 .shape-key li{display:flex;align-items:center;gap:.4rem;font-size:.875rem;font-weight:700}
 .shape-key svg{flex:none}
-.force-host{position:relative;inline-size:100%;max-inline-size:100%}
-.force-svg{display:block;inline-size:100%;max-inline-size:100%;height:auto;overflow:hidden}
-.force-node{cursor:pointer}
+.force-host{position:relative;inline-size:100%;max-inline-size:100%;block-size:32rem;overflow:hidden;border:2px solid var(--line);border-radius:1.25rem;background:var(--bg);touch-action:none}
+.force-svg{display:block;inline-size:100%;block-size:100%;max-inline-size:100%;cursor:grab;user-select:none}
+.force-svg:active{cursor:grabbing}
+.force-host[data-motion="off"] .force-node{cursor:pointer}
+.force-node{cursor:grab}
 .force-node .plate{fill:var(--card);stroke:var(--line);stroke-width:2.5}
 .force-node .ring{fill:none;stroke:var(--line);stroke-width:2}
-.force-node.is-hot .plate{stroke:var(--node);stroke-width:3.5;stroke-dasharray:none}
+.force-node.is-hot .plate{stroke:var(--fg);stroke-width:3.5;stroke-dasharray:none}
 .force-node.is-dim .plate{stroke:var(--line);stroke-width:2;stroke-dasharray:5 4}
 .force-node.is-dim text{fill:var(--sub)}
 .force-node text{fill:var(--fg);font-size:14px;font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;font-weight:700}
@@ -42,6 +44,13 @@
 .force-svg line{stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 4}
 .force-svg line.is-hot{stroke:var(--fg);stroke-width:2.5;stroke-dasharray:none}
 .force-svg line.is-dim{stroke:var(--line);stroke-width:1}
+.edge-label text{fill:var(--fg);font-size:14px;font-weight:700;font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
+.edge-label rect{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+.edge-label.is-provisional rect{stroke-dasharray:4 3}
+.rel-label{display:inline-flex;align-items:center;font-size:0.875rem;font-weight:700;color:var(--fg);background:var(--card);border:2px solid var(--line);border-radius:62rem;padding:.1rem .65rem;line-height:1.5}
+.rel-label.is-provisional{border-style:dashed}
+.rel-line{font-size:0.875rem;color:var(--fg);line-height:1.7}
+.rel-keys li{display:inline-flex;align-items:center;gap:.35rem}
 .detail{margin-block:1rem 0}
 .detail h3{font-size:1.35rem;margin-block:.2em}
 .cards,.books{display:grid;gap:1rem;list-style:none;margin:0;padding:0}
@@ -59,10 +68,11 @@ li[data-type="layer"]{--c:var(--teal);--cb:var(--mint);--cf:var(--teal)}
 @media (max-width:47.5rem){
  .cards,.books{grid-template-columns:1fr}
  .book{min-block-size:8rem}
+ .force-host{block-size:24rem}
 }
 @media (forced-colors:active){
- .force-node .plate,.sns a,.cards li,.book{stroke:CanvasText;border-color:CanvasText}
- .force-svg line{stroke:CanvasText}
+ .force-node .plate,.sns a,.cards li,.book,.rel-label,.edge-label rect{stroke:CanvasText;border-color:CanvasText}
+ .force-svg line,.edge-label text{stroke:CanvasText;fill:CanvasText}
 }
 @media (prefers-reduced-motion:reduce){
  .force-node,.force-svg line{transition:none}

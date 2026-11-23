@@ -1,5 +1,5 @@
 {
-  "note": "このファイルが正本です。キーワードの付け外しは、items の keywords を直してください。layout-11.html と combined.html は、このファイルを読んでグラフを作ります。JavaScript が無いときの一覧は、同じ内容をページに書き出した控えです。",
+  "note": "このファイルが正本です。キーワードの付け外しは、items の keywords を直してください。layout-11.html と combined.html と graph-compare/ は、このファイルを読んでグラフを作ります。JavaScript が無いときの一覧は、同じ内容をページに書き出した控えです。線のラベルは edges です。",
   "rules": [
     "項目は、いまのサイトにある登壇・研修・講義・ウェビナー、執筆・インタビュー、論文・特許・受賞・書籍、AI活用の3つのレイヤー、役割、経歴のうち、題名か併記の説明にキーワードの表記があるものです。",
     "キーワードは、その表記が題名か併記の説明に含まれるときだけ付けます。話題が似ているだけでは付けません。",
@@ -221,6 +221,813 @@
     {
       "id": "hi-shien",
       "label": "非支援業務"
+    }
+  ],
+  "edgeLabelNote": "線のラベルです。項目とのラベルは、その項目の種類（登壇、論文など）です。キーワード同士は、一方の表記が他方に含まれるときだけ「表記を含む」です。それ以外は、同じ項目に両方の表記があるだけで、関係の種類は題名や説明から決まらないので「仮」です。",
+  "edges": [
+    {
+      "from": "ai",
+      "to": "seminar-2026-11-27",
+      "label": "研修",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "seminar-2026-11-27",
+      "label": "研修",
+      "provisional": false
+    },
+    {
+      "from": "shogai-fukushi",
+      "to": "seminar-2026-11-27",
+      "label": "研修",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "fukushi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "shogai-fukushi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "fukushi",
+      "to": "shogai-fukushi",
+      "label": "表記を含む",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "t-akashi",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "genai",
+      "to": "t-akashi",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "t-akashi",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shogai-fukushi",
+      "to": "t-akashi",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "genai",
+      "label": "表記を含む",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "genai",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "shogai-fukushi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shien",
+      "to": "t-eval",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "hyoka",
+      "to": "t-eval",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "hakaru",
+      "to": "t-eval",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "hyoka",
+      "to": "shien",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hakaru",
+      "to": "shien",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hakaru",
+      "to": "hyoka",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "w-gauno",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "gauno",
+      "to": "w-gauno",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "gauno",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "w-shiensha",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "genai",
+      "to": "w-shiensha",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "shiensha",
+      "to": "w-shiensha",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "shokugyo",
+      "to": "w-shiensha",
+      "label": "執筆",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "shiensha",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "shokugyo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "shiensha",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "shokugyo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shiensha",
+      "to": "shokugyo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "w-telepathy",
+      "label": "インタビュー",
+      "provisional": false
+    },
+    {
+      "from": "telepathy",
+      "to": "w-telepathy",
+      "label": "インタビュー",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "telepathy",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "t-shuro",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "genai",
+      "to": "t-shuro",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shuro",
+      "to": "t-shuro",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shokugyo",
+      "to": "t-shuro",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "shuro",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "shuro",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shokugyo",
+      "to": "shuro",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "data",
+      "to": "t-data",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "w-works",
+      "label": "インタビュー",
+      "provisional": false
+    },
+    {
+      "from": "works",
+      "to": "w-works",
+      "label": "インタビュー",
+      "provisional": false
+    },
+    {
+      "from": "dx",
+      "to": "w-works",
+      "label": "インタビュー",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "works",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "dx",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "dx",
+      "to": "works",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "t-service",
+      "label": "講義",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "t-service",
+      "label": "講義",
+      "provisional": false
+    },
+    {
+      "from": "shogai-fukushi",
+      "to": "t-service",
+      "label": "講義",
+      "provisional": false
+    },
+    {
+      "from": "service",
+      "to": "t-service",
+      "label": "講義",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "service",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "fukushi",
+      "to": "service",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "service",
+      "to": "shogai-fukushi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "t-jihatsu",
+      "label": "ウェビナー",
+      "provisional": false
+    },
+    {
+      "from": "genai",
+      "to": "t-jihatsu",
+      "label": "ウェビナー",
+      "provisional": false
+    },
+    {
+      "from": "jihatsu",
+      "to": "t-jihatsu",
+      "label": "ウェビナー",
+      "provisional": false
+    },
+    {
+      "from": "navi",
+      "to": "t-jihatsu",
+      "label": "ウェビナー",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "jihatsu",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "navi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "jihatsu",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "genai",
+      "to": "navi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "jihatsu",
+      "to": "navi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "kenkyu",
+      "to": "t-shakai",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "hinshitsu",
+      "to": "t-shakai",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shakai",
+      "to": "t-shakai",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "hinshitsu",
+      "to": "kenkyu",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "kenkyu",
+      "to": "shakai",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hinshitsu",
+      "to": "shakai",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "t-fukushi-ai",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "t-fukushi-ai",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shuro",
+      "to": "t-tekio",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "tekio",
+      "to": "t-tekio",
+      "label": "登壇",
+      "provisional": false
+    },
+    {
+      "from": "shuro",
+      "to": "tekio",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "c-gazou",
+      "label": "経歴",
+      "provisional": false
+    },
+    {
+      "from": "gazou",
+      "to": "c-gazou",
+      "label": "経歴",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "gazou",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "navi",
+      "to": "c-navi",
+      "label": "経歴",
+      "provisional": false
+    },
+    {
+      "from": "handwriting",
+      "to": "p-hand",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "assessment",
+      "to": "p-hand",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "assessment",
+      "to": "handwriting",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "yomikaki",
+      "to": "p-yomi",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "screening",
+      "to": "p-yomi",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "screening",
+      "to": "yomikaki",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "postural",
+      "to": "p-posture-dl",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "assessment",
+      "to": "p-posture-dl",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "assessment",
+      "to": "postural",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "postural",
+      "to": "p-posture-cv",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "telecare",
+      "to": "p-telecare",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "qol",
+      "to": "p-telecare",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "qol",
+      "to": "telecare",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "fukushi",
+      "to": "p-kodo",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "kodo",
+      "to": "p-kodo",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "digital",
+      "to": "p-kodo",
+      "label": "論文",
+      "provisional": false
+    },
+    {
+      "from": "fukushi",
+      "to": "kodo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "digital",
+      "to": "fukushi",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "digital",
+      "to": "kodo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "tokusei",
+      "to": "pat-tokusei",
+      "label": "特許",
+      "provisional": false
+    },
+    {
+      "from": "keikaku",
+      "to": "pat-keikaku",
+      "label": "特許",
+      "provisional": false
+    },
+    {
+      "from": "yoshien",
+      "to": "pat-yoshien",
+      "label": "特許",
+      "provisional": false
+    },
+    {
+      "from": "jido",
+      "to": "pat-jido",
+      "label": "特許",
+      "provisional": false
+    },
+    {
+      "from": "asd",
+      "to": "aw-asd",
+      "label": "受賞",
+      "provisional": false
+    },
+    {
+      "from": "shokugyo",
+      "to": "aw-koyou",
+      "label": "受賞",
+      "provisional": false
+    },
+    {
+      "from": "koyou",
+      "to": "aw-koyou",
+      "label": "受賞",
+      "provisional": false
+    },
+    {
+      "from": "teichaku",
+      "to": "aw-koyou",
+      "label": "受賞",
+      "provisional": false
+    },
+    {
+      "from": "koyou",
+      "to": "shokugyo",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shokugyo",
+      "to": "teichaku",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "koyou",
+      "to": "teichaku",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hattatsu",
+      "to": "book-2020",
+      "label": "書籍",
+      "provisional": false
+    },
+    {
+      "from": "tech",
+      "to": "book-2020",
+      "label": "書籍",
+      "provisional": false
+    },
+    {
+      "from": "shien",
+      "to": "book-2020",
+      "label": "書籍",
+      "provisional": false
+    },
+    {
+      "from": "hattatsu",
+      "to": "tech",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hattatsu",
+      "to": "shien",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shien",
+      "to": "tech",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hi-shien",
+      "to": "layer-1",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "works",
+      "to": "layer-1",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "ai",
+      "to": "layer-1",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "notta",
+      "to": "layer-1",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "hi-shien",
+      "to": "works",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "hi-shien",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "hi-shien",
+      "to": "notta",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "notta",
+      "to": "works",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "ai",
+      "to": "notta",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shien",
+      "to": "layer-2",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "logic",
+      "to": "layer-2",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "logic",
+      "to": "shien",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "shogai",
+      "to": "layer-3",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "minna",
+      "to": "layer-3",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "a11y",
+      "to": "layer-3",
+      "label": "レイヤー",
+      "provisional": false
+    },
+    {
+      "from": "minna",
+      "to": "shogai",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "a11y",
+      "to": "shogai",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "a11y",
+      "to": "minna",
+      "label": "仮",
+      "provisional": true
+    },
+    {
+      "from": "minna",
+      "to": "role-minna",
+      "label": "役割",
+      "provisional": false
     }
   ],
   "items": [
