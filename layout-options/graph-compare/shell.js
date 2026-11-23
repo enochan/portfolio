@@ -23,6 +23,7 @@
  var model=null;
  var mode='all';
  var labelMode='along';
+ var flowMode='time';
  var selected=null;
  var pointed=null;
  var focused=null;
@@ -47,7 +48,7 @@
   };
  }
  function state(){
-  return {selected:selected,mode:mode,motion:!motionStopped,focused:focused,pointed:pointed,labelMode:labelMode};
+  return {selected:selected,mode:mode,motion:!motionStopped,focused:focused,pointed:pointed,labelMode:labelMode,flowMode:flowMode};
  }
  function visibleIds(){
   var ids=[];
@@ -247,6 +248,21 @@
   if(direct)direct.setAttribute('aria-pressed',labelMode==='direct'?'true':'false');
   if(engine&&engine.paint)engine.paint();
  }
+ function setFlowMode(next){
+  flowMode=next==='strength'?'strength':'time';
+  host.setAttribute('data-flow',flowMode);
+  var timeBtn=document.getElementById('to-time');
+  var strengthBtn=document.getElementById('to-strength');
+  if(timeBtn)timeBtn.setAttribute('aria-pressed',flowMode==='time'?'true':'false');
+  if(strengthBtn)strengthBtn.setAttribute('aria-pressed',flowMode==='strength'?'true':'false');
+  var legend=document.getElementById('flow-legend');
+  if(legend){
+   legend.textContent=flowMode==='strength'
+    ?'点の数と速さ＝同じコンテンツに両方の語がある件数'
+    :'点の流れ＝古い実績から新しい実績へ';
+  }
+  if(engine&&engine.paint)engine.paint();
+ }
 
  function loadNotes(){
   try{var raw=JSON.parse(localStorage.getItem(STORE)||'[]');return Array.isArray(raw)?raw:[]}catch(e){return []}
@@ -433,6 +449,13 @@
     ul.appendChild(li);
    });
    detail.appendChild(ul);
+   if(page.getAttribute('data-engine')==='organic'&&model.flow){
+    var facts=el('ul','flow-list');
+    kws.forEach(function(k){
+     facts.appendChild(el('li',null,k.full+'：'+model.flow.pairLine(cur.id,k.id)));
+    });
+    detail.appendChild(facts);
+   }
   }
   var rel=relatedItems(selected);
   detail.appendChild(el('h4',null,'このキーワードの中身'));
@@ -448,6 +471,10 @@
    meta.appendChild(el('span',info.provisional?'rel-label is-provisional':'rel-label',info.label));
    if(it.number)meta.appendChild(el('span','when',it.number));
    else if(it.dateLabel)meta.appendChild(el('time',null,it.dateLabel));
+   if(page.getAttribute('data-engine')==='organic'&&model.flow){
+    var sentence=model.flow.pairLine(cur.id,it.id);
+    if(sentence)meta.appendChild(el('span','flow-fact',sentence));
+   }
    ev.appendChild(meta);
    var title=el('p','item-title');
    if(it.lang)title.lang='en';
@@ -523,7 +550,21 @@
     var p=el('p','row');
     p.appendChild(memoButton(catalog['it-'+it.id]));
     title.after(p);
+    if(page.getAttribute('data-engine')==='organic'&&model.flow){
+     var sentence=model.flow.pairLine(entry.id,'it-'+it.id);
+     var meta=title.parentNode.querySelector('.meta');
+     if(sentence&&meta&&!meta.querySelector('.flow-fact'))meta.appendChild(el('span','flow-fact',sentence));
+    }
    });
+   if(page.getAttribute('data-engine')==='organic'&&model.flow){
+    var rel=relatedKeywords(entry.id);
+    if(rel.length){
+     var facts=el('p','flow-facts');
+     facts.textContent=rel.map(function(k){return k.full+'：'+model.flow.pairLine(entry.id,k.id)}).join('。')+'。';
+     var line=sec.querySelector('.rel-line');
+     if(line)line.after(facts);
+    }
+   }
   });
  }
 
@@ -551,7 +592,7 @@
    catalog['kw-'+k.id]={id:'kw-'+k.id,raw:k.id,group:'keyword',kind:'keyword',full:k.label,kindLabel:'キーワード',lang:k.lang||null};
   });
   items.forEach(function(it){
-   catalog['it-'+it.id]={id:'it-'+it.id,raw:it.id,group:'item',kind:it.kind,full:it.title,kindLabel:it.kindLabel||it.kind,lang:isEn(it.title)?'en':null,href:it.href||'',note:it.note||'',dateLabel:it.dateLabel||'',number:it.number||'',keywords:it.keywords||[]};
+   catalog['it-'+it.id]={id:'it-'+it.id,raw:it.id,group:'item',kind:it.kind,full:it.title,kindLabel:it.kindLabel||it.kind,lang:isEn(it.title)?'en':null,href:it.href||'',note:it.note||'',date:it.date||'',dateLabel:it.dateLabel||'',number:it.number||'',keywords:it.keywords||[]};
   });
   var labelBy={};
   (data.edges||[]).forEach(function(e){
@@ -586,7 +627,97 @@
   });
   selected='kw-'+center.id;
   focused=selected;
-  model={catalog:catalog,adj:adj,links:links,keywords:keywords,items:items,edgeInfo:edgeInfo,centerId:selected};
+  function parseDate(str){
+   if(!str)return null;
+   var m=String(str).match(/^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$/);
+   if(!m)return null;
+   return {key:(+m[1])*10000+(m[2]?+m[2]:0)*100+(m[3]?+m[3]:0),prec:m[3]?'day':m[2]?'month':'year'};
+  }
+  function cmpDates(a,b){
+   if(!a||!b)return null;
+   var prec=(a.prec==='year'||b.prec==='year')?'year':(a.prec==='month'||b.prec==='month')?'month':'day';
+   function coarse(dt){
+    if(prec==='year')return Math.floor(dt.key/10000);
+    if(prec==='month')return Math.floor(dt.key/100);
+    return dt.key;
+   }
+   var ca=coarse(a),cb=coarse(b);
+   if(ca===cb){
+    if(a.prec!==b.prec)return null;
+    if(a.key===b.key)return 0;
+    return a.key<b.key?-1:1;
+   }
+   return ca<cb?-1:1;
+  }
+  function latestOf(raw,excludeId){
+   var dated=[];
+   items.forEach(function(it){
+    if(excludeId&&it.id===excludeId)return;
+    if((it.keywords||[]).indexOf(raw)===-1)return;
+    var dt=parseDate(it.date);
+    if(dt)dated.push({it:it,dt:dt});
+   });
+   if(!dated.length)return null;
+   var cands=dated.filter(function(x){
+    return !dated.some(function(y){return cmpDates(y.dt,x.dt)===1});
+   });
+   var uniq=[];
+   cands.forEach(function(x){
+    if(!uniq.some(function(y){return cmpDates(y.dt,x.dt)===0}))uniq.push(x);
+   });
+   if(uniq.length!==1)return {unknown:true};
+   return {label:uniq[0].it.dateLabel||uniq[0].it.date,dt:uniq[0].dt};
+  }
+  function together(a,b){
+   var n=0;
+   items.forEach(function(it){
+    var ks=it.keywords||[];
+    if(ks.indexOf(a)!==-1&&ks.indexOf(b)!==-1)n++;
+   });
+   return n;
+  }
+  function between(idA,idB){
+   var A=catalog[idA],B=catalog[idB];
+   var empty={dir:0,count:0,provisional:true,itemEdge:false,timeText:'',strengthText:''};
+   if(!A||!B)return empty;
+   var info=edgeInfo(A.raw,B.raw);
+   var itemEdge=A.group==='item'||B.group==='item';
+   var count=!itemEdge?together(A.raw,B.raw):0;
+   var dir=0,timeText='',strengthText=count?count+'件で一緒':'';
+   if(itemEdge){
+    var item=A.group==='item'?A:B;
+    var kw=A.group==='keyword'?A:B;
+    var itemDt=parseDate(item.date||'');
+    var other=latestOf(kw.raw,item.raw);
+    var itemLabel=item.dateLabel||item.date||'';
+    if(!itemDt)timeText='日付はデータにありません';
+    else if(!other||other.unknown)timeText='日付がそろわないので向きはありません';
+    else{
+     var cmp=cmpDates(itemDt,other.dt);
+     if(cmp===-1){dir=item.id===idA?1:-1;timeText=itemLabel+' → '+other.label}
+     else if(cmp===1){dir=kw.id===idA?1:-1;timeText=other.label+' → '+itemLabel}
+     else if(cmp===0)timeText='日付はどちらも '+itemLabel;
+     else timeText='日付がそろわないので向きはありません';
+    }
+   }else{
+    var La=latestOf(A.raw),Lb=latestOf(B.raw);
+    if(!La||!Lb||La.unknown||Lb.unknown)timeText='日付がそろわないので向きはありません';
+    else{
+     var cmpKw=cmpDates(La.dt,Lb.dt);
+     if(cmpKw===-1){dir=1;timeText=La.label+' → '+Lb.label}
+     else if(cmpKw===1){dir=-1;timeText=Lb.label+' → '+La.label}
+     else if(cmpKw===0)timeText='日付はどちらも '+La.label;
+     else timeText='日付がそろわないので向きはありません';
+    }
+   }
+   return {dir:dir,count:count,provisional:!!info.provisional,itemEdge:itemEdge,timeText:timeText,strengthText:strengthText};
+  }
+  function pairLine(idA,idB){
+   var f=between(idA,idB);
+   if(f.itemEdge)return f.timeText;
+   return (f.strengthText?f.strengthText+'。':'')+f.timeText;
+  }
+  model={catalog:catalog,adj:adj,links:links,keywords:keywords,items:items,edgeInfo:edgeInfo,centerId:selected,flow:{between:between,pairLine:pairLine}};
   var ctx={
    host:host,
    model:model,
@@ -633,6 +764,11 @@
   if(thinBtn)thinBtn.addEventListener('click',function(){setLabelMode('thin')});
   if(directBtn)directBtn.addEventListener('click',function(){setLabelMode('direct')});
   setLabelMode('along');
+  var timeBtn=document.getElementById('to-time');
+  var strengthBtn=document.getElementById('to-strength');
+  if(timeBtn)timeBtn.addEventListener('click',function(){setFlowMode('time')});
+  if(strengthBtn)strengthBtn.addEventListener('click',function(){setFlowMode('strength')});
+  if(timeBtn)setFlowMode('time');
   document.getElementById('to-graph').addEventListener('click',showGraph);
   document.getElementById('to-list').addEventListener('click',function(){
    page.setAttribute('data-view','list');
